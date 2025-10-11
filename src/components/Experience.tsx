@@ -35,8 +35,6 @@ const Experience = () => {
                 <h3 className="text-2xl font-bold text-gradient">{experience.role}</h3>
                 <div className="flex items-center gap-2 text-muted-foreground">
                   <Building2 className="h-4 w-4" />
-                  <span className="font-medium">{experience.company}</span>
-                  <span>•</span>
                   <span>{experience.location}</span>
                 </div>
               </div>

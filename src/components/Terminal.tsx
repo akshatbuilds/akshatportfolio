@@ -36,6 +36,8 @@ const Terminal = ({ open, onClose }: TerminalProps) => {
 - about: Learn about Akshat
 - skills: View technical skills
 - projects: List key projects
+- certifications: View certifications
+- education: View education background
 - contact: Get contact information
 - clear: Clear terminal
 - easteregg: Find the hidden surprise 🥚`,
@@ -51,7 +53,18 @@ Building the future, one agent at a time.`,
     projects: `Featured Projects:
 1. Project Sync AI Agent - Multi-agent PM automation (25% efficiency gain)
 2. SmartReports AI - RAG-powered multilingual reports (95% accuracy)
-3. OrderSync Agent - Autonomous order processing (25% improved tracking)`,
+3. OrderSync Agent - Autonomous order processing (25% improved tracking)
+4. RAG-Enhanced Customer Support Agent - Intelligent support with 92% accuracy`,
+    certifications: `Certifications:
+→ Artificial Intelligence - SkillUp – NASSCOM (August 2024)
+→ AI Foundations: Prompt Engineering with LLMs - Coursera (June 2025)
+→ AWS Educate Cloud Foundations - Amazon Web Services (July 2024)
+→ Salesforce Certified Platform Developer I (December 2024)
+→ Trailhead Ranger - 100+ Badges, 100K+ Points`,
+    education: `Education:
+Chandigarh Engineering College, Mohali, India
+Bachelor of Technology | Computer Science
+GPA: 8.1 | June 2020 - August 2024`,
     contact: `Contact Information:
 📧 Email: akshatchaudhary4088@gmail.com
 📱 Mobile: +91-9728036616

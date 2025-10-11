@@ -93,28 +93,6 @@ const Projects = () => {
         "FastAPI",
       ],
     },
-    {
-      title: "Multi-Agent Task Orchestration System",
-      period: "September 2023 – December 2023",
-      role: "AI Developer",
-      description:
-        "Collaborative multi-agent system using LangGraph for complex task decomposition and parallel execution",
-      achievements: [
-        "Designed agent collaboration framework with LangGraph reducing task completion time by ~45%",
-        "Implemented agent specialization (planner, executor, validator) for complex workflow automation",
-        "Built reinforcement learning feedback loops improving agent decision quality by ~35%",
-        "Created monitoring dashboards tracking agent performance metrics and decision paths",
-      ],
-      tech: [
-        "LangGraph",
-        "LangChain agents",
-        "Reinforcement learning",
-        "TensorFlow",
-        "AWS Lambda",
-        "CloudWatch",
-        "Python",
-      ],
-    },
   ];
 
   return (
@@ -155,9 +133,9 @@ const Projects = () => {
 
                 <div className="space-y-2">
                   {project.achievements.map((achievement, i) => (
-                    <div key={i} className="flex gap-2">
-                      <span className="text-primary mt-1.5">→</span>
-                      <span className="text-sm text-muted-foreground">
+                    <div key={i} className="flex gap-3 items-start">
+                      <span className="text-primary mt-0.5 flex-shrink-0">→</span>
+                      <span className="text-sm text-muted-foreground leading-relaxed">
                         {achievement}
                       </span>
                     </div>
