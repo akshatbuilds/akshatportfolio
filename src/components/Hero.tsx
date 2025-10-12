@@ -23,22 +23,22 @@ const Hero = () => {
 
             {/* Content */}
             <div className="px-8 md:px-16 py-20 md:py-32 min-h-[600px] flex flex-col items-center justify-center text-center">
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.1] mb-12">
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight leading-[1.1] mb-12 font-body">
                 I build intelligent
                 <br />
                 systems, agents &{" "}
-                <span className="italic font-serif text-muted-foreground">
+                <span className="italic font-serif text-muted-foreground font-normal">
                   solutions
                 </span>
                 .
               </h1>
 
               <div className="space-y-2 mb-12">
-                <p className="text-lg md:text-xl text-foreground">
-                  AI & Agentic AI Engineer at TwoPir. Based in Chandigarh.
+                <p className="text-lg md:text-xl text-foreground font-semibold">
+                  AI & Agentic AI Engineer based in Chandigarh
                 </p>
                 <p className="text-base md:text-lg text-muted-foreground">
-                  Formerly building with LangChain, LangGraph, and cloud infrastructure
+                  Building with LangChain, LangGraph, and cloud infrastructure
                 </p>
               </div>
 
