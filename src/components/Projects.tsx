@@ -107,33 +107,28 @@ const Projects = () => {
 
         <div className="space-y-20">
           {projects.map((project, index) => (
-            <div
-              key={index}
-              className="group"
-            >
+            <div key={index}>
               <div className="space-y-6">
-                <div>
-                  <h3 className="text-2xl md:text-3xl font-bold mb-3 group-hover:text-[hsl(var(--highlight))] transition-colors">
-                    {project.title}
-                  </h3>
-                  <div className="flex flex-wrap gap-3 text-sm text-muted-foreground mb-4">
+                <div className="space-y-4">
+                  <h3 className="text-2xl md:text-3xl font-bold">{project.title}</h3>
+                  <div className="flex flex-wrap gap-4 text-muted-foreground">
                     <span>{project.period}</span>
                     <span>•</span>
                     <span>{project.role}</span>
                   </div>
                 </div>
 
-                <p className="text-muted-foreground text-lg leading-relaxed max-w-3xl">
+                <p className="text-muted-foreground text-lg leading-relaxed">
                   {project.description}
                 </p>
 
-                <div className="space-y-3">
+                <div className="space-y-4 pt-6">
                   {project.achievements.map((achievement, i) => (
                     <div key={i} className="flex gap-3">
                       <span className="text-[hsl(var(--highlight))] flex-shrink-0">→</span>
-                      <span className="text-muted-foreground leading-relaxed">
+                      <p className="text-muted-foreground leading-relaxed text-lg">
                         {achievement}
-                      </span>
+                      </p>
                     </div>
                   ))}
                 </div>
