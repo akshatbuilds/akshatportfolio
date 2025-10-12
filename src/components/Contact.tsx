@@ -45,7 +45,7 @@ const Contact = () => {
             </a>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
             {contactInfo.map((item, index) => {
               const Icon = item.icon;
               return (
@@ -56,12 +56,12 @@ const Contact = () => {
                   rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
                   className="flex flex-col items-center gap-3 group"
                 >
-                  <Icon className="h-6 w-6 text-muted-foreground group-hover:text-foreground transition-colors" />
+                  <Icon className="h-7 w-7 text-muted-foreground group-hover:text-foreground transition-colors" />
                   <div>
-                    <p className="text-xs text-muted-foreground mb-1">
+                    <p className="text-sm text-muted-foreground mb-1">
                       {item.label}
                     </p>
-                    <p className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">
+                    <p className="text-base font-medium text-muted-foreground group-hover:text-foreground transition-colors">
                       {item.value}
                     </p>
                   </div>

@@ -106,9 +106,10 @@ const Skills = () => {
                   {category.skills.map((skill, skillIndex) => (
                     <div
                       key={skillIndex}
-                      className="text-muted-foreground hover:text-foreground transition-colors"
+                      className="flex gap-3 text-muted-foreground hover:text-foreground transition-colors"
                     >
-                      {skill}
+                      <span className="text-[hsl(var(--highlight))] flex-shrink-0">→</span>
+                      <span>{skill}</span>
                     </div>
                   ))}
                 </div>
