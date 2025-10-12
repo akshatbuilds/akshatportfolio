@@ -1,5 +1,4 @@
 import { ExternalLink, Github } from "lucide-react";
-import { Card } from "./ui/card";
 
 const Projects = () => {
   const projects = [
@@ -95,46 +94,44 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects" className="py-24 relative">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Featured <span className="text-gradient">Projects</span>
+    <section id="projects" className="py-32 relative">
+      <div className="container mx-auto px-6 max-w-6xl">
+        <div className="text-center mb-20">
+          <h2 className="text-4xl md:text-6xl font-bold mb-6">
+            Featured Projects
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-lg md:text-xl max-w-3xl mx-auto">
             Real-world AI solutions with measurable impact
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <div className="space-y-20">
           {projects.map((project, index) => (
-            <Card
+            <div
               key={index}
-              className="p-8 bg-card border-border hover:border-foreground/20 transition-all duration-300 group flex flex-col"
+              className="group"
             >
-              <div className="space-y-4 flex-1">
+              <div className="space-y-6">
                 <div>
-                  <div className="flex items-start justify-between gap-4 mb-2">
-                    <h3 className="text-2xl font-bold group-hover:text-gradient transition-colors">
-                      {project.title}
-                    </h3>
-                  </div>
-                  <div className="flex flex-wrap gap-2 text-sm text-muted-foreground font-mono mb-4">
+                  <h3 className="text-2xl md:text-3xl font-bold mb-3 group-hover:text-[hsl(var(--highlight))] transition-colors">
+                    {project.title}
+                  </h3>
+                  <div className="flex flex-wrap gap-3 text-sm text-muted-foreground mb-4">
                     <span>{project.period}</span>
                     <span>•</span>
                     <span>{project.role}</span>
                   </div>
                 </div>
 
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-muted-foreground text-lg leading-relaxed max-w-3xl">
                   {project.description}
                 </p>
 
-                <div className="space-y-2">
+                <div className="space-y-3">
                   {project.achievements.map((achievement, i) => (
                     <div key={i} className="flex gap-3 items-start">
-                      <span className="text-foreground mt-0.5 flex-shrink-0">→</span>
-                      <span className="text-sm text-muted-foreground leading-relaxed">
+                      <span className="text-[hsl(var(--highlight))] mt-1.5 flex-shrink-0">→</span>
+                      <span className="text-muted-foreground leading-relaxed">
                         {achievement}
                       </span>
                     </div>
@@ -145,14 +142,18 @@ const Projects = () => {
                   {project.tech.map((tech, i) => (
                     <span
                       key={i}
-                      className="text-xs px-2 py-1 bg-foreground/5 text-foreground rounded border border-border font-mono"
+                      className="text-xs px-3 py-1.5 bg-muted/50 text-muted-foreground rounded-full border border-border/50"
                     >
                       {tech}
                     </span>
                   ))}
                 </div>
               </div>
-            </Card>
+              
+              {index < projects.length - 1 && (
+                <div className="h-px bg-border/30 mt-20" />
+              )}
+            </div>
           ))}
         </div>
       </div>

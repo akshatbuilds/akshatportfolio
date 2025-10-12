@@ -14,10 +14,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        heading: ['Space Grotesk', 'sans-serif'],
+        sans: ['Inter', 'sans-serif'],
+        heading: ['Inter', 'sans-serif'],
         body: ['Inter', 'sans-serif'],
-        mono: ['JetBrains Mono', 'monospace'],
-        serif: ['Playfair Display', 'serif'],
       },
       colors: {
         border: "hsl(var(--border))",

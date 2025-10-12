@@ -25,9 +25,6 @@ const Index = () => {
 
   return (
     <div className="relative min-h-screen">
-      <div className="fixed inset-0 grid-pattern opacity-20 pointer-events-none" />
-      <div className="fixed inset-0 bg-gradient-to-b from-transparent via-transparent to-background pointer-events-none" />
-      
       <Navigation />
       
       <main className="relative">

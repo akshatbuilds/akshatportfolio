@@ -1,5 +1,4 @@
 import { Building2, Calendar } from "lucide-react";
-import { Card } from "./ui/card";
 
 const Experience = () => {
   const experience = {
@@ -17,44 +16,45 @@ const Experience = () => {
   };
 
   return (
-    <section id="experience" className="py-24 relative">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Professional <span className="text-gradient">Experience</span>
+    <section id="experience" className="py-32 relative">
+      <div className="container mx-auto px-6 max-w-6xl">
+        <div className="text-center mb-20">
+          <h2 className="text-4xl md:text-6xl font-bold mb-6">
+            Professional Experience
           </h2>
-          <p className="text-muted-foreground text-lg">
+          <p className="text-muted-foreground text-lg md:text-xl">
             Building AI solutions that drive real business impact
           </p>
         </div>
 
         <div className="max-w-4xl mx-auto">
-          <Card className="p-8 bg-card border-border hover:border-foreground/20 transition-all duration-300">
-            <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6">
-              <div className="space-y-2">
-                <h3 className="text-2xl font-bold text-gradient">{experience.role}</h3>
-                <div className="flex items-center gap-2 text-muted-foreground">
+          <div className="space-y-6">
+            <div className="space-y-4">
+              <h3 className="text-2xl md:text-3xl font-bold">{experience.role}</h3>
+              <div className="flex flex-wrap gap-4 text-muted-foreground">
+                <div className="flex items-center gap-2">
                   <Building2 className="h-4 w-4" />
-                  <span>{experience.location}</span>
+                  <span>{experience.company}</span>
                 </div>
-              </div>
-              <div className="flex items-center gap-2 text-muted-foreground font-mono text-sm">
-                <Calendar className="h-4 w-4" />
-                <span>{experience.period}</span>
+                <span>•</span>
+                <div className="flex items-center gap-2">
+                  <Calendar className="h-4 w-4" />
+                  <span>{experience.period}</span>
+                </div>
               </div>
             </div>
 
-            <div className="space-y-3">
+            <div className="space-y-4 pt-6">
               {experience.achievements.map((achievement, index) => (
                 <div key={index} className="flex gap-3 group">
-                  <div className="mt-2 h-2 w-2 rounded-full bg-foreground flex-shrink-0 group-hover:scale-150 transition-transform" />
-                  <p className="text-muted-foreground leading-relaxed group-hover:text-foreground transition-colors">
+                  <span className="text-[hsl(var(--highlight))] mt-1.5 flex-shrink-0">→</span>
+                  <p className="text-muted-foreground leading-relaxed text-lg">
                     {achievement}
                   </p>
                 </div>
               ))}
             </div>
-          </Card>
+          </div>
         </div>
       </div>
     </section>

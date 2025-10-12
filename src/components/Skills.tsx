@@ -1,5 +1,4 @@
 import { Bot, Brain, Cloud, Code, Database, Workflow } from "lucide-react";
-import { Card } from "./ui/card";
 
 const Skills = () => {
   const skillCategories = [
@@ -78,42 +77,42 @@ const Skills = () => {
   ];
 
   return (
-    <section id="skills" className="py-24 relative">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Technical <span className="text-gradient">Arsenal</span>
+    <section id="skills" className="py-32 relative">
+      <div className="container mx-auto px-6 max-w-6xl">
+        <div className="text-center mb-20">
+          <h2 className="text-4xl md:text-6xl font-bold mb-6">
+            Technical Expertise
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-lg md:text-xl max-w-3xl mx-auto">
             A comprehensive toolkit for building intelligent, scalable AI systems
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {skillCategories.map((category, index) => {
             const Icon = category.icon;
             return (
-              <Card
+              <div
                 key={index}
-                className="p-6 bg-card border-border hover:border-foreground/20 transition-all duration-300 group"
+                className="group"
               >
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="p-2 bg-foreground/5 rounded-lg group-hover:bg-foreground/10 transition-colors">
-                    <Icon className="h-6 w-6 text-foreground" />
+                <div className="mb-6">
+                  <div className="flex items-center gap-3 mb-4">
+                    <Icon className="h-6 w-6 text-[hsl(var(--highlight))]" />
+                    <h3 className="text-xl font-semibold">{category.title}</h3>
                   </div>
-                  <h3 className="text-xl font-semibold">{category.title}</h3>
                 </div>
-                <div className="flex flex-wrap gap-2">
+                <div className="space-y-2">
                   {category.skills.map((skill, skillIndex) => (
-                    <span
+                    <div
                       key={skillIndex}
-                      className="text-sm px-3 py-1 bg-secondary rounded-full text-secondary-foreground border border-border"
+                      className="text-muted-foreground hover:text-foreground transition-colors"
                     >
                       {skill}
-                    </span>
+                    </div>
                   ))}
                 </div>
-              </Card>
+              </div>
             );
           })}
         </div>

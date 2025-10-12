@@ -2,7 +2,7 @@ import { Github, Linkedin, Mail, ArrowDown } from "lucide-react";
 
 const Hero = () => {
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center pt-32 pb-20">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center pt-24 pb-20">
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-5xl mx-auto text-center">
           {/* Badge */}
