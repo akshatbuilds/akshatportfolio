@@ -95,11 +95,11 @@ const Skills = () => {
             return (
               <Card
                 key={index}
-                className="p-6 bg-card border-border hover:border-primary/50 transition-all duration-300 group hover:card-glow"
+                className="p-6 bg-card border-border hover:border-foreground/20 transition-all duration-300 group"
               >
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="p-2 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors">
-                    <Icon className="h-6 w-6 text-primary" />
+                  <div className="p-2 bg-foreground/5 rounded-lg group-hover:bg-foreground/10 transition-colors">
+                    <Icon className="h-6 w-6 text-foreground" />
                   </div>
                   <h3 className="text-xl font-semibold">{category.title}</h3>
                 </div>

@@ -29,7 +29,7 @@ const Experience = () => {
         </div>
 
         <div className="max-w-4xl mx-auto">
-          <Card className="p-8 bg-card border-border hover:border-primary/50 transition-all duration-300 card-glow">
+          <Card className="p-8 bg-card border-border hover:border-foreground/20 transition-all duration-300">
             <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6">
               <div className="space-y-2">
                 <h3 className="text-2xl font-bold text-gradient">{experience.role}</h3>
@@ -47,7 +47,7 @@ const Experience = () => {
             <div className="space-y-3">
               {experience.achievements.map((achievement, index) => (
                 <div key={index} className="flex gap-3 group">
-                  <div className="mt-2 h-2 w-2 rounded-full bg-primary flex-shrink-0 group-hover:scale-150 transition-transform" />
+                  <div className="mt-2 h-2 w-2 rounded-full bg-foreground flex-shrink-0 group-hover:scale-150 transition-transform" />
                   <p className="text-muted-foreground leading-relaxed group-hover:text-foreground transition-colors">
                     {achievement}
                   </p>

@@ -1,6 +1,5 @@
 import { Github, Linkedin, Mail, MapPin, Phone } from "lucide-react";
 import { Card } from "./ui/card";
-import { Button } from "./ui/button";
 
 const Contact = () => {
   const contactInfo = [
@@ -43,7 +42,7 @@ const Contact = () => {
         </div>
 
         <div className="max-w-4xl mx-auto">
-          <Card className="p-8 md:p-12 bg-card border-border hover:border-primary/50 transition-all duration-300 card-glow">
+          <Card className="p-8 md:p-12 bg-card border-border hover:border-foreground/20 transition-all duration-300">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {contactInfo.map((item, index) => {
                 const Icon = item.icon;
@@ -55,14 +54,14 @@ const Contact = () => {
                     rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
                     className="flex items-start gap-4 p-4 rounded-lg hover:bg-secondary transition-colors group"
                   >
-                    <div className="p-3 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors">
-                      <Icon className="h-5 w-5 text-primary" />
+                    <div className="p-3 bg-foreground/5 rounded-lg group-hover:bg-foreground/10 transition-colors">
+                      <Icon className="h-5 w-5 text-foreground" />
                     </div>
                     <div>
                       <p className="text-sm text-muted-foreground mb-1">
                         {item.label}
                       </p>
-                      <p className="font-medium group-hover:text-primary transition-colors">
+                      <p className="font-medium group-hover:text-foreground transition-colors">
                         {item.value}
                       </p>
                     </div>
@@ -75,12 +74,13 @@ const Contact = () => {
               <p className="text-muted-foreground mb-4">
                 Available for freelance projects and full-time opportunities
               </p>
-              <Button size="lg" className="group" asChild>
-                <a href="mailto:akshatchaudhary4088@gmail.com">
-                  <Mail className="mr-2 h-4 w-4" />
-                  Send me an email
-                </a>
-              </Button>
+              <a 
+                href="mailto:akshatchaudhary4088@gmail.com"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground rounded-full font-medium hover:opacity-90 transition-all"
+              >
+                <Mail className="h-4 w-4" />
+                Send me an email
+              </a>
             </div>
           </Card>
         </div>

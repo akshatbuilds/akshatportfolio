@@ -1,6 +1,5 @@
 import { ExternalLink, Github } from "lucide-react";
 import { Card } from "./ui/card";
-import { Button } from "./ui/button";
 
 const Projects = () => {
   const projects = [
@@ -111,7 +110,7 @@ const Projects = () => {
           {projects.map((project, index) => (
             <Card
               key={index}
-              className="p-8 bg-card border-border hover:border-primary/50 transition-all duration-300 group hover:card-glow flex flex-col"
+              className="p-8 bg-card border-border hover:border-foreground/20 transition-all duration-300 group flex flex-col"
             >
               <div className="space-y-4 flex-1">
                 <div>
@@ -134,7 +133,7 @@ const Projects = () => {
                 <div className="space-y-2">
                   {project.achievements.map((achievement, i) => (
                     <div key={i} className="flex gap-3 items-start">
-                      <span className="text-primary mt-0.5 flex-shrink-0">→</span>
+                      <span className="text-foreground mt-0.5 flex-shrink-0">→</span>
                       <span className="text-sm text-muted-foreground leading-relaxed">
                         {achievement}
                       </span>
@@ -146,7 +145,7 @@ const Projects = () => {
                   {project.tech.map((tech, i) => (
                     <span
                       key={i}
-                      className="text-xs px-2 py-1 bg-primary/10 text-primary rounded border border-primary/20 font-mono"
+                      className="text-xs px-2 py-1 bg-foreground/5 text-foreground rounded border border-border font-mono"
                     >
                       {tech}
                     </span>

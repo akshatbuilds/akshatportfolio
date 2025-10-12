@@ -1,98 +1,81 @@
-import { useEffect, useState } from "react";
-import { ArrowRight, Github, Linkedin, Mail } from "lucide-react";
-import { Button } from "./ui/button";
+import { Github, Linkedin, Mail, ArrowDown } from "lucide-react";
 
 const Hero = () => {
-  const [typedText, setTypedText] = useState("");
-  const fullText = "AI & Agentic AI Engineer";
-
-  useEffect(() => {
-    let index = 0;
-    const timer = setInterval(() => {
-      if (index <= fullText.length) {
-        setTypedText(fullText.slice(0, index));
-        index++;
-      } else {
-        clearInterval(timer);
-      }
-    }, 100);
-
-    return () => clearInterval(timer);
-  }, []);
-
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center pt-20">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-96 bg-gradient-radial from-primary/20 to-transparent blur-3xl" />
-      
       <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-4xl mx-auto text-center space-y-8">
-          <div className="space-y-4">
-            <p className="text-primary font-mono text-sm tracking-wider uppercase">
-              // Developer. AI Engineer. Problem Solver.
-            </p>
-            
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
-              Hi, I'm{" "}
-              <span className="text-gradient">Akshat Chaudhary</span>
+        <div className="max-w-5xl mx-auto space-y-16">
+          {/* Main Statement */}
+          <div className="space-y-8">
+            <h1 className="text-6xl md:text-8xl font-bold tracking-tight leading-[1.1]">
+              I build intelligent
+              <br />
+              <span className="text-muted-foreground">AI systems</span> that
+              <br />
+              solve real problems.
             </h1>
             
-            <div className="h-12 flex items-center justify-center">
-              <p className="text-2xl md:text-3xl text-muted-foreground font-mono">
-                {typedText}
-                <span className="animate-pulse">|</span>
-              </p>
+            <div className="space-y-3 text-lg md:text-xl text-muted-foreground max-w-2xl">
+              <p>i design autonomous agents.</p>
+              <p>i think AI should enhance human capability, not replace it.</p>
+              <p>i think the systems we build today shape the world of tomorrow.</p>
+              <p>i build with purpose.</p>
             </div>
           </div>
 
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Skilled in developing autonomous AI systems leveraging LLMs, reinforcement learning, 
-            and cloud infrastructure. Building scalable, data-driven solutions that optimize 
-            business processes and enhance user experiences.
-          </p>
+          {/* Identity */}
+          <div className="space-y-4 text-base md:text-lg">
+            <p className="font-mono text-muted-foreground">
+              Akshat Chaudhary / AI & Agentic AI Engineer
+            </p>
+            <p className="text-muted-foreground">
+              Based in Chandigarh, India. Building scalable AI solutions with LLMs, 
+              reinforcement learning, and cloud infrastructure.
+            </p>
+          </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            <Button size="lg" className="group" asChild>
-              <a href="#projects">
-                View Projects
-                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </a>
-            </Button>
+          {/* CTA & Social */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+            <a 
+              href="#projects"
+              className="group inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground rounded-full font-medium hover:opacity-90 transition-all"
+            >
+              View My Work
+              <ArrowDown className="h-4 w-4 group-hover:translate-y-1 transition-transform" />
+            </a>
             
-            <Button size="lg" variant="secondary" asChild>
-              <a href="#contact">Contact Me</a>
-            </Button>
+            <div className="flex items-center gap-4">
+              <a
+                href="https://github.com/AkshatBuilds"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-foreground transition-colors"
+                aria-label="GitHub Profile"
+              >
+                <Github className="h-5 w-5" />
+              </a>
+              <a
+                href="https://linkedin.com/in/ChaudharyAkshat"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-foreground transition-colors"
+                aria-label="LinkedIn Profile"
+              >
+                <Linkedin className="h-5 w-5" />
+              </a>
+              <a
+                href="mailto:akshatchaudhary4088@gmail.com"
+                className="text-muted-foreground hover:text-foreground transition-colors"
+                aria-label="Email"
+              >
+                <Mail className="h-5 w-5" />
+              </a>
+            </div>
           </div>
 
-          <div className="flex items-center justify-center gap-6 pt-8">
-            <a
-              href="https://github.com/AkshatBuilds"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-primary transition-colors"
-              aria-label="GitHub Profile"
-            >
-              <Github className="h-6 w-6" />
-            </a>
-            <a
-              href="https://linkedin.com/in/ChaudharyAkshat"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-primary transition-colors"
-              aria-label="LinkedIn Profile"
-            >
-              <Linkedin className="h-6 w-6" />
-            </a>
-            <a
-              href="mailto:akshatchaudhary4088@gmail.com"
-              className="text-muted-foreground hover:text-primary transition-colors"
-              aria-label="Email"
-            >
-              <Mail className="h-6 w-6" />
-            </a>
-          </div>
-
-          <p className="text-xs text-muted-foreground/60 font-mono pt-4">
-            Tip: Press Ctrl+K for a surprise 👀
+          {/* Terminal Hint */}
+          <p className="text-xs text-muted-foreground/60 font-mono pt-8">
+            Tip: Press Ctrl+K for terminal access →
           </p>
         </div>
       </div>
