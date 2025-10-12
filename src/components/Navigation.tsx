@@ -1,5 +1,4 @@
 import { useState } from "react";
-import ThemeToggle from "./ThemeToggle";
 
 const Navigation = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -31,12 +30,10 @@ const Navigation = () => {
                 {item.label}
               </a>
             ))}
-            <ThemeToggle />
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center gap-4">
-            <ThemeToggle />
+          <div className="md:hidden">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="text-muted-foreground hover:text-foreground"
