@@ -1,23 +1,18 @@
-import { Github, Linkedin, Mail, ArrowDown } from "lucide-react";
+import { Linkedin, Mail, ArrowDown } from "lucide-react";
 
 const Hero = () => {
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center pt-24 pb-20">
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-5xl mx-auto text-center">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-muted/50 border border-border/50 mb-8 animate-fade-in">
-            <span className="text-xs font-medium text-muted-foreground">✨ Building intelligent systems</span>
-          </div>
+          {/* Name */}
+          <h2 className="text-xl md:text-2xl font-bold mb-12 animate-fade-in">
+            Akshat Chaudhary
+          </h2>
 
           {/* Main Heading */}
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight leading-[1.05] mb-8 animate-fade-in" style={{ animationDelay: "0.1s", animationFillMode: "backwards" }}>
-            AI & Agentic Systems
-            <br />
-            <span className="text-foreground">with </span>
-            <span className="text-[hsl(var(--highlight))] highlight-glow">
-              Precision
-            </span>
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] mb-8 animate-fade-in" style={{ animationDelay: "0.1s", animationFillMode: "backwards" }}>
+            I build intelligent AI systems and agentic workflows that automate complex processes and scale from prototype to production.
           </h1>
 
           {/* Description */}
@@ -29,15 +24,6 @@ const Hero = () => {
 
           {/* Social Links */}
           <div className="flex items-center justify-center gap-6 mb-16 animate-fade-in" style={{ animationDelay: "0.3s", animationFillMode: "backwards" }}>
-            <a
-              href="https://github.com/AkshatBuilds"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-foreground hover:scale-110 transition-all duration-300"
-              aria-label="GitHub Profile"
-            >
-              <Github className="h-6 w-6" />
-            </a>
             <a
               href="https://linkedin.com/in/ChaudharyAkshat"
               target="_blank"

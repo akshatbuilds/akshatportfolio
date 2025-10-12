@@ -27,7 +27,7 @@ const Projects = () => {
     {
       title: "SmartReports AI",
       period: "August 2024 – November 2024",
-      role: "Lead Developer | TwoPir Consulting",
+      role: "Lead Developer",
       description:
         "RAG-powered multilingual reporting system integrating Hugging Face + OpenAI + n8n for automated client report generation",
       achievements: [
@@ -50,7 +50,7 @@ const Projects = () => {
     {
       title: "OrderSync Agent",
       period: "December 2024 – March 2025",
-      role: "Developer | TwoPir Consulting",
+      role: "Developer",
       description:
         "Autonomous AI agent system for order lifecycle management with real-time insights, predictive analytics, and self-healing workflows",
       achievements: [

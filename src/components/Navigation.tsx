@@ -16,7 +16,7 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <a href="#hero" className="text-lg font-bold hover:opacity-70 transition-opacity">
-            Akshat Chaudhary
+            AC
           </a>
 
           {/* Desktop Navigation */}

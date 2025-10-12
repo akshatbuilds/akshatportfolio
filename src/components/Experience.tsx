@@ -2,8 +2,8 @@ import { Building2, Calendar } from "lucide-react";
 
 const Experience = () => {
   const experience = {
-    company: "TwoPir Consulting",
-    role: "Associate AI & Automation Engineer",
+    company: "Freelance",
+    role: "AI & Automation Engineer",
     location: "Chandigarh, India",
     period: "April 2024 - Present",
     achievements: [

@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail, MapPin, Phone } from "lucide-react";
+import { Linkedin, Mail, Phone } from "lucide-react";
 
 const Contact = () => {
   const contactInfo = [
@@ -13,12 +13,6 @@ const Contact = () => {
       label: "Mobile",
       value: "+91-9728036616",
       href: "tel:+919728036616",
-    },
-    {
-      icon: Github,
-      label: "GitHub",
-      value: "AkshatBuilds",
-      href: "https://github.com/AkshatBuilds",
     },
     {
       icon: Linkedin,
@@ -51,7 +45,7 @@ const Contact = () => {
             </a>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             {contactInfo.map((item, index) => {
               const Icon = item.icon;
               return (
