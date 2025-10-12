@@ -32,6 +32,10 @@ All colors MUST be HSL.
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
+    --highlight: 45 93% 47%;
+    --highlight-foreground: 222 47% 11%;
+    --highlight-glow: 45 93% 47% / 0.4;
+
     --border: 214 32% 91%;
     --input: 214 32% 91%;
     --ring: 221 83% 53%;
@@ -78,6 +82,10 @@ All colors MUST be HSL.
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
+    --highlight: 45 93% 57%;
+    --highlight-foreground: 222 47% 11%;
+    --highlight-glow: 45 93% 57% / 0.5;
+
     --border: 217 33% 17%;
     --input: 217 33% 17%;
     --ring: 217 91% 60%;
@@ -119,6 +127,10 @@ All colors MUST be HSL.
   
   .glow-text {
     text-shadow: 0 0 20px hsl(var(--foreground) / 0.3);
+  }
+  
+  .highlight-glow {
+    text-shadow: 0 0 30px hsl(var(--highlight-glow)), 0 0 60px hsl(var(--highlight-glow));
   }
   
   .card-glow {
