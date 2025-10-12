@@ -61,7 +61,7 @@ const Contact = () => {
                     <p className="text-sm text-muted-foreground mb-1">
                       {item.label}
                     </p>
-                    <p className="text-base font-medium text-muted-foreground group-hover:text-foreground transition-colors">
+                    <p className="text-base font-medium text-muted-foreground group-hover:text-foreground transition-colors whitespace-nowrap">
                       {item.value}
                     </p>
                   </div>
