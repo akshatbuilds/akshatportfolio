@@ -72,7 +72,7 @@ GPA: 8.1 | June 2020 - August 2024`,
 💼 LinkedIn: linkedin.com/in/ChaudharyAkshat`,
     easteregg: `🎉 Congratulations! You found the Easter egg!
 
-"The best way to predict the future is to invent it." - Alan Kay
+"Artificial intelligence is the mirror through which humanity studies its own mind, discovering that the boundary between creator and creation was only ever an illusion." - Akshat Chaudhary
 
 🚀 EXCLUSIVE OFFER - You Found It!
 ══════════════════════════════════════════════════════════════
@@ -99,7 +99,7 @@ this hidden feature, here's something special:
    Docker • Terraform • REST APIs • WebSockets • Vector DBs
 
 📧 Ready to automate your workflow? Email me at:
-   akshatchaudhary4088@gmail.com
+   akshatchaudharyworks@gmail.com
    
 🔑 Don't forget to mention "EASTEREGG" for exclusive bonuses!
 
