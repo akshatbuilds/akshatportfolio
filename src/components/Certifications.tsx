@@ -4,6 +4,12 @@ import { Card } from "./ui/card";
 const Certifications = () => {
   const certifications = [
     {
+      title: "Salesforce Agentforce AI Specialist",
+      issuer: "Salesforce",
+      date: "March 2025",
+      badge: "Certified",
+    },
+    {
       title: "Salesforce Certified Platform Developer I",
       issuer: "Salesforce",
       date: "December 2024",

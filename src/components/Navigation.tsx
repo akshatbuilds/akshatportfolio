@@ -15,9 +15,19 @@ const Navigation = () => {
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <a href="#hero" className="text-lg font-bold hover:opacity-70 transition-opacity">
+          <button 
+            onClick={() => {
+              const event = new KeyboardEvent('keydown', {
+                key: 'k',
+                ctrlKey: true,
+                bubbles: true
+              });
+              window.dispatchEvent(event);
+            }}
+            className="text-lg font-bold hover:opacity-70 transition-opacity"
+          >
             AC
-          </a>
+          </button>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">

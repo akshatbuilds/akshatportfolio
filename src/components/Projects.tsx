@@ -3,25 +3,30 @@ import { ExternalLink, Github } from "lucide-react";
 const Projects = () => {
   const projects = [
     {
-      title: "Project Sync AI Agent",
-      period: "April 2024 – July 2024",
-      role: "Lead Developer",
+      title: "AI Voice Agent Platform",
+      period: "January 2025 – March 2025",
+      role: "Lead AI Engineer",
       description:
-        "Multi-agent project management automation system using LangChain-based agents to automate task creation, status updates, and stakeholder notifications",
+        "Enterprise-grade conversational AI platform managing inbound/outbound calls with natural language understanding, business knowledge base integration, and multi-tenant dashboard system",
       achievements: [
-        "Improved operational efficiency by ~25% through AI agent-driven automation",
-        "Created dynamic dashboards with responsive HTML/CSS templating (Tailwind & LiquidJS)",
-        "Developed nightly batch-processing pipelines with Python and Terraform-provisioned AWS Lambda",
-        "Reduced manual data steps by ~40%",
+        "Deployed autonomous voice agents achieving ~95% natural conversation accuracy using GPT-4o with function calling and real-time speech-to-speech capabilities",
+        "Built multi-tenant analytics dashboards providing sub-client performance insights, reducing manual reporting by ~70%",
+        "Integrated bi-directional CRM sync (Salesforce, HubSpot) enabling real-time customer data enrichment and automated workflow triggers",
+        "Implemented personalized outreach campaigns with dynamic voice synthesis and sentiment analysis, improving engagement rates by ~45%",
+        "Achieved <800ms average response latency with WebRTC-based streaming and edge-optimized inference infrastructure",
       ],
       tech: [
+        "OpenAI GPT-4o",
+        "WebRTC",
+        "Speech-to-Text API",
         "LangChain agents",
-        "Python",
+        "Twilio Voice API",
+        "Salesforce API",
+        "HubSpot API",
+        "Redis",
         "AWS Lambda",
-        "Terraform",
-        "TensorFlow",
-        "PyTorch",
-        "TailwindCSS",
+        "ElevenLabs TTS",
+        "Real-time streaming",
       ],
     },
     {
