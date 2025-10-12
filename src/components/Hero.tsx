@@ -25,15 +25,11 @@ const Hero = () => {
             <div className="px-8 md:px-16 py-20 md:py-32 min-h-[600px] flex flex-col items-center justify-center text-center">
               <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight leading-[1.1] mb-12 font-body animate-fade-in">
                 I build{" "}
-                <span className="relative inline-block">
-                  <span className="relative z-10">intelligent</span>
-                  <span className="absolute inset-0 bg-primary/10 blur-xl"></span>
-                </span>
+                <span className="text-foreground">intelligent</span>
                 <br />
                 systems,{" "}
-                <span className="relative inline-block">
-                  <span className="relative z-10 text-primary">agents</span>
-                  <span className="absolute inset-0 bg-primary/20 blur-xl"></span>
+                <span className="text-[hsl(var(--highlight))]">
+                  agents
                 </span>{" "}
                 &{" "}
                 <span className="italic font-serif text-muted-foreground font-normal">
@@ -43,11 +39,11 @@ const Hero = () => {
               </h1>
 
               <div className="space-y-3 mb-12 animate-fade-in" style={{ animationDelay: "0.2s", animationFillMode: "backwards" }}>
-                <p className="text-lg md:text-xl font-bold text-[hsl(var(--highlight))] highlight-glow animate-pulse">
+                <p className="text-lg md:text-xl font-medium text-muted-foreground">
                   AI & Agentic AI Engineer based in Chandigarh
                 </p>
-                <p className="text-base md:text-lg font-semibold text-[hsl(var(--highlight))] highlight-glow">
-                  Building with <span className="font-black">LangChain</span>, <span className="font-black">LangGraph</span>, and <span className="font-black">cloud infrastructure</span>
+                <p className="text-base md:text-lg text-muted-foreground">
+                  Building with <span className="font-semibold">LangChain</span>, <span className="font-semibold">LangGraph</span>, and <span className="font-semibold">cloud infrastructure</span>
                 </p>
               </div>
 
@@ -57,7 +53,7 @@ const Hero = () => {
                   href="https://github.com/AkshatBuilds"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-[hsl(var(--highlight))] hover:scale-110 transition-all duration-300"
+                  className="text-muted-foreground hover:text-foreground hover:scale-110 transition-all duration-300"
                   aria-label="GitHub Profile"
                 >
                   <Github className="h-5 w-5" />
@@ -66,14 +62,14 @@ const Hero = () => {
                   href="https://linkedin.com/in/ChaudharyAkshat"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-[hsl(var(--highlight))] hover:scale-110 transition-all duration-300"
+                  className="text-muted-foreground hover:text-foreground hover:scale-110 transition-all duration-300"
                   aria-label="LinkedIn Profile"
                 >
                   <Linkedin className="h-5 w-5" />
                 </a>
                 <a
                   href="mailto:akshatchaudhary4088@gmail.com"
-                  className="text-muted-foreground hover:text-[hsl(var(--highlight))] hover:scale-110 transition-all duration-300"
+                  className="text-muted-foreground hover:text-foreground hover:scale-110 transition-all duration-300"
                   aria-label="Email"
                 >
                   <Mail className="h-5 w-5" />
