@@ -2,94 +2,67 @@ import { Github, Linkedin, Mail, ArrowDown } from "lucide-react";
 
 const Hero = () => {
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center pt-20 pb-16">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center pt-32 pb-20">
       <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-6xl mx-auto">
-          {/* Browser Window Mockup */}
-          <div className="relative bg-card border border-border rounded-2xl shadow-2xl overflow-hidden">
-            {/* Browser Chrome */}
-            <div className="bg-muted/50 border-b border-border px-4 py-3 flex items-center gap-2">
-              <div className="flex gap-2">
-                <div className="w-3 h-3 rounded-full bg-[#FF5F57]" />
-                <div className="w-3 h-3 rounded-full bg-[#FEBC2E]" />
-                <div className="w-3 h-3 rounded-full bg-[#28C840]" />
-              </div>
-              <div className="flex-1 flex justify-center">
-                <div className="bg-background/50 rounded px-3 py-1 text-xs text-muted-foreground font-mono">
-                  akshat-portfolio.dev
-                </div>
-              </div>
-            </div>
-
-            {/* Content */}
-            <div className="px-8 md:px-16 py-20 md:py-32 min-h-[600px] flex flex-col items-center justify-center text-center">
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight leading-[1.1] mb-12 font-body animate-fade-in">
-                I build{" "}
-                <span className="text-foreground">intelligent</span>
-                <br />
-                systems,{" "}
-                <span className="text-[hsl(var(--highlight))]">
-                  agents
-                </span>{" "}
-                &{" "}
-                <span className="italic font-serif text-muted-foreground font-normal">
-                  solutions
-                </span>
-                .
-              </h1>
-
-              <div className="space-y-3 mb-12 animate-fade-in" style={{ animationDelay: "0.2s", animationFillMode: "backwards" }}>
-                <p className="text-lg md:text-xl font-medium text-muted-foreground">
-                  AI & Agentic AI Engineer based in Chandigarh
-                </p>
-                <p className="text-base md:text-lg text-muted-foreground">
-                  Building with <span className="font-semibold">LangChain</span>, <span className="font-semibold">LangGraph</span>, and <span className="font-semibold">cloud infrastructure</span>
-                </p>
-              </div>
-
-              {/* Social Links */}
-              <div className="flex items-center gap-6 mb-12 animate-fade-in" style={{ animationDelay: "0.4s", animationFillMode: "backwards" }}>
-                <a
-                  href="https://github.com/AkshatBuilds"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-foreground hover:scale-110 transition-all duration-300"
-                  aria-label="GitHub Profile"
-                >
-                  <Github className="h-5 w-5" />
-                </a>
-                <a
-                  href="https://linkedin.com/in/ChaudharyAkshat"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-foreground hover:scale-110 transition-all duration-300"
-                  aria-label="LinkedIn Profile"
-                >
-                  <Linkedin className="h-5 w-5" />
-                </a>
-                <a
-                  href="mailto:akshatchaudhary4088@gmail.com"
-                  className="text-muted-foreground hover:text-foreground hover:scale-110 transition-all duration-300"
-                  aria-label="Email"
-                >
-                  <Mail className="h-5 w-5" />
-                </a>
-              </div>
-
-              {/* Scroll Indicator */}
-              <a
-                href="#projects"
-                className="text-muted-foreground hover:text-foreground transition-colors animate-bounce"
-              >
-                <ArrowDown className="h-6 w-6" />
-              </a>
-            </div>
+        <div className="max-w-5xl mx-auto text-center">
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-muted/50 border border-border/50 mb-8 animate-fade-in">
+            <span className="text-xs font-medium text-muted-foreground">✨ Building intelligent systems</span>
           </div>
 
-          {/* Terminal Hint */}
-          <p className="text-xs text-muted-foreground/60 font-mono text-center mt-8">
-            Tip: Press Ctrl+K for terminal access →
+          {/* Main Heading */}
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight leading-[1.05] mb-8 animate-fade-in" style={{ animationDelay: "0.1s", animationFillMode: "backwards" }}>
+            AI & Agentic Systems
+            <br />
+            <span className="text-foreground">with </span>
+            <span className="text-[hsl(var(--highlight))] highlight-glow">
+              Precision
+            </span>
+          </h1>
+
+          {/* Description */}
+          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed animate-fade-in" style={{ animationDelay: "0.2s", animationFillMode: "backwards" }}>
+            Effortlessly building intelligent agents with LangChain, LangGraph, and cloud infrastructure.
+            <br />
+            Creating solutions that scale from prototype to production.
           </p>
+
+          {/* Social Links */}
+          <div className="flex items-center justify-center gap-6 mb-16 animate-fade-in" style={{ animationDelay: "0.3s", animationFillMode: "backwards" }}>
+            <a
+              href="https://github.com/AkshatBuilds"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-foreground hover:scale-110 transition-all duration-300"
+              aria-label="GitHub Profile"
+            >
+              <Github className="h-6 w-6" />
+            </a>
+            <a
+              href="https://linkedin.com/in/ChaudharyAkshat"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-foreground hover:scale-110 transition-all duration-300"
+              aria-label="LinkedIn Profile"
+            >
+              <Linkedin className="h-6 w-6" />
+            </a>
+            <a
+              href="mailto:akshatchaudhary4088@gmail.com"
+              className="text-muted-foreground hover:text-foreground hover:scale-110 transition-all duration-300"
+              aria-label="Email"
+            >
+              <Mail className="h-6 w-6" />
+            </a>
+          </div>
+
+          {/* Scroll Indicator */}
+          <a
+            href="#projects"
+            className="inline-block text-muted-foreground hover:text-foreground transition-colors animate-bounce"
+          >
+            <ArrowDown className="h-6 w-6" />
+          </a>
         </div>
       </div>
     </section>
