@@ -84,13 +84,6 @@ const Contact = () => {
             </div>
           </Card>
         </div>
-
-        <footer className="mt-16 text-center text-sm text-muted-foreground">
-          <p>© 2025 Akshat Chaudhary. Built with React + Vite + Tailwind CSS</p>
-          <p className="mt-2 font-mono text-xs">
-            Designed & Developed with precision and passion
-          </p>
-        </footer>
       </div>
     </section>
   );
