@@ -70,19 +70,40 @@ GPA: 8.1 | June 2020 - August 2024`,
 📱 Mobile: +91-9728036616
 🔗 GitHub: github.com/AkshatBuilds
 💼 LinkedIn: linkedin.com/in/ChaudharyAkshat`,
-    easteregg: `🎉 You found the Easter egg!
+    easteregg: `🎉 Congratulations! You found the Easter egg!
 
 "The best way to predict the future is to invent it." - Alan Kay
 
-Fun fact: This portfolio was designed to showcase not just skills,
-but attention to detail. You found the hidden terminal by pressing Ctrl+K!
+🚀 EXCLUSIVE OFFER - You Found It!
+══════════════════════════════════════════════════════════════
 
-Other hidden features to discover:
-- Hover effects on project cards
-- Smooth scroll animations
-- Dynamic typing effect in hero section
+I work as a freelance AI & Automation Engineer, and since you discovered 
+this hidden feature, here's something special:
 
-Keep exploring! 🚀`,
+💎 Mention "EASTEREGG" when you reach out, and I'll provide:
+   • Free consultation session (30 min)
+   • Custom automation blueprint for your business
+   • Extra features/optimizations at no additional cost
+
+📋 What I Build:
+   → Lead Generation & Enrichment Workflows
+   → CRM Integrations (Salesforce, HubSpot, Pipedrive)
+   → Automated Outreach Campaigns
+   → AI-Powered Process Automation
+   → Cloud Infrastructure & Deployment (AWS, GCP)
+   → Custom AI Agents & Multi-Agent Systems
+   → Business Process Streamlining
+
+💼 Tech Stack:
+   LangChain • GPT-4 • Claude • n8n • Zapier • Python • AWS
+   Docker • Terraform • REST APIs • WebSockets • Vector DBs
+
+📧 Ready to automate your workflow? Email me at:
+   akshatchaudhary4088@gmail.com
+   
+🔑 Don't forget to mention "EASTEREGG" for exclusive bonuses!
+
+Keep exploring! There are more hidden features... 🚀`,
     clear: "CLEAR",
   };
 
