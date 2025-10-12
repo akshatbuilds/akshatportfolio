@@ -6,7 +6,7 @@ const Hero = () => {
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-5xl mx-auto text-center">
           {/* Name */}
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 animate-fade-in">
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-12 animate-fade-in">
             Akshat Chaudhary
           </h2>
 

@@ -47,7 +47,7 @@ const Experience = () => {
             <div className="space-y-4 pt-6">
               {experience.achievements.map((achievement, index) => (
                 <div key={index} className="flex gap-3 group">
-                  <span className="text-[hsl(var(--highlight))] mt-1.5 flex-shrink-0">→</span>
+                  <span className="text-[hsl(var(--highlight))] flex-shrink-0">→</span>
                   <p className="text-muted-foreground leading-relaxed text-lg">
                     {achievement}
                   </p>

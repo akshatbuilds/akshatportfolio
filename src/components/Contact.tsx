@@ -45,7 +45,7 @@ const Contact = () => {
             </a>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-16 md:gap-24 text-center">
             {contactInfo.map((item, index) => {
               const Icon = item.icon;
               return (

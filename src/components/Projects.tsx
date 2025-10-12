@@ -129,8 +129,8 @@ const Projects = () => {
 
                 <div className="space-y-3">
                   {project.achievements.map((achievement, i) => (
-                    <div key={i} className="flex gap-3 items-start">
-                      <span className="text-[hsl(var(--highlight))] mt-1.5 flex-shrink-0">→</span>
+                    <div key={i} className="flex gap-3">
+                      <span className="text-[hsl(var(--highlight))] flex-shrink-0">→</span>
                       <span className="text-muted-foreground leading-relaxed">
                         {achievement}
                       </span>
