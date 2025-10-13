@@ -1,6 +1,8 @@
 import { ExternalLink, Github } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
 const Projects = () => {
+  const [visibleProjects, setVisibleProjects] = useState<number[]>([]);
   const projects = [
     {
       title: "AI Voice Agent Platform",
@@ -98,6 +100,25 @@ const Projects = () => {
     },
   ];
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = parseInt(entry.target.getAttribute('data-index') || '0');
+            setVisibleProjects((prev) => [...new Set([...prev, index])]);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    const projectElements = document.querySelectorAll('.project-card');
+    projectElements.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section id="projects" className="py-32 relative">
       <div className="container mx-auto px-6 max-w-6xl">
@@ -112,8 +133,17 @@ const Projects = () => {
 
         <div className="space-y-20">
           {projects.map((project, index) => (
-            <div key={index}>
-              <div className="space-y-6">
+            <div 
+              key={index} 
+              data-index={index}
+              className={`project-card transition-all duration-700 ease-out ${
+                visibleProjects.includes(index)
+                  ? 'opacity-100 translate-y-0'
+                  : 'opacity-0 translate-y-20'
+              }`}
+              style={{ transitionDelay: `${index * 100}ms` }}
+            >
+              <div className="space-y-6 bg-card/30 backdrop-blur-sm border border-border/50 rounded-2xl p-8 hover:border-border transition-all duration-300 hover:shadow-lg hover:shadow-primary/5">
                 <div className="space-y-4">
                   <h3 className="text-2xl md:text-3xl font-bold">{project.title}</h3>
                   <div className="flex flex-wrap gap-4 text-muted-foreground">
