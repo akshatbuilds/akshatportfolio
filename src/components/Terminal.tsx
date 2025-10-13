@@ -31,11 +31,27 @@ const Terminal = ({ open, onClose }: TerminalProps) => {
     }
   }, [history]);
 
+  const wittyErrors = [
+    "404: Command not found. Unlike my code, which is always production-ready. 😎",
+    "Error: Command does not compute. Have you tried turning it off and on again? 🔌",
+    "Segmentation fault (core dumped)... Just kidding! But that command doesn't exist. 😅",
+    "Command not recognized. Even GPT-4 couldn't predict that one! 🤖",
+    "Fatal error: Invalid command detected. My exception handler is judging you. 👀",
+    "bash: command not found. But hey, at least it's not a merge conflict! 🎯",
+    "Syntax error at line 1: Unknown command. Should've used TypeScript. 💅",
+    "Command failed successfully... wait, that doesn't make sense. Neither does your input. 🤔",
+    "Alert: Command does not exist in this dimension. Try the multiverse terminal? 🌌",
+    "Error 418: I'm a teapot. Also, that's not a valid command. ☕",
+    "Undefined is not a function... oh wait, wrong error. Your command just doesn't exist! 🐛",
+    "Command not found. Did you mean 'help'? Spoiler: You probably did. 🎓",
+  ];
+
   const commands: Record<string, string> = {
     help: `Available commands:
 - about: Learn about Akshat
 - skills: View technical skills
 - projects: List key projects
+- experience: View work experience
 - certifications: View certifications
 - education: View education background
 - contact: Get contact information
@@ -50,12 +66,38 @@ Building the future, one agent at a time.`,
 → Cloud & DevOps: AWS (Lambda, ECS, S3), Docker, Terraform
 → Backend: Python, REST APIs, Salesforce
 → Automation: n8n, Airflow, Multi-agent orchestration`,
+    experience: `Professional Experience:
+
+TwoPir Consulting | AI & Agentic AI Engineer
+Mohali, India | September 2024 - Present
+
+→ Developed Project Sync AI Agent using multi-agent orchestration
+  • 25% improvement in project management efficiency
+  • Integrated with Jira, Slack, and Google Calendar
+  
+→ Built SmartReports AI with RAG architecture
+  • Achieved 95% accuracy in multilingual report generation
+  • Reduced report creation time by 60%
+  
+→ Implemented autonomous customer support systems
+  • 92% accuracy in query resolution
+  • Reduced response time by 40%
+
+→ Architected and deployed scalable AI solutions on AWS
+  • Utilized Lambda, ECS, and S3 for production systems
+  • Implemented CI/CD pipelines with Docker and Terraform`,
     projects: `Featured Projects:
 1. Project Sync AI Agent - Multi-agent PM automation (25% efficiency gain)
 2. SmartReports AI - RAG-powered multilingual reports (95% accuracy)
-3. OrderSync Agent - Autonomous order processing (25% improved tracking)
+3. CRM Intelligence System - AI-powered CRM (85% faster response, 42% lead conversion)
 4. RAG-Enhanced Customer Support Agent - Intelligent support with 92% accuracy`,
     certifications: `Certifications:
+→ Artificial Intelligence - SkillUp – NASSCOM (August 2024)
+→ AI Foundations: Prompt Engineering with LLMs - Coursera (June 2025)
+→ AWS Educate Cloud Foundations - Amazon Web Services (July 2024)
+→ Salesforce Certified Platform Developer I (December 2024)
+→ Trailhead Ranger - 100+ Badges, 100K+ Points`,
+    certification: `Certifications:
 → Artificial Intelligence - SkillUp – NASSCOM (August 2024)
 → AI Foundations: Prompt Engineering with LLMs - Coursera (June 2025)
 → AWS Educate Cloud Foundations - Amazon Web Services (July 2024)
@@ -117,7 +159,12 @@ Keep exploring! There are more hidden features... 🚀`,
       return;
     }
 
-    const output = commands[command] || `Command not found: ${command}\nType 'help' for available commands.`;
+    let output = commands[command];
+    
+    if (!output) {
+      const randomError = wittyErrors[Math.floor(Math.random() * wittyErrors.length)];
+      output = `${randomError}\n\nType 'help' for available commands.`;
+    }
 
     setHistory([...history, { command: input, output }]);
     setInput("");
