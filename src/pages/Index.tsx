@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Hero from "@/components/Hero";
 import Skills from "@/components/Skills";
 import Experience from "@/components/Experience";
@@ -12,7 +12,7 @@ const Index = () => {
 
   return (
     <div className="relative min-h-screen">
-      <Navigation />
+      <Navigation onLogoClick={() => setTerminalOpen(true)} />
       
       <main className="relative">
         <Hero />

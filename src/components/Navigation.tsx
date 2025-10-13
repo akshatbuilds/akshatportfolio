@@ -1,6 +1,11 @@
 import { useState } from "react";
+import acLogo from "@/assets/ac-logo.png";
 
-const Navigation = () => {
+interface NavigationProps {
+  onLogoClick: () => void;
+}
+
+const Navigation = ({ onLogoClick }: NavigationProps) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems = [
@@ -16,17 +21,11 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <button 
-            onClick={() => {
-              const event = new KeyboardEvent('keydown', {
-                key: 'k',
-                ctrlKey: true,
-                bubbles: true
-              });
-              window.dispatchEvent(event);
-            }}
-            className="text-lg font-bold hover:opacity-70 transition-opacity"
+            onClick={onLogoClick}
+            className="flex items-center hover:opacity-70 transition-opacity"
+            aria-label="Open terminal"
           >
-            AC
+            <img src={acLogo} alt="AC Logo" className="h-10 w-auto" />
           </button>
 
           {/* Desktop Navigation */}
