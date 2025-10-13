@@ -10,19 +10,6 @@ import Navigation from "@/components/Navigation";
 const Index = () => {
   const [terminalOpen, setTerminalOpen] = useState(false);
 
-  useEffect(() => {
-    const handleKeyPress = (e: KeyboardEvent) => {
-      // Easter egg: Ctrl+K to open terminal
-      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-        e.preventDefault();
-        setTerminalOpen(prev => !prev);
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyPress);
-    return () => window.removeEventListener('keydown', handleKeyPress);
-  }, []);
-
   return (
     <div className="relative min-h-screen">
       <Navigation />

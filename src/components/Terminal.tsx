@@ -56,7 +56,8 @@ const Terminal = ({ open, onClose }: TerminalProps) => {
 - education: View education background
 - contact: Get contact information
 - clear: Clear terminal
-- easteregg: Find the hidden surprise 🥚`,
+
+💡 Hint: Curious about working together? Try a certain work arrangement... 🤝`,
     about: `Akshat Chaudhary - AI & Agentic AI Engineer
 Currently working at TwoPir Consulting
 Specializing in LangChain, GPT-4, AWS, and autonomous AI systems
@@ -112,7 +113,41 @@ GPA: 8.1 | June 2020 - August 2024`,
 📱 Mobile: +91-9728036616
 🔗 GitHub: github.com/AkshatBuilds
 💼 LinkedIn: linkedin.com/in/ChaudharyAkshat`,
-    easteregg: `🎉 Congratulations! You found the Easter egg!
+    freelance: `🎉 Congratulations! You found the Easter egg!
+
+"Artificial intelligence is the mirror through which humanity studies its own mind, discovering that the boundary between creator and creation was only ever an illusion." - Akshat Chaudhary
+
+🚀 EXCLUSIVE OFFER - You Found It!
+══════════════════════════════════════════════════════════════
+
+I work as a freelance AI & Automation Engineer, and since you discovered 
+this hidden feature, here's something special:
+
+💎 Mention "EASTEREGG" when you reach out, and I'll provide:
+   • Free consultation session (30 min)
+   • Custom automation blueprint for your business
+   • Extra features/optimizations at no additional cost
+
+📋 What I Build:
+   → Lead Generation & Enrichment Workflows
+   → CRM Integrations (Salesforce, HubSpot, Pipedrive)
+   → Automated Outreach Campaigns
+   → AI-Powered Process Automation
+   → Cloud Infrastructure & Deployment (AWS, GCP)
+   → Custom AI Agents & Multi-Agent Systems
+   → Business Process Streamlining
+
+💼 Tech Stack:
+   LangChain • GPT-4 • Claude • n8n • Zapier • Python • AWS
+   Docker • Terraform • REST APIs • WebSockets • Vector DBs
+
+📧 Ready to automate your workflow? Email me at:
+   akshatchaudharyworks@gmail.com
+   
+🔑 Don't forget to mention "EASTEREGG" for exclusive bonuses!
+
+Keep exploring! There are more hidden features... 🚀`,
+    freelancer: `🎉 Congratulations! You found the Easter egg!
 
 "Artificial intelligence is the mirror through which humanity studies its own mind, discovering that the boundary between creator and creation was only ever an illusion." - Akshat Chaudhary
 
