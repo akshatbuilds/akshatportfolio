@@ -3,52 +3,6 @@ import { ExternalLink, Github } from "lucide-react";
 const Projects = () => {
   const projects = [
     {
-      title: "Patient Data Automation",
-      period: "2024",
-      role: "AI Solutions Engineer",
-      description:
-        "AI-powered patient data extraction and automated workflow optimization system for healthcare providers",
-      achievements: [
-        "70% reduction in data entry time through intelligent document processing",
-        "50% faster patient processing with automated workflow management",
-        "Improved data accuracy with AI-powered validation and error detection",
-        "Automated patient data extraction from multiple document formats",
-        "Reduced manual workload by 30+ hours per week",
-      ],
-      tech: [
-        "Python",
-        "OpenAI",
-        "FastAPI",
-        "PostgreSQL",
-        "n8n",
-        "Document Processing",
-        "Workflow Automation",
-      ],
-    },
-    {
-      title: "Multi-Channel Support Automation",
-      period: "2024",
-      role: "Lead Developer",
-      description:
-        "AI chatbot with multi-channel integration and automated ticket routing for seamless customer support",
-      achievements: [
-        "80% reduction in response time from 24 hours to near-instant replies",
-        "60% decrease in support workload through intelligent automation",
-        "Improved customer satisfaction with 24/7 availability",
-        "Automated ticket routing and priority classification",
-        "Multi-channel support across WhatsApp, email, and web platforms",
-      ],
-      tech: [
-        "Python",
-        "OpenAI",
-        "WhatsApp API",
-        "Zendesk APIs",
-        "n8n",
-        "Multi-channel Integration",
-        "NLP",
-      ],
-    },
-    {
       title: "CRM Intelligence System",
       period: "2024",
       role: "AI Engineer",
@@ -68,69 +22,6 @@ const Projects = () => {
         "Webhooks",
         "CRM Integration",
         "Workflow Automation",
-      ],
-    },
-    {
-      title: "WhatsApp Customer Bot",
-      period: "2024",
-      role: "Developer",
-      description:
-        "Conversational AI bot for customer interaction with intelligent routing and automated support workflows",
-      achievements: [
-        "94% customer satisfaction rating with natural language interactions",
-        "60% faster resolution time through intelligent routing",
-        "45% reduction in support costs with automated responses",
-        "24/7 customer support availability",
-        "Automated ticket escalation and handoff to human agents",
-      ],
-      tech: [
-        "WhatsApp Business API",
-        "NLP",
-        "Dialogflow",
-        "Cloud Functions",
-        "Conversational AI",
-      ],
-    },
-    {
-      title: "Voice AI Assistant",
-      period: "2024",
-      role: "AI Engineer",
-      description:
-        "Custom voice agent with CRM and calendar integration for automated meeting scheduling and follow-ups",
-      achievements: [
-        "89% booking success rate with natural voice interactions",
-        "55% reduction in no-shows through automated reminders",
-        "80% less administrative time with automated scheduling",
-        "Real-time CRM updates and data synchronization",
-        "Intelligent follow-up and rescheduling workflows",
-      ],
-      tech: [
-        "Speech-to-Text",
-        "Calendar APIs",
-        "CRM Integration",
-        "Voice Synthesis",
-        "Real-time Processing",
-      ],
-    },
-    {
-      title: "AI Reporting Engine",
-      period: "2024",
-      role: "Lead AI Engineer",
-      description:
-        "RAG-powered intelligent reporting system generating customized insights from complex business data",
-      achievements: [
-        "90% faster report generation with automated data processing",
-        "99.2% data accuracy through intelligent validation",
-        "65% faster decision making with real-time insights",
-        "Automated report customization based on user preferences",
-        "Multi-format report generation (PDF, Excel, PowerPoint)",
-      ],
-      tech: [
-        "RAG Architecture",
-        "Vector Databases",
-        "LangChain",
-        "Business Intelligence",
-        "Data Analytics",
       ],
     },
   ];
