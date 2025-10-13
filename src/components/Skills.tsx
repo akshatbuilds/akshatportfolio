@@ -24,6 +24,8 @@ const Skills = () => {
         "Vector DBs (Pinecone, Weaviate)",
         "Hallucination detection",
         "NLG templates",
+        "Computer vision",
+        "Predictive analytics",
       ],
     },
     {
@@ -31,6 +33,8 @@ const Skills = () => {
       title: "Backend & Systems",
       skills: [
         "Python",
+        "JavaScript",
+        "FastAPI",
         "REST APIs",
         "Salesforce integrations",
         "TensorFlow",
@@ -43,6 +47,7 @@ const Skills = () => {
       title: "Cloud & Infrastructure",
       skills: [
         "AWS (Lambda, EC2, S3)",
+        "Azure",
         "ECS/Fargate",
         "Terraform",
         "CI/CD pipelines",
@@ -60,6 +65,8 @@ const Skills = () => {
         "Workflow automation",
         "API integrations",
         "Event-driven systems",
+        "WhatsApp Business API",
+        "Apollo.io",
       ],
     },
     {
@@ -68,6 +75,8 @@ const Skills = () => {
       skills: [
         "Pandas & NumPy",
         "SQL/NoSQL",
+        "PostgreSQL",
+        "MongoDB",
         "Data preprocessing",
         "Feature engineering",
         "ETL pipelines",
