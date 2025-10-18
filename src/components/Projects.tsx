@@ -18,7 +18,7 @@ const Projects = () => {
   const projects = [
     {
       id: "voice-agent",
-      title: "Enterprise Voice Intelligence Platform",
+      title: "Conversational AI Voice Platform",
       period: "January 2025 – March 2025",
       description: "Enterprise-grade conversational AI platform managing inbound/outbound calls with natural language understanding",
       highlights: [
@@ -56,7 +56,7 @@ const Projects = () => {
     },
     {
       id: "smartreports",
-      title: "Intelligent Business Analytics Engine",
+      title: "Multilingual Report Automation System",
       period: "August 2024 – November 2024",
       description: "RAG-powered multilingual reporting system with automated client report generation",
       highlights: [
@@ -96,7 +96,7 @@ const Projects = () => {
     },
     {
       id: "crm-intelligence",
-      title: "Sales Acceleration AI Platform",
+      title: "HubSpot CRM Automation Suite",
       period: "June 2024 – September 2024",
       description: "Intelligent automation across HubSpot CRM with autonomous query responses and meeting booking",
       highlights: [
@@ -138,7 +138,7 @@ const Projects = () => {
     },
     {
       id: "rag-support",
-      title: "Knowledge-Augmented Support Intelligence",
+      title: "RAG-Powered Customer Support System",
       period: "January 2024 – March 2024",
       description: "Intelligent support system using retrieval-augmented generation with vector search",
       highlights: [
@@ -275,6 +275,19 @@ const Projects = () => {
                 transition={{ duration: 0.3, ease: "easeOut" }}
                 className="p-6 md:p-12"
               >
+                {/* Active Project Label - Positioned above container */}
+                <div className="flex justify-center mb-4">
+                  <motion.div
+                    key={`label-${currentProjectIndex}`}
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    className="px-6 py-2 bg-background/90 backdrop-blur-sm rounded-t-2xl border border-b-0 border-border/50 text-sm font-medium"
+                  >
+                    {currentProject.title}
+                  </motion.div>
+                </div>
+
                 {/* Styled Container Wrapper */}
                 <div className="bg-background/80 backdrop-blur-sm rounded-3xl border border-border/50 p-6 md:p-10 shadow-lg">
                   {/* Project Header */}
