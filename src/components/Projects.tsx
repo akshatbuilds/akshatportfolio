@@ -19,6 +19,7 @@ const Projects = () => {
     {
       id: "voice-agent",
       title: "Conversational AI Voice Platform",
+      shortName: "Voice AI",
       period: "January 2025 – March 2025",
       description: "Enterprise-grade conversational AI platform managing inbound/outbound calls with natural language understanding",
       highlights: [
@@ -57,6 +58,7 @@ const Projects = () => {
     {
       id: "smartreports",
       title: "Multilingual Report Automation System",
+      shortName: "SmartReports",
       period: "August 2024 – November 2024",
       description: "RAG-powered multilingual reporting system with automated client report generation",
       highlights: [
@@ -97,6 +99,7 @@ const Projects = () => {
     {
       id: "crm-intelligence",
       title: "HubSpot CRM Automation Suite",
+      shortName: "CRM Suite",
       period: "June 2024 – September 2024",
       description: "Intelligent automation across HubSpot CRM with autonomous query responses and meeting booking",
       highlights: [
@@ -139,6 +142,7 @@ const Projects = () => {
     {
       id: "rag-support",
       title: "RAG-Powered Customer Support System",
+      shortName: "RAG Support",
       period: "January 2024 – March 2024",
       description: "Intelligent support system using retrieval-augmented generation with vector search",
       highlights: [
@@ -258,7 +262,7 @@ const Projects = () => {
                       : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
-                  {project.title.split(" ")[0]}
+                  {project.shortName}
                 </span>
               </button>
             ))}
