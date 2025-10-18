@@ -30,7 +30,7 @@ const Hero = () => {
               className="text-2xl md:text-4xl lg:text-5xl bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent"
             />
             <br />
-            Agentic Workflows.
+            AI & Automation Systems.
           </h1>
 
           {/* Description */}
