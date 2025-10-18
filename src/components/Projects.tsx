@@ -1,10 +1,8 @@
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";
-import { Button } from "@/components/ui/button";
 
 const Projects = () => {
-  const [currentProject, setCurrentProject] = useState(0);
+  const [visibleProjects, setVisibleProjects] = useState<number[]>([]);
   const projects = [
     {
       title: "AI Voice Agent Platform",
@@ -102,15 +100,24 @@ const Projects = () => {
     },
   ];
 
-  const nextProject = () => {
-    setCurrentProject((prev) => (prev + 1) % projects.length);
-  };
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = parseInt(entry.target.getAttribute('data-index') || '0');
+            setVisibleProjects((prev) => [...new Set([...prev, index])]);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
 
-  const prevProject = () => {
-    setCurrentProject((prev) => (prev - 1 + projects.length) % projects.length);
-  };
+    const projectElements = document.querySelectorAll('.project-card');
+    projectElements.forEach((el) => observer.observe(el));
 
-  const project = projects[currentProject];
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <section id="projects" className="relative">
@@ -126,83 +133,56 @@ const Projects = () => {
           </>
         }
       >
-        <div className="bg-background p-8 h-full flex flex-col">
-          <div className="flex-1 overflow-auto">
-            <div className="max-w-4xl mx-auto">
-              <div className="space-y-6 bg-card/30 backdrop-blur-sm border border-border/50 rounded-2xl p-8">
-                <div className="space-y-4">
-                  <h3 className="text-2xl md:text-3xl font-bold">{project.title}</h3>
-                  <div className="flex flex-wrap gap-4 text-muted-foreground">
-                    <span>{project.period}</span>
-                    <span>•</span>
-                    <span>{project.role}</span>
+        <div className="bg-background p-8 h-full overflow-auto">
+          <div className="space-y-12">
+            {projects.map((project, index) => (
+              <div 
+                key={index} 
+                data-index={index}
+                className="project-card transition-all duration-700 ease-out"
+              >
+                <div className="space-y-6 bg-card/30 backdrop-blur-sm border border-border/50 rounded-2xl p-8 hover:border-border transition-all duration-300 hover:shadow-lg hover:shadow-primary/5">
+                  <div className="space-y-4">
+                    <h3 className="text-2xl md:text-3xl font-bold">{project.title}</h3>
+                    <div className="flex flex-wrap gap-4 text-muted-foreground">
+                      <span>{project.period}</span>
+                      <span>•</span>
+                      <span>{project.role}</span>
+                    </div>
+                  </div>
+
+                  <p className="text-muted-foreground text-lg leading-relaxed">
+                    {project.description}
+                  </p>
+
+                  <div className="space-y-4 pt-6">
+                    {project.achievements.map((achievement, i) => (
+                      <div key={i} className="flex gap-3">
+                        <span className="text-[hsl(var(--highlight))] flex-shrink-0">→</span>
+                        <p className="text-muted-foreground leading-relaxed text-lg">
+                          {achievement}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="flex flex-wrap gap-2 pt-4">
+                    {project.tech.map((tech, i) => (
+                      <span
+                        key={i}
+                        className="text-xs px-3 py-1.5 bg-muted/50 text-muted-foreground rounded-full border border-border/50"
+                      >
+                        {tech}
+                      </span>
+                    ))}
                   </div>
                 </div>
-
-                <p className="text-muted-foreground text-lg leading-relaxed">
-                  {project.description}
-                </p>
-
-                <div className="space-y-4 pt-6">
-                  {project.achievements.map((achievement, i) => (
-                    <div key={i} className="flex gap-3">
-                      <span className="text-[hsl(var(--highlight))] flex-shrink-0">→</span>
-                      <p className="text-muted-foreground leading-relaxed text-lg">
-                        {achievement}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="flex flex-wrap gap-2 pt-4">
-                  {project.tech.map((tech, i) => (
-                    <span
-                      key={i}
-                      className="text-xs px-3 py-1.5 bg-muted/50 text-muted-foreground rounded-full border border-border/50"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
+                
+                {index < projects.length - 1 && (
+                  <div className="h-px bg-border/30 mt-12" />
+                )}
               </div>
-            </div>
-          </div>
-          
-          <div className="flex items-center justify-between mt-6 px-4">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={prevProject}
-              disabled={currentProject === 0}
-              className="h-10 w-10"
-            >
-              <ChevronLeft className="h-5 w-5" />
-            </Button>
-            
-            <div className="flex gap-2">
-              {projects.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentProject(index)}
-                  className={`h-2 rounded-full transition-all ${
-                    index === currentProject 
-                      ? 'w-8 bg-primary' 
-                      : 'w-2 bg-muted-foreground/30 hover:bg-muted-foreground/50'
-                  }`}
-                  aria-label={`Go to project ${index + 1}`}
-                />
-              ))}
-            </div>
-            
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={nextProject}
-              disabled={currentProject === projects.length - 1}
-              className="h-10 w-10"
-            >
-              <ChevronRight className="h-5 w-5" />
-            </Button>
+            ))}
           </div>
         </div>
       </ContainerScroll>
