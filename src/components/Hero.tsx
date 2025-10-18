@@ -1,5 +1,6 @@
 import { Mail, ArrowDown } from "lucide-react";
 import AnimatedTextCycle from "@/components/ui/animated-text-cycle";
+import { TextHighlighter } from "@/components/fancy/text/text-highlighter";
 
 const Hero = () => {
   const heroWords = [
@@ -35,9 +36,45 @@ const Hero = () => {
 
           {/* Description */}
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed animate-fade-in" style={{ animationDelay: "0.2s", animationFillMode: "backwards" }}>
-            Operationalizing AI/ML and GenAI on cloud‑native stacks with guardrails, observability, and continuous evals.
+            Operationalizing{" "}
+            <TextHighlighter
+              className="rounded-[0.3em] px-1"
+              transition={{ type: "spring", duration: 0.8, delay: 0.5, bounce: 0 }}
+              highlightColor="hsl(var(--primary) / 0.2)"
+              useInViewOptions={{ once: true, initial: true, amount: 0.1 }}
+            >
+              AI/ML and GenAI
+            </TextHighlighter>{" "}
+            on cloud‑native stacks with{" "}
+            <TextHighlighter
+              className="rounded-[0.3em] px-1"
+              transition={{ type: "spring", duration: 0.8, delay: 0.7, bounce: 0 }}
+              highlightColor="hsl(var(--primary) / 0.2)"
+              useInViewOptions={{ once: true, initial: true, amount: 0.1 }}
+            >
+              guardrails, observability, and continuous evals
+            </TextHighlighter>
+            .
             <br />
-            Orchestrating data, models, and services into integrated automation which are reliable, scalable, and integration‑ready.
+            Orchestrating{" "}
+            <TextHighlighter
+              className="rounded-[0.3em] px-1"
+              transition={{ type: "spring", duration: 0.8, delay: 0.9, bounce: 0 }}
+              highlightColor="hsl(var(--primary) / 0.2)"
+              useInViewOptions={{ once: true, initial: true, amount: 0.1 }}
+            >
+              data, models, and services
+            </TextHighlighter>{" "}
+            into integrated automation which are{" "}
+            <TextHighlighter
+              className="rounded-[0.3em] px-1"
+              transition={{ type: "spring", duration: 0.8, delay: 1.1, bounce: 0 }}
+              highlightColor="hsl(var(--primary) / 0.2)"
+              useInViewOptions={{ once: true, initial: true, amount: 0.1 }}
+            >
+              reliable, scalable, and integration‑ready
+            </TextHighlighter>
+            .
           </p>
 
           {/* Social Links */}
