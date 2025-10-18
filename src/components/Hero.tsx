@@ -2,12 +2,15 @@ import { Mail, ArrowDown } from "lucide-react";
 import AnimatedTextCycle from "@/components/ui/animated-text-cycle";
 
 const Hero = () => {
-  const animatedWords = [
-    "AI Systems",
-    "Agentic Workflows",
-    "Intelligent Agents",
-    "Cloud Solutions",
-    "Automation Pipelines",
+  const heroWords = [
+    "revenue‑grade",
+    "battle‑tested",
+    "enterprise‑ready",
+    "outcome‑driven",
+    "fault‑tolerant",
+    "cloud‑native",
+    "observability‑backed",
+    "compliance‑ready",
   ];
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center pt-24 pb-20">
@@ -20,20 +23,20 @@ const Hero = () => {
 
           {/* Main Heading */}
           <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.2] mb-8 animate-fade-in" style={{ animationDelay: "0.1s", animationFillMode: "backwards" }}>
-            Building production-ready
-            <br />
+            Building{" "}
             <AnimatedTextCycle 
-              words={animatedWords} 
-              interval={3000}
+              words={heroWords} 
+              interval={3500}
               className="text-2xl md:text-4xl lg:text-5xl bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent"
-            />
+            />{" "}
+            Agentic Workflows.
           </h1>
 
           {/* Description */}
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed animate-fade-in" style={{ animationDelay: "0.2s", animationFillMode: "backwards" }}>
-            Effortlessly building intelligent agents with LangChain, LangGraph, and cloud infrastructure.
+            Operationalizing LangChain and LangGraph with guardrails, tracing, and evals.
             <br />
-            Creating solutions that scale from prototype to production.
+            Automating GTM and CRM ops across HubSpot, Salesforce, and n8n for measurable outcomes.
           </p>
 
           {/* Social Links */}
