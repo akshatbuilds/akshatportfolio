@@ -67,12 +67,12 @@ const Projects = () => {
       title: "Multi-Strategy AI Intelligence Engine with Advanced RAG Architecture",
       shortName: "AI Analytics Engine",
       period: "August 2024 – November 2024",
-      description: "Sophisticated multilingual reporting system leveraging multiple AI strategies including RAG, semantic search, and intelligent document processing. Evaluates extensive file repositories consecutively, extracts contextual intelligence, and provides actionable insights for automated decision-making",
+      description: "Sophisticated multilingual reporting system leveraging multiple AI strategies including RAG, semantic search, and intelligent document processing. Evaluates extensive file repositories consecutively, extracts contextual intelligence, and provides actionable insights for automated decision-making targeting global audiences across diverse linguistic markets",
       highlights: [
-        "~95% multilingual accuracy across 3 languages with context preservation",
+        "~95% multilingual accuracy with global language support",
         "50% reduction in manual operations through intelligent automation",
         "Advanced RAG pipeline with multi-stage document evaluation",
-        "Consecutive file processing with semantic understanding",
+        "Multilingual intelligence targeting international audiences",
         "Automated workflow triggers based on intelligence extraction",
       ],
       codeSnippet: `const generateIntelligentReport = async (data) => {
@@ -90,26 +90,28 @@ const Projects = () => {
     contextWindow: 32000
   });
   
-  // Generate multilingual reports with contextual intelligence
+  // Generate multilingual reports targeting global audiences
   const report = await ragEngine.synthesize({
     context: documents,
-    languages: ['en', 'fr', 'nl'],
+    languages: ['en', 'fr', 'nl', 'de', 'es', 'pt'],
+    localization: 'market-adaptive',
+    culturalContext: true,
     actionableInsights: true
   });
   
   return report;
 };`,
-      technologies: ["Hugging Face", "OpenAI", "n8n", "LangChain", "DeepL", "Python", "AWS S3", "Typeform"],
+      technologies: ["Hugging Face", "OpenAI", "n8n", "LangChain", "DeepL", "Python", "AWS S3", "Typeform", "Multi-language NLP"],
       metrics: [
         { label: "Report Accuracy", value: 95, suffix: "%", color: "emerald" },
         { label: "Manual Work Reduction", value: 50, suffix: "%", color: "violet" },
-        { label: "Languages Supported", value: 3, suffix: "", color: "blue" },
+        { label: "Global Language Support", value: 100, suffix: "%", color: "blue" },
       ],
       clientBenefits: [
-        "Automated multilingual reports",
-        "50% faster report generation",
-        "Enhanced client engagement",
-        "Contextual content delivery",
+        "Automated multilingual reports for global markets",
+        "50% faster report generation across languages",
+        "Enhanced international client engagement",
+        "Contextual content delivery adapted to regional markets",
       ]
     },
     {
