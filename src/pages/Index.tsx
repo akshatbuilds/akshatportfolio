@@ -14,7 +14,7 @@ const Index = () => {
     <div className="relative min-h-screen">
       <Navigation onLogoClick={() => setTerminalOpen(true)} />
       
-      <main className="relative">
+      <main className="snap-y snap-mandatory h-screen overflow-y-scroll">
         <Hero />
         <Skills />
         <Experience />
