@@ -16,8 +16,8 @@ const Index = () => {
       
       <main className="relative">
         <div className="snap-start"><Hero /></div>
-        <div className="snap-start"><Skills /></div>
         <div className="snap-start"><Experience /></div>
+        <div className="snap-start"><Skills /></div>
         <div className="snap-start"><Projects /></div>
         <div className="snap-start"><Contact /></div>
       </main>
