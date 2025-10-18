@@ -23,14 +23,14 @@ const Hero = () => {
 
           {/* Main Heading */}
           <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.2] mb-8 animate-fade-in" style={{ animationDelay: "0.1s", animationFillMode: "backwards" }}>
-            Building
-            <br />
+            Building{" "}
             <AnimatedTextCycle 
               words={heroWords} 
               interval={3500}
               className="text-2xl md:text-4xl lg:text-5xl bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent"
-            />{" "}
-            AI Solutions.
+            />
+            <br />
+            Agentic Workflows.
           </h1>
 
           {/* Description */}
