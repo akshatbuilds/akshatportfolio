@@ -19,7 +19,7 @@ const Projects = () => {
     {
       id: "voice-agent",
       title: "Real-Time Conversational Intelligence Platform with Multi-Modal AI Integration",
-      shortName: "Voice AI",
+      shortName: "Conversational AI",
       period: "January 2025 – March 2025",
       description: "Enterprise-grade conversational AI orchestrating real-time voice interactions with advanced natural language understanding, contextual memory systems, and intelligent workflow automation across multiple CRM ecosystems",
       highlights: [
@@ -65,7 +65,7 @@ const Projects = () => {
     {
       id: "smartreports",
       title: "Multi-Strategy AI Intelligence Engine with Advanced RAG Architecture",
-      shortName: "SmartReports",
+      shortName: "AI Analytics Engine",
       period: "August 2024 – November 2024",
       description: "Sophisticated multilingual reporting system leveraging multiple AI strategies including RAG, semantic search, and intelligent document processing. Evaluates extensive file repositories consecutively, extracts contextual intelligence, and provides actionable insights for automated decision-making",
       highlights: [
@@ -115,7 +115,7 @@ const Projects = () => {
     {
       id: "crm-intelligence",
       title: "AI-Orchestrated CRM Intelligence Platform with Multi-Agent Workflow Automation",
-      shortName: "CRM Intelligence",
+      shortName: "Workflow Orchestration",
       period: "June 2024 – September 2024",
       description: "Sophisticated AI-driven automation ecosystem integrating HubSpot CRM with intelligent agents, webhook orchestration via n8n, and real-time decision intelligence. Implements multi-strategy AI approaches for autonomous query handling, predictive lead scoring, and intelligent workflow execution",
       highlights: [
@@ -163,7 +163,7 @@ const Projects = () => {
     {
       id: "rag-support",
       title: "Intelligent Knowledge Management System with Multi-Stage RAG & Semantic Intelligence",
-      shortName: "RAG Intelligence",
+      shortName: "Knowledge Intelligence",
       period: "January 2024 – March 2024",
       description: "Advanced customer support platform implementing multiple AI strategies including retrieval-augmented generation, semantic vector search, and consecutive document evaluation. Processes 100K+ documents with intelligent chunking, contextual reranking, and provides actionable intelligence for complex multi-turn conversations",
       highlights: [
@@ -325,14 +325,9 @@ const Projects = () => {
                 <div className="bg-background/80 backdrop-blur-sm rounded-3xl border border-border/50 p-6 md:p-10 shadow-lg">
                   {/* Project Header */}
                   <div className="mb-8">
-                    <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
-                      <h3 className="text-2xl md:text-3xl font-bold">
-                        {currentProject.title}
-                      </h3>
-                      <span className="text-sm text-muted-foreground px-3 py-1 rounded-full bg-muted/50 w-fit">
-                        {currentProject.period}
-                      </span>
-                    </div>
+                    <h3 className="text-2xl md:text-3xl font-bold mb-3">
+                      {currentProject.title}
+                    </h3>
                     <p className="text-muted-foreground text-base">{currentProject.description}</p>
                   </div>
 
