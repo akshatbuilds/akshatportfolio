@@ -18,27 +18,34 @@ const Projects = () => {
   const projects = [
     {
       id: "voice-agent",
-      title: "Conversational AI Voice Platform",
+      title: "Real-Time Conversational Intelligence Platform with Multi-Modal AI Integration",
       shortName: "Voice AI",
       period: "January 2025 – March 2025",
-      description: "Enterprise-grade conversational AI platform managing inbound/outbound calls with natural language understanding",
+      description: "Enterprise-grade conversational AI orchestrating real-time voice interactions with advanced natural language understanding, contextual memory systems, and intelligent workflow automation across multiple CRM ecosystems",
       highlights: [
-        "~95% natural conversation accuracy",
-        "<800ms average response latency",
-        "Real-time CRM synchronization",
-        "Multi-tenant analytics dashboards",
-        "~45% engagement rate improvement",
+        "~95% conversation accuracy with adaptive learning",
+        "<800ms ultra-low latency voice processing",
+        "Bi-directional CRM synchronization with intelligent data enrichment",
+        "Multi-tenant analytics with predictive insights",
+        "~45% engagement improvement through AI-driven personalization",
       ],
       codeSnippet: `const voiceAgent = async () => {
-  const agent = new AIAgent({
-    model: 'gpt-4o',
-    voice: 'realtime-tts',
-    tools: [crmSync, analytics],
-    memory: new ConversationMemory()
+  const agent = new AdvancedAIAgent({
+    model: 'gpt-4o-realtime',
+    voice: 'neural-tts-streaming',
+    tools: [
+      intelligentCRMSync,
+      predictiveAnalytics,
+      contextualMemory,
+      workflowOrchestrator
+    ],
+    memory: new MultiModalConversationMemory(),
+    reasoning: 'chain-of-thought'
   });
   
-  // WebRTC streaming
+  // WebRTC low-latency streaming
   await agent.connect(twilioStream);
+  await agent.initializeContextualIntelligence();
   
   return agent;
 };`,
@@ -57,28 +64,37 @@ const Projects = () => {
     },
     {
       id: "smartreports",
-      title: "Multilingual Report Automation System",
+      title: "Multi-Strategy AI Intelligence Engine with Advanced RAG Architecture",
       shortName: "SmartReports",
       period: "August 2024 – November 2024",
-      description: "RAG-powered multilingual reporting system with automated client report generation",
+      description: "Sophisticated multilingual reporting system leveraging multiple AI strategies including RAG, semantic search, and intelligent document processing. Evaluates extensive file repositories consecutively, extracts contextual intelligence, and provides actionable insights for automated decision-making",
       highlights: [
-        "~95% multilingual accuracy",
-        "50% reduction in manual operations",
-        "Automated workflow triggers",
-        "3-language content generation",
-        "Enterprise-grade scalability",
+        "~95% multilingual accuracy across 3 languages with context preservation",
+        "50% reduction in manual operations through intelligent automation",
+        "Advanced RAG pipeline with multi-stage document evaluation",
+        "Consecutive file processing with semantic understanding",
+        "Automated workflow triggers based on intelligence extraction",
       ],
-      codeSnippet: `const generateReport = async (data) => {
-  const rag = new RAGPipeline({
+      codeSnippet: `const generateIntelligentReport = async (data) => {
+  const ragEngine = new AdvancedRAGPipeline({
     embeddings: huggingFaceEmbeddings,
-    vectorStore: pinecone,
-    llm: openai.gpt4
+    vectorStore: pineconeVectorDB,
+    llm: openai.gpt4Turbo,
+    strategies: ['semantic-search', 'chunk-reranking', 'context-fusion']
   });
   
-  // Multi-language generation
-  const report = await rag.query({
-    context: clientData,
-    languages: ['en', 'fr', 'nl']
+  // Multi-stage intelligence extraction
+  const documents = await ragEngine.evaluateDocuments({
+    sources: fileRepository,
+    consecutive: true,
+    contextWindow: 32000
+  });
+  
+  // Generate multilingual reports with contextual intelligence
+  const report = await ragEngine.synthesize({
+    context: documents,
+    languages: ['en', 'fr', 'nl'],
+    actionableInsights: true
   });
   
   return report;
@@ -98,34 +114,36 @@ const Projects = () => {
     },
     {
       id: "crm-intelligence",
-      title: "AI-Powered CRM Integration & Automation",
+      title: "AI-Orchestrated CRM Intelligence Platform with Multi-Agent Workflow Automation",
       shortName: "CRM Intelligence",
       period: "June 2024 – September 2024",
-      description: "Intelligent automation across HubSpot CRM with AI-driven workflows, webhooks, and n8n orchestration",
+      description: "Sophisticated AI-driven automation ecosystem integrating HubSpot CRM with intelligent agents, webhook orchestration via n8n, and real-time decision intelligence. Implements multi-strategy AI approaches for autonomous query handling, predictive lead scoring, and intelligent workflow execution",
       highlights: [
-        "85% faster response times with AI",
-        "42% increase in lead conversion",
-        "70% reduction in manual tasks",
-        "Real-time webhook-based synchronization",
-        "n8n workflow orchestration & automation",
+        "85% faster response times through AI-powered routing",
+        "42% increase in lead conversion via predictive intelligence",
+        "70% reduction in manual tasks with autonomous agents",
+        "Real-time webhook-based event orchestration",
+        "n8n-powered workflow automation with intelligent branching",
       ],
-      codeSnippet: `const crmAgent = async (query) => {
-  const agent = new IntelligentAgent({
+      codeSnippet: `const crmIntelligenceAgent = async (query) => {
+  const agent = new MultiStrategyIntelligentAgent({
     crm: hubspotAPI,
-    llm: openai.gpt4,
-    automation: n8nWebhooks,
+    llm: openai.gpt4Turbo,
+    automation: n8nWebhookOrchestrator,
     tools: [
-      queryHandler,
-      meetingScheduler,
-      followUpAutomation,
-      webhookTriggers
-    ]
+      autonomousQueryHandler,
+      predictiveMeetingScheduler,
+      intelligentFollowUp,
+      webhookEventProcessor,
+      workflowExecutionEngine
+    ],
+    strategies: ['intent-classification', 'context-analysis', 'predictive-scoring']
   });
   
   const response = await agent
-    .processQuery(query)
-    .scheduleFollowUp()
-    .triggerWorkflow();
+    .processWithIntelligence(query)
+    .executeWorkflow()
+    .triggerAutomation();
   
   return response;
 };`,
@@ -144,30 +162,38 @@ const Projects = () => {
     },
     {
       id: "rag-support",
-      title: "RAG-Powered Customer Support System",
-      shortName: "RAG Support",
+      title: "Intelligent Knowledge Management System with Multi-Stage RAG & Semantic Intelligence",
+      shortName: "RAG Intelligence",
       period: "January 2024 – March 2024",
-      description: "Intelligent support system using retrieval-augmented generation with vector search",
+      description: "Advanced customer support platform implementing multiple AI strategies including retrieval-augmented generation, semantic vector search, and consecutive document evaluation. Processes 100K+ documents with intelligent chunking, contextual reranking, and provides actionable intelligence for complex multi-turn conversations",
       highlights: [
-        "92% query resolution accuracy",
-        "60% faster response times",
-        "100K+ documents processed",
-        "Multi-turn dialogue handling",
-        "Conversational memory",
+        "92% query resolution through multi-strategy RAG",
+        "60% faster responses via intelligent retrieval optimization",
+        "100K+ documents processed with semantic understanding",
+        "Multi-turn dialogue with persistent contextual memory",
+        "Advanced semantic search with consecutive evaluation",
       ],
-      codeSnippet: `const supportAgent = async (query) => {
-  const rag = new RAGAgent({
-    vectorDB: pinecone,
-    embeddings: huggingFace,
-    llm: openai.gpt4,
-    memory: conversationalMemory
+      codeSnippet: `const intelligentSupportAgent = async (query) => {
+  const ragIntelligence = new MultiStageRAGAgent({
+    vectorDB: pineconeMultiIndex,
+    embeddings: huggingFaceSemanticModel,
+    llm: openai.gpt4Turbo,
+    memory: persistentConversationalMemory,
+    strategies: [
+      'semantic-chunking',
+      'hierarchical-retrieval',
+      'context-reranking',
+      'intelligence-fusion'
+    ]
   });
   
-  const answer = await rag
-    .search(query)
-    .generateResponse();
+  // Consecutive document evaluation
+  const knowledge = await ragIntelligence
+    .evaluateDocumentsConsecutively(query)
+    .extractActionableIntelligence()
+    .synthesizeResponse();
   
-  return answer;
+  return knowledge;
 };`,
       technologies: ["LangChain", "Pinecone", "OpenAI GPT-4", "Hugging Face", "Vector embeddings", "Python", "FastAPI"],
       metrics: [
