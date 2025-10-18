@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef } from "react";
-import { AnimatePresence, motion, useMotionValue, useTransform } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { CheckCircle2, TrendingUp, Zap, Clock, Sparkles } from "lucide-react";
 import OpenAI from "@/components/icons/openai";
 import OpenAIDark from "@/components/icons/openai-dark";
@@ -8,13 +8,9 @@ import AnthropicDark from "@/components/icons/anthropic-dark";
 import Gemini from "@/components/icons/gemini";
 import Mistral from "@/components/icons/mistral";
 import DeepSeek from "@/components/icons/deepseek";
-import useDetectBrowser from "@/hooks/use-detect-browser";
-import useScreenSize from "@/hooks/use-screen-size";
-import GooeySvgFilter from "@/components/fancy/filter/gooey-svg-filter";
+import { AceternityTabs } from "@/components/ui/aceternity-tabs";
 
 const Projects = () => {
-  const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
-
   const projects = [
     {
       id: "voice-agent",
@@ -212,269 +208,115 @@ const Projects = () => {
     },
   ];
 
-  const currentProject = projects[currentProjectIndex];
+  const providerIcons: Record<string, JSX.Element> = {
+    "OpenAI GPT-4o": <><OpenAI className="w-4 h-4 dark:hidden" /><OpenAIDark className="w-4 h-4 hidden dark:block" /></>,
+    "OpenAI GPT-4": <><OpenAI className="w-4 h-4 dark:hidden" /><OpenAIDark className="w-4 h-4 hidden dark:block" /></>,
+    "OpenAI": <><OpenAI className="w-4 h-4 dark:hidden" /><OpenAIDark className="w-4 h-4 hidden dark:block" /></>,
+    "Anthropic": <><Anthropic className="w-4 h-4 dark:hidden" /><AnthropicDark className="w-4 h-4 hidden dark:block" /></>,
+    "Google": <Gemini className="w-4 h-4" />,
+    "Mistral": <Mistral className="w-4 h-4" />,
+    "DeepSeek": <DeepSeek className="w-4 h-4" />,
+  };
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentProjectIndex((prev) => (prev + 1) % projects.length);
-    }, 10000);
-    return () => clearInterval(interval);
-  }, [projects.length]);
-
-  const screenSize = useScreenSize();
-  const browserName = useDetectBrowser();
-  const isSafari = browserName === "Safari";
+  const tabs = projects.map((project) => ({
+    title: project.shortName,
+    value: project.id,
+    content: (
+      <div className="w-full h-full rounded-2xl bg-background/80 backdrop-blur-sm border border-border/50 p-4 md:p-6 shadow-lg overflow-y-auto">
+        <div className="mb-4">
+          <h3 className="text-xl md:text-2xl font-bold mb-2">{project.title}</h3>
+          <p className="text-muted-foreground text-sm">{project.description}</p>
+        </div>
+        <div className="grid lg:grid-cols-2 gap-4">
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <h4 className="text-sm font-semibold flex items-center gap-2">
+                <Sparkles className="w-3.5 h-3.5 text-primary" />Key Features
+              </h4>
+              <ul className="space-y-1.5">
+                {project.highlights.map((h, i) => (
+                  <li key={i} className="flex items-start gap-2">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0 mt-0.5" />
+                    <span className="text-xs text-muted-foreground">{h}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="space-y-2">
+              <h4 className="text-sm font-semibold flex items-center gap-2">
+                <Zap className="w-3.5 h-3.5 text-primary" />Technologies
+              </h4>
+              <div className="flex flex-wrap gap-1.5">
+                {project.technologies.map((tech, i) => {
+                  const icon = Object.keys(providerIcons).find(k => tech.includes(k));
+                  return (
+                    <div key={i} className="flex items-center gap-1.5 px-2 py-1 bg-background/50 rounded-md border border-border/50 text-xs">
+                      {icon && providerIcons[icon]}
+                      <span>{tech}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+            <div className="space-y-2">
+              <h4 className="text-sm font-semibold flex items-center gap-2">
+                <TrendingUp className="w-3.5 h-3.5 text-primary" />Client Impact
+              </h4>
+              {project.metrics.map((m, i) => {
+                const colors = { emerald: "bg-emerald-500", blue: "bg-blue-500", violet: "bg-violet-500", amber: "bg-amber-500" };
+                return (
+                  <div key={i}>
+                    <div className="flex justify-between text-xs mb-1">
+                      <span className="text-muted-foreground">{m.label}</span>
+                      <span className="font-semibold">{m.display || `${m.value}${m.suffix || ""}`}</span>
+                    </div>
+                    <div className="h-1.5 bg-background/50 rounded-full overflow-hidden">
+                      <motion.div initial={{ width: 0 }} animate={{ width: `${Math.min(100, m.value)}%` }} transition={{ duration: 0.8 }} 
+                        className={`h-full rounded-full ${colors[m.color as keyof typeof colors]}`} />
+                    </div>
+                  </div>
+                );
+              })}
+              <div className="pt-2 border-t border-border/50 space-y-1.5">
+                {project.clientBenefits.map((b, i) => (
+                  <div key={i} className="flex items-start gap-2">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="text-xs text-muted-foreground">{b}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className="space-y-2">
+            <h4 className="text-sm font-semibold flex items-center gap-2">
+              <Clock className="w-3.5 h-3.5 text-primary" />Implementation
+            </h4>
+            <div className="bg-neutral-900 dark:bg-black text-neutral-100 rounded-lg p-3 text-[10px] font-mono max-h-[500px] overflow-y-auto">
+              <pre className="whitespace-pre-wrap">{project.codeSnippet}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    ),
+  }));
 
   return (
     <section id="projects" className="py-16 relative bg-background overflow-hidden">
-      <GooeySvgFilter id="projects-gooey-filter" strength={screenSize.lessThan("md") ? 8 : 15} />
-      
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
         <div className="text-center mb-8">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-bold mb-3"
-          >
+          <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-3xl md:text-4xl font-bold mb-3">
             Featured Projects
           </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-base text-muted-foreground max-w-2xl mx-auto"
-          >
+          <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="text-base text-muted-foreground max-w-2xl mx-auto">
             Real-world AI solutions with measurable impact
           </motion.p>
         </div>
-
-        {/* Gooey Tabs Container */}
-        <div className="relative w-full max-w-7xl mx-auto">
-          <div
-            className="absolute inset-0"
-            style={{ filter: "url(#projects-gooey-filter)" }}
-          >
-            <div className="flex w-full">
-              {projects.map((_, index) => (
-                <div key={index} className="relative flex-1 h-10">
-                  {currentProjectIndex === index && (
-                    <motion.div
-                      layoutId="active-project-tab"
-                      className="absolute inset-0 bg-primary/10 dark:bg-primary/20"
-                      transition={{
-                        type: "spring",
-                        bounce: 0.0,
-                        duration: isSafari ? 0 : 0.4,
-                      }}
-                    />
-                  )}
-                </div>
-              ))}
-            </div>
-            {/* Content panel background */}
-            <div className="w-full h-[calc(100vh-400px)] min-h-[500px] max-h-[700px] bg-primary/10 dark:bg-primary/20" />
-          </div>
-
-          {/* Interactive text overlay */}
-          <div className="relative flex w-full">
-            {projects.map((project, index) => (
-              <button
-                key={project.id}
-                onClick={() => setCurrentProjectIndex(index)}
-                className="flex-1 h-10 text-xs sm:text-sm"
-              >
-                <span
-                  className={`w-full h-full flex items-center justify-center font-medium transition-colors ${
-                    currentProjectIndex === index
-                      ? "text-primary"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}
-                >
-                  {project.shortName}
-                </span>
-              </button>
-            ))}
-          </div>
-
-          {/* Project Content */}
-          <div className="relative w-full h-[calc(100vh-400px)] min-h-[500px] max-h-[700px] overflow-hidden">
-            <AnimatePresence mode="popLayout">
-              <motion.div
-                key={currentProjectIndex}
-                initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
-                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                exit={{ opacity: 0, y: -30, filter: "blur(10px)" }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
-                className="p-4 md:p-8 h-full overflow-y-auto"
-              >
-                {/* Active Project Label - Positioned above container */}
-                <div className="flex justify-center mb-3">
-                  <motion.div
-                    key={`label-${currentProjectIndex}`}
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    className="px-4 py-1.5 bg-background/90 backdrop-blur-sm rounded-t-2xl border border-b-0 border-border/50 text-xs font-medium"
-                  >
-                    {currentProject.title}
-                  </motion.div>
-                </div>
-
-                {/* Styled Container Wrapper */}
-                <div className="bg-background/80 backdrop-blur-sm rounded-3xl border border-border/50 p-4 md:p-6 shadow-lg h-full">
-                  {/* Project Header - More compact */}
-                  <div className="mb-4">
-                    <h3 className="text-xl md:text-2xl font-bold mb-2">
-                      {currentProject.title}
-                    </h3>
-                    <p className="text-muted-foreground text-sm">{currentProject.description}</p>
-                  </div>
-
-                  {/* Bento Grid Content - Optimized for single view */}
-                  <div className="grid lg:grid-cols-2 gap-4">
-                    {/* Left Column */}
-                    <div className="space-y-4">
-                      {/* Highlights */}
-                      <div className="space-y-2">
-                        <h4 className="text-sm font-semibold flex items-center gap-2">
-                          <Sparkles className="w-3.5 h-3.5 text-primary" />
-                          Key Features
-                        </h4>
-                        <ul className="space-y-1.5">
-                          {currentProject.highlights.slice(0, 4).map((highlight, idx) => (
-                            <motion.li
-                              key={idx}
-                              initial={{ opacity: 0, x: -10 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: 0.05 * idx }}
-                              className="flex items-start gap-2"
-                            >
-                              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0 mt-0.5" />
-                              <span className="text-xs text-muted-foreground">{highlight}</span>
-                            </motion.li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      {/* Technologies */}
-                      <div className="space-y-2">
-                        <h4 className="text-sm font-semibold flex items-center gap-2">
-                          <Zap className="w-3.5 h-3.5 text-primary" />
-                          Technologies
-                        </h4>
-                        <div className="flex flex-wrap gap-1.5">
-                          {currentProject.technologies.slice(0, 6).map((tech, i) => {
-                            const icon = Object.keys(providerIcons).find(key => tech.includes(key));
-                            return (
-                              <motion.div
-                                key={i}
-                                initial={{ opacity: 0, scale: 0.8 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{ delay: 0.03 * i }}
-                                className="flex items-center gap-1.5 px-2 py-1 bg-background/50 rounded-md border border-border/50 text-xs"
-                              >
-                                {icon && providerIcons[icon]}
-                                <span className="text-xs">{tech}</span>
-                              </motion.div>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Right Column */}
-                    <div className="space-y-4">
-                      {/* Code Implementation */}
-                      <div className="space-y-2">
-                        <h4 className="text-sm font-semibold flex items-center gap-2">
-                          <Clock className="w-3.5 h-3.5 text-primary" />
-                          Implementation
-                        </h4>
-                        <div className="bg-neutral-900 dark:bg-black text-neutral-100 rounded-lg p-3 text-[10px] font-mono max-h-[180px] overflow-y-auto">
-                          <pre className="whitespace-pre-wrap">{currentProject.codeSnippet}</pre>
-                        </div>
-                      </div>
-
-                      {/* Metrics & Benefits */}
-                      <div className="space-y-2">
-                        <h4 className="text-sm font-semibold flex items-center gap-2">
-                          <TrendingUp className="w-3.5 h-3.5 text-primary" />
-                          Client Impact
-                        </h4>
-                        <div className="space-y-2">
-                          {currentProject.metrics.map((metric, idx) => {
-                            const colorClasses = {
-                              emerald: "bg-emerald-500",
-                              blue: "bg-blue-500",
-                              violet: "bg-violet-500",
-                              amber: "bg-amber-500",
-                            };
-                            return (
-                              <motion.div
-                                key={metric.label}
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.05 * idx }}
-                              >
-                                <div className="flex justify-between text-xs mb-1">
-                                  <span className="text-muted-foreground">{metric.label}</span>
-                                  <span className="font-semibold">
-                                    {metric.display || `${metric.value}${metric.suffix || ""}`}
-                                  </span>
-                                </div>
-                                <div className="h-1.5 bg-background/50 rounded-full overflow-hidden">
-                                  <motion.div
-                                    initial={{ width: 0 }}
-                                    animate={{ width: `${Math.min(100, metric.value)}%` }}
-                                    transition={{ duration: 0.8, delay: 0.05 * idx }}
-                                    className={`h-full rounded-full ${
-                                      colorClasses[metric.color as keyof typeof colorClasses]
-                                    }`}
-                                  />
-                                </div>
-                              </motion.div>
-                            );
-                          })}
-                        </div>
-                        <div className="pt-2 border-t border-border/50 space-y-1.5">
-                          {currentProject.clientBenefits.slice(0, 3).map((benefit, i) => (
-                            <motion.div
-                              key={i}
-                              initial={{ opacity: 0, x: -10 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: 0.05 * i }}
-                              className="flex items-start gap-2"
-                            >
-                              <CheckCircle2 className="w-3.5 h-3.5 text-primary flex-shrink-0 mt-0.5" />
-                              <span className="text-xs text-muted-foreground">{benefit}</span>
-                            </motion.div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
+        <div className="h-[calc(100vh-300px)] min-h-[500px] max-h-[700px] [perspective:1000px] relative flex flex-col max-w-7xl mx-auto w-full items-start justify-start">
+          <AceternityTabs tabs={tabs} contentClassName="mt-8" />
         </div>
       </div>
     </section>
   );
-};
-
-// Provider Icons for Tech Stack
-const providerIcons: Record<string, JSX.Element> = {
-  "OpenAI GPT-4o": <><OpenAI className="w-4 h-4 dark:hidden" /><OpenAIDark className="w-4 h-4 hidden dark:block" /></>,
-  "OpenAI GPT-4": <><OpenAI className="w-4 h-4 dark:hidden" /><OpenAIDark className="w-4 h-4 hidden dark:block" /></>,
-  "OpenAI": <><OpenAI className="w-4 h-4 dark:hidden" /><OpenAIDark className="w-4 h-4 hidden dark:block" /></>,
-  "Anthropic": <><Anthropic className="w-4 h-4 dark:hidden" /><AnthropicDark className="w-4 h-4 hidden dark:block" /></>,
-  "Google": <Gemini className="w-4 h-4" />,
-  "Mistral": <Mistral className="w-4 h-4" />,
-  "DeepSeek": <DeepSeek className="w-4 h-4" />,
 };
 
 export default Projects;
