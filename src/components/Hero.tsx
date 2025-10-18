@@ -1,6 +1,5 @@
 import { Mail, ArrowDown } from "lucide-react";
 import AnimatedTextCycle from "@/components/ui/animated-text-cycle";
-import ElasticLine from "@/components/fancy/physics/elastic-line";
 
 const Hero = () => {
   const heroWords = [
@@ -22,19 +21,9 @@ const Hero = () => {
             Akshat Chaudhary
           </h2>
           
-          {/* Elastic Line */}
-          <div className="w-full max-w-2xl mx-auto mb-12 h-px">
-            <ElasticLine
-              releaseThreshold={50}
-              strokeWidth={2}
-              strokeColor="white"
-              animateInTransition={{
-                type: "spring",
-                stiffness: 300,
-                damping: 30,
-                delay: 0.2,
-              }}
-            />
+          {/* Simple White Line */}
+          <div className="w-full max-w-2xl mx-auto mb-12">
+            <div className="h-px bg-white"></div>
           </div>
 
           {/* Main Heading */}

@@ -226,17 +226,17 @@ const Projects = () => {
   const isSafari = browserName === "Safari";
 
   return (
-    <section id="projects" className="py-32 relative bg-background overflow-hidden">
+    <section id="projects" className="py-16 relative bg-background overflow-hidden">
       <GooeySvgFilter id="projects-gooey-filter" strength={screenSize.lessThan("md") ? 8 : 15} />
       
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-8">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-6xl font-bold mb-6"
+            className="text-3xl md:text-4xl font-bold mb-3"
           >
             Featured Projects
           </motion.h2>
@@ -245,21 +245,21 @@ const Projects = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-muted-foreground text-lg md:text-xl max-w-3xl mx-auto"
+            className="text-base text-muted-foreground max-w-2xl mx-auto"
           >
             Real-world AI solutions with measurable impact
           </motion.p>
         </div>
 
         {/* Gooey Tabs Container */}
-        <div className="relative w-full max-w-6xl mx-auto">
+        <div className="relative w-full max-w-7xl mx-auto">
           <div
             className="absolute inset-0"
             style={{ filter: "url(#projects-gooey-filter)" }}
           >
             <div className="flex w-full">
               {projects.map((_, index) => (
-                <div key={index} className="relative flex-1 h-12 md:h-14">
+                <div key={index} className="relative flex-1 h-10">
                   {currentProjectIndex === index && (
                     <motion.div
                       layoutId="active-project-tab"
@@ -275,7 +275,7 @@ const Projects = () => {
               ))}
             </div>
             {/* Content panel background */}
-            <div className="w-full min-h-[600px] bg-primary/10 dark:bg-primary/20" />
+            <div className="w-full h-[calc(100vh-400px)] min-h-[500px] max-h-[700px] bg-primary/10 dark:bg-primary/20" />
           </div>
 
           {/* Interactive text overlay */}
@@ -284,7 +284,7 @@ const Projects = () => {
               <button
                 key={project.id}
                 onClick={() => setCurrentProjectIndex(index)}
-                className="flex-1 h-12 md:h-14 text-xs sm:text-sm md:text-base"
+                className="flex-1 h-10 text-xs sm:text-sm"
               >
                 <span
                   className={`w-full h-full flex items-center justify-center font-medium transition-colors ${
@@ -299,105 +299,157 @@ const Projects = () => {
             ))}
           </div>
 
-          {/* Project Content - Wrapped in styled container */}
-          <div className="relative w-full min-h-[600px] overflow-hidden">
+          {/* Project Content */}
+          <div className="relative w-full h-[calc(100vh-400px)] min-h-[500px] max-h-[700px] overflow-hidden">
             <AnimatePresence mode="popLayout">
               <motion.div
                 key={currentProjectIndex}
-                initial={{ opacity: 0, y: 50, filter: "blur(10px)" }}
+                initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                exit={{ opacity: 0, y: -50, filter: "blur(10px)" }}
+                exit={{ opacity: 0, y: -30, filter: "blur(10px)" }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
-                className="p-6 md:p-12"
+                className="p-4 md:p-8 h-full overflow-y-auto"
               >
                 {/* Active Project Label - Positioned above container */}
-                <div className="flex justify-center mb-4">
+                <div className="flex justify-center mb-3">
                   <motion.div
                     key={`label-${currentProjectIndex}`}
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    className="px-6 py-2 bg-background/90 backdrop-blur-sm rounded-t-2xl border border-b-0 border-border/50 text-sm font-medium"
+                    className="px-4 py-1.5 bg-background/90 backdrop-blur-sm rounded-t-2xl border border-b-0 border-border/50 text-xs font-medium"
                   >
                     {currentProject.title}
                   </motion.div>
                 </div>
 
                 {/* Styled Container Wrapper */}
-                <div className="bg-background/80 backdrop-blur-sm rounded-3xl border border-border/50 p-6 md:p-10 shadow-lg">
-                  {/* Project Header */}
-                  <div className="mb-8">
-                    <h3 className="text-2xl md:text-3xl font-bold mb-3">
+                <div className="bg-background/80 backdrop-blur-sm rounded-3xl border border-border/50 p-4 md:p-6 shadow-lg h-full">
+                  {/* Project Header - More compact */}
+                  <div className="mb-4">
+                    <h3 className="text-xl md:text-2xl font-bold mb-2">
                       {currentProject.title}
                     </h3>
-                    <p className="text-muted-foreground text-base">{currentProject.description}</p>
+                    <p className="text-muted-foreground text-sm">{currentProject.description}</p>
                   </div>
 
-                  {/* Bento Grid Content */}
-                  <div className="grid gap-6">
-                    {/* Row 1: Highlights + Code */}
-                    <div className="grid md:grid-cols-5 gap-6">
+                  {/* Bento Grid Content - Optimized for single view */}
+                  <div className="grid lg:grid-cols-2 gap-4">
+                    {/* Left Column */}
+                    <div className="space-y-4">
                       {/* Highlights */}
-                      <div className="md:col-span-2 space-y-4">
-                        <h4 className="font-semibold flex items-center gap-2">
-                          <Sparkles className="w-4 h-4 text-primary" />
+                      <div className="space-y-2">
+                        <h4 className="text-sm font-semibold flex items-center gap-2">
+                          <Sparkles className="w-3.5 h-3.5 text-primary" />
                           Key Features
                         </h4>
-                        <ul className="space-y-2">
-                          {currentProject.highlights.map((highlight, idx) => (
+                        <ul className="space-y-1.5">
+                          {currentProject.highlights.slice(0, 4).map((highlight, idx) => (
                             <motion.li
                               key={idx}
                               initial={{ opacity: 0, x: -10 }}
                               animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: 0.1 * idx }}
+                              transition={{ delay: 0.05 * idx }}
                               className="flex items-start gap-2"
                             >
-                              <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" />
-                              <span className="text-sm text-muted-foreground">{highlight}</span>
+                              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0 mt-0.5" />
+                              <span className="text-xs text-muted-foreground">{highlight}</span>
                             </motion.li>
                           ))}
                         </ul>
                       </div>
 
-                      {/* Code Implementation */}
-                      <div className="md:col-span-3 space-y-4">
-                        <h4 className="font-semibold flex items-center gap-2">
-                          <Clock className="w-4 h-4 text-primary" />
-                          Implementation
+                      {/* Technologies */}
+                      <div className="space-y-2">
+                        <h4 className="text-sm font-semibold flex items-center gap-2">
+                          <Zap className="w-3.5 h-3.5 text-primary" />
+                          Technologies
                         </h4>
-                        <TypingCodeFeature text={currentProject.codeSnippet} />
+                        <div className="flex flex-wrap gap-1.5">
+                          {currentProject.technologies.slice(0, 6).map((tech, i) => {
+                            const icon = Object.keys(providerIcons).find(key => tech.includes(key));
+                            return (
+                              <motion.div
+                                key={i}
+                                initial={{ opacity: 0, scale: 0.8 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ delay: 0.03 * i }}
+                                className="flex items-center gap-1.5 px-2 py-1 bg-background/50 rounded-md border border-border/50 text-xs"
+                              >
+                                {icon && providerIcons[icon]}
+                                <span className="text-xs">{tech}</span>
+                              </motion.div>
+                            );
+                          })}
+                        </div>
                       </div>
                     </div>
 
-                    {/* Row 2: Technologies + Metrics */}
-                    <div className="grid md:grid-cols-2 gap-6">
-                      {/* Technologies */}
-                      <div className="space-y-4">
-                        <h4 className="font-semibold flex items-center gap-2">
-                          <Zap className="w-4 h-4 text-primary" />
-                          Technologies
+                    {/* Right Column */}
+                    <div className="space-y-4">
+                      {/* Code Implementation */}
+                      <div className="space-y-2">
+                        <h4 className="text-sm font-semibold flex items-center gap-2">
+                          <Clock className="w-3.5 h-3.5 text-primary" />
+                          Implementation
                         </h4>
-                        <TechStackDisplay technologies={currentProject.technologies} />
+                        <div className="bg-neutral-900 dark:bg-black text-neutral-100 rounded-lg p-3 text-[10px] font-mono max-h-[180px] overflow-y-auto">
+                          <pre className="whitespace-pre-wrap">{currentProject.codeSnippet}</pre>
+                        </div>
                       </div>
 
                       {/* Metrics & Benefits */}
-                      <div className="space-y-4">
-                        <h4 className="font-semibold flex items-center gap-2">
-                          <TrendingUp className="w-4 h-4 text-primary" />
+                      <div className="space-y-2">
+                        <h4 className="text-sm font-semibold flex items-center gap-2">
+                          <TrendingUp className="w-3.5 h-3.5 text-primary" />
                           Client Impact
                         </h4>
-                        <MetricsDisplay metrics={currentProject.metrics} />
-                        <div className="pt-4 border-t border-border/50 space-y-2">
-                          {currentProject.clientBenefits.map((benefit, i) => (
+                        <div className="space-y-2">
+                          {currentProject.metrics.map((metric, idx) => {
+                            const colorClasses = {
+                              emerald: "bg-emerald-500",
+                              blue: "bg-blue-500",
+                              violet: "bg-violet-500",
+                              amber: "bg-amber-500",
+                            };
+                            return (
+                              <motion.div
+                                key={metric.label}
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.05 * idx }}
+                              >
+                                <div className="flex justify-between text-xs mb-1">
+                                  <span className="text-muted-foreground">{metric.label}</span>
+                                  <span className="font-semibold">
+                                    {metric.display || `${metric.value}${metric.suffix || ""}`}
+                                  </span>
+                                </div>
+                                <div className="h-1.5 bg-background/50 rounded-full overflow-hidden">
+                                  <motion.div
+                                    initial={{ width: 0 }}
+                                    animate={{ width: `${Math.min(100, metric.value)}%` }}
+                                    transition={{ duration: 0.8, delay: 0.05 * idx }}
+                                    className={`h-full rounded-full ${
+                                      colorClasses[metric.color as keyof typeof colorClasses]
+                                    }`}
+                                  />
+                                </div>
+                              </motion.div>
+                            );
+                          })}
+                        </div>
+                        <div className="pt-2 border-t border-border/50 space-y-1.5">
+                          {currentProject.clientBenefits.slice(0, 3).map((benefit, i) => (
                             <motion.div
                               key={i}
                               initial={{ opacity: 0, x: -10 }}
                               animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: 0.1 * i }}
+                              transition={{ delay: 0.05 * i }}
                               className="flex items-start gap-2"
                             >
-                              <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                              <span className="text-sm text-muted-foreground">{benefit}</span>
+                              <CheckCircle2 className="w-3.5 h-3.5 text-primary flex-shrink-0 mt-0.5" />
+                              <span className="text-xs text-muted-foreground">{benefit}</span>
                             </motion.div>
                           ))}
                         </div>
@@ -414,125 +466,15 @@ const Projects = () => {
   );
 };
 
-// Typing Code Animation
-const TypingCodeFeature = ({ text }: { text: string }) => {
-  const [displayedText, setDisplayedText] = useState("");
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const terminalRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    setDisplayedText("");
-    setCurrentIndex(0);
-  }, [text]);
-
-  useEffect(() => {
-    if (currentIndex < text.length) {
-      const timeout = setTimeout(() => {
-        setDisplayedText((prev) => prev + text[currentIndex]);
-        setCurrentIndex((prev) => prev + 1);
-        if (terminalRef.current) {
-          terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
-        }
-      }, Math.random() * 30 + 10);
-      return () => clearTimeout(timeout);
-    }
-  }, [currentIndex, text]);
-
-  return (
-    <div
-      ref={terminalRef}
-      className="bg-neutral-900 dark:bg-black text-neutral-100 rounded-lg p-4 text-xs font-mono h-[180px] overflow-y-auto"
-    >
-      <pre className="whitespace-pre-wrap">
-        {displayedText}
-        <span className="animate-pulse">|</span>
-      </pre>
-    </div>
-  );
-};
-
-// Tech Stack Display
-const TechStackDisplay = ({ technologies }: { technologies: string[] }) => {
-  const providerIcons: Record<string, JSX.Element> = {
-    "OpenAI GPT-4o": <><OpenAI className="w-5 h-5 dark:hidden" /><OpenAIDark className="w-5 h-5 hidden dark:block" /></>,
-    "OpenAI GPT-4": <><OpenAI className="w-5 h-5 dark:hidden" /><OpenAIDark className="w-5 h-5 hidden dark:block" /></>,
-    "OpenAI": <><OpenAI className="w-5 h-5 dark:hidden" /><OpenAIDark className="w-5 h-5 hidden dark:block" /></>,
-    "Anthropic": <><Anthropic className="w-5 h-5 dark:hidden" /><AnthropicDark className="w-5 h-5 hidden dark:block" /></>,
-    "Google": <Gemini className="w-5 h-5" />,
-    "Mistral": <Mistral className="w-5 h-5" />,
-    "DeepSeek": <DeepSeek className="w-5 h-5" />,
-  };
-
-  return (
-    <div className="flex flex-wrap gap-2">
-      {technologies.map((tech, i) => {
-        const icon = Object.keys(providerIcons).find(key => tech.includes(key));
-        return (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: i * 0.05 }}
-            className="flex items-center gap-2 px-3 py-1.5 bg-background/50 rounded-lg border border-border/50"
-          >
-            {icon && providerIcons[icon]}
-            <span className="text-xs">{tech}</span>
-          </motion.div>
-        );
-      })}
-    </div>
-  );
-};
-
-// Metrics Display
-const MetricsDisplay = ({ metrics }: { metrics: Array<{ label: string; value: number; suffix?: string; color?: string; display?: string }> }) => {
-  const getColorClass = (color = "emerald") => {
-    const colors = {
-      emerald: "bg-emerald-500",
-      blue: "bg-blue-500",
-      violet: "bg-violet-500",
-      amber: "bg-amber-500",
-    };
-    return colors[color as keyof typeof colors] || colors.emerald;
-  };
-
-  const getIcon = (label: string) => {
-    if (label.includes("Speed") || label.includes("Response")) return <Zap className="w-3.5 h-3.5" />;
-    if (label.includes("Time") || label.includes("Latency")) return <Clock className="w-3.5 h-3.5" />;
-    return <TrendingUp className="w-3.5 h-3.5" />;
-  };
-
-  return (
-    <div className="space-y-3">
-      {metrics.map((metric, index) => (
-        <motion.div
-          key={index}
-          initial={{ opacity: 0, x: -10 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: index * 0.1 }}
-          className="space-y-1"
-        >
-          <div className="flex justify-between items-center text-sm">
-            <div className="flex items-center gap-1.5 font-medium">
-              {getIcon(metric.label)}
-              {metric.label}
-            </div>
-            <div className="font-semibold">
-              {metric.display || `${metric.value}${metric.suffix || ""}`}
-            </div>
-          </div>
-          <div className="h-1.5 w-full bg-muted rounded-full overflow-hidden">
-            <motion.div
-              className={`h-full rounded-full ${getColorClass(metric.color)}`}
-              initial={{ width: 0 }}
-              animate={{ width: `${Math.min(100, metric.value)}%` }}
-              transition={{ duration: 1.2, ease: "easeOut", delay: index * 0.1 }}
-            />
-          </div>
-        </motion.div>
-      ))}
-    </div>
-  );
+// Provider Icons for Tech Stack
+const providerIcons: Record<string, JSX.Element> = {
+  "OpenAI GPT-4o": <><OpenAI className="w-4 h-4 dark:hidden" /><OpenAIDark className="w-4 h-4 hidden dark:block" /></>,
+  "OpenAI GPT-4": <><OpenAI className="w-4 h-4 dark:hidden" /><OpenAIDark className="w-4 h-4 hidden dark:block" /></>,
+  "OpenAI": <><OpenAI className="w-4 h-4 dark:hidden" /><OpenAIDark className="w-4 h-4 hidden dark:block" /></>,
+  "Anthropic": <><Anthropic className="w-4 h-4 dark:hidden" /><AnthropicDark className="w-4 h-4 hidden dark:block" /></>,
+  "Google": <Gemini className="w-4 h-4" />,
+  "Mistral": <Mistral className="w-4 h-4" />,
+  "DeepSeek": <DeepSeek className="w-4 h-4" />,
 };
 
 export default Projects;
