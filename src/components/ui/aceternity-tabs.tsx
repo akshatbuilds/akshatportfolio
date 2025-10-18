@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -35,6 +35,17 @@ export const AceternityTabs = ({
   };
 
   const [hovering, setHovering] = useState(false);
+
+  // Auto-cycle through tabs every 10 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const currentIndex = propTabs.findIndex(tab => tab.value === active.value);
+      const nextIndex = (currentIndex + 1) % propTabs.length;
+      moveSelectedTabToTop(nextIndex);
+    }, 10000);
+
+    return () => clearInterval(interval);
+  }, [active, propTabs]);
 
   return (
     <>
