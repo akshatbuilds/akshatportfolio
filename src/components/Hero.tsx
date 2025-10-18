@@ -23,7 +23,7 @@ const Hero = () => {
           </h2>
           
           {/* Elastic Line */}
-          <div className="w-full max-w-2xl mx-auto mb-12 text-white">
+          <div className="w-full max-w-2xl mx-auto mb-12 h-px">
             <ElasticLine
               releaseThreshold={50}
               strokeWidth={2}

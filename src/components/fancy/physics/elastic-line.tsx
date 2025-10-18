@@ -1,106 +1,124 @@
-"use client";
+"use client"
 
-import { motion, useMotionValue, useSpring, useTransform, Transition } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react"
+import {
+  animate,
+  motion,
+  useAnimationFrame,
+  useMotionValue,
+  ValueAnimationTransition,
+} from "framer-motion"
+
+import { useDimensions } from "@/hooks/use-dimensions"
+import { useElasticLineEvents } from "@/hooks/use-elastic-line-events"
 
 interface ElasticLineProps {
-  releaseThreshold?: number;
-  strokeWidth?: number;
-  strokeColor?: string;
-  animateInTransition?: Transition;
+  isVertical?: boolean
+  grabThreshold?: number
+  releaseThreshold?: number
+  strokeWidth?: number
+  strokeColor?: string
+  transition?: ValueAnimationTransition
+  animateInTransition?: ValueAnimationTransition
+  className?: string
 }
 
-export default function ElasticLine({
-  releaseThreshold = 50,
+const ElasticLine: React.FC<ElasticLineProps> = ({
+  isVertical = false,
+  grabThreshold = 5,
+  releaseThreshold = 100,
   strokeWidth = 1,
   strokeColor = "currentColor",
-  animateInTransition = {
+  transition = {
     type: "spring",
     stiffness: 300,
-    damping: 30,
-    delay: 0.15,
+    damping: 5,
   },
-}: ElasticLineProps) {
-  const [isDragging, setIsDragging] = useState(false);
-  const [hasAnimatedIn, setHasAnimatedIn] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
-  
-  const cursorX = useMotionValue(0);
-  const cursorY = useMotionValue(0);
-  
-  const springConfig = { stiffness: 300, damping: 30 };
-  const springX = useSpring(cursorX, springConfig);
-  const springY = useSpring(cursorY, springConfig);
-  
-  const pathD = useTransform(
-    [springX, springY],
-    ([x, y]) => {
-      if (!containerRef.current) return "M 0 0 L 0 0";
-      const rect = containerRef.current.getBoundingClientRect();
-      const startX = 0;
-      const startY = 0;
-      const endX = rect.width;
-      const endY = 0;
-      
-      if (!isDragging) {
-        return `M ${startX} ${startY} L ${endX} ${endY}`;
-      }
-      
-      const midX = (x as number);
-      const midY = (y as number);
-      
-      return `M ${startX} ${startY} Q ${midX} ${midY} ${endX} ${endY}`;
-    }
-  );
+  animateInTransition = {
+    duration: 0.3,
+    ease: "easeInOut",
+  },
+  className,
+}) => {
+  const containerRef = useRef<SVGSVGElement>(null)
+  const dimensions = useDimensions(containerRef)
+  const pathRef = useRef<SVGPathElement>(null)
+  const [hasAnimatedIn, setHasAnimatedIn] = useState(false)
+
+  // Clamp releaseThreshold to container dimensions
+  const clampedReleaseThreshold = Math.min(
+    releaseThreshold,
+    isVertical ? dimensions.width / 2 : dimensions.height / 2
+  )
+
+  const { isGrabbed, controlPoint } = useElasticLineEvents(
+    containerRef,
+    isVertical,
+    grabThreshold,
+    clampedReleaseThreshold
+  )
+
+  const x = useMotionValue(dimensions.width / 2)
+  const y = useMotionValue(dimensions.height / 2)
+  const pathLength = useMotionValue(0)
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setHasAnimatedIn(true);
-    }, (animateInTransition.delay || 0) * 1000);
-    return () => clearTimeout(timer);
-  }, [animateInTransition.delay]);
+    // Initial draw animation
+    if (!hasAnimatedIn && dimensions.width > 0 && dimensions.height > 0) {
+      animate(pathLength, 1, {
+        ...animateInTransition,
+        onComplete: () => setHasAnimatedIn(true),
+      })
+    }
+    x.set(dimensions.width / 2)
+    y.set(dimensions.height / 2)
+  }, [dimensions, hasAnimatedIn, animateInTransition, pathLength, x, y])
 
-  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!containerRef.current) return;
-    setIsDragging(true);
-    const rect = containerRef.current.getBoundingClientRect();
-    cursorX.set(e.clientX - rect.left);
-    cursorY.set(e.clientY - rect.top);
-  };
+  useEffect(() => {
+    if (!isGrabbed && hasAnimatedIn) {
+      animate(x, dimensions.width / 2, transition)
+      animate(y, dimensions.height / 2, transition)
+    }
+  }, [isGrabbed, hasAnimatedIn, dimensions, transition, x, y])
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!isDragging || !containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    cursorX.set(e.clientX - rect.left);
-    cursorY.set(e.clientY - rect.top);
-  };
+  useAnimationFrame(() => {
+    if (isGrabbed) {
+      x.set(controlPoint.x)
+      y.set(controlPoint.y)
+    }
 
-  const handleMouseUp = () => {
-    setIsDragging(false);
-    cursorX.set(containerRef.current ? containerRef.current.getBoundingClientRect().width / 2 : 0);
-    cursorY.set(0);
-  };
+    const controlX = hasAnimatedIn ? x.get() : dimensions.width / 2
+    const controlY = hasAnimatedIn ? y.get() : dimensions.height / 2
+
+    pathRef.current?.setAttribute(
+      "d",
+      isVertical
+        ? `M${dimensions.width / 2} 0Q${controlX} ${controlY} ${
+            dimensions.width / 2
+          } ${dimensions.height}`
+        : `M0 ${dimensions.height / 2}Q${controlX} ${controlY} ${
+            dimensions.width
+          } ${dimensions.height / 2}`
+    )
+  })
 
   return (
-    <div
+    <svg
       ref={containerRef}
-      className="relative w-full h-px cursor-grab active:cursor-grabbing"
-      onMouseDown={handleMouseDown}
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
-      onMouseLeave={handleMouseUp}
+      className={`w-full h-full ${className || ''}`}
+      viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}
+      preserveAspectRatio="none"
     >
-      <svg className="absolute inset-0 w-full h-full overflow-visible" style={{ pointerEvents: "none" }}>
-        <motion.path
-          d={pathD}
-          stroke={strokeColor}
-          strokeWidth={strokeWidth}
-          fill="none"
-          initial={{ pathLength: 0 }}
-          animate={{ pathLength: hasAnimatedIn ? 1 : 0 }}
-          transition={animateInTransition}
-        />
-      </svg>
-    </div>
-  );
+      <motion.path
+        ref={pathRef}
+        stroke={strokeColor}
+        strokeWidth={strokeWidth}
+        initial={{ pathLength: 0 }}
+        style={{ pathLength }}
+        fill="none"
+      />
+    </svg>
+  )
 }
+
+export default ElasticLine
