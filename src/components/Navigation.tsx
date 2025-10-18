@@ -39,7 +39,7 @@ const Navigation = ({ onLogoClick }: NavigationProps) => {
 
           {/* Desktop Navigation with Dock */}
           <div className="hidden md:flex items-center">
-            <Dock magnification={60} distance={100} panelHeight={48}>
+            <Dock magnification={56} distance={120} panelHeight={48}>
               {navItems.map((item) => (
                 <DockItem key={item.label}>
                   <DockLabel>{item.label}</DockLabel>

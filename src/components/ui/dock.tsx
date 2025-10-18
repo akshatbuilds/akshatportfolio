@@ -75,50 +75,32 @@ function useDock() {
 function Dock({
   children,
   className,
-  spring = { mass: 0.1, stiffness: 150, damping: 12 },
+  spring = { mass: 0.1, stiffness: 200, damping: 15 },
   magnification = DEFAULT_MAGNIFICATION,
   distance = DEFAULT_DISTANCE,
   panelHeight = DEFAULT_PANEL_HEIGHT,
 }: DockProps) {
   const mouseX = useMotionValue(Infinity);
-  const isHovered = useMotionValue(0);
-
-  const maxHeight = useMemo(() => {
-    return Math.max(DOCK_HEIGHT, magnification + magnification / 2 + 4);
-  }, [magnification]);
-
-  const heightRow = useTransform(isHovered, [0, 1], [panelHeight, maxHeight]);
-  const height = useSpring(heightRow, spring);
 
   return (
     <motion.div
-      style={{
-        height: height,
-        scrollbarWidth: 'none',
+      onMouseMove={({ pageX }) => {
+        mouseX.set(pageX);
       }}
-      className='mx-2 flex max-w-full items-end overflow-x-auto'
+      onMouseLeave={() => {
+        mouseX.set(Infinity);
+      }}
+      className={cn(
+        'flex w-fit gap-3 rounded-2xl bg-background/50 backdrop-blur-sm px-4 border border-border/50',
+        className
+      )}
+      style={{ height: panelHeight }}
+      role='toolbar'
+      aria-label='Application dock'
     >
-      <motion.div
-        onMouseMove={({ pageX }) => {
-          isHovered.set(1);
-          mouseX.set(pageX);
-        }}
-        onMouseLeave={() => {
-          isHovered.set(0);
-          mouseX.set(Infinity);
-        }}
-        className={cn(
-          'mx-auto flex w-fit gap-4 rounded-2xl bg-gray-50 px-4 dark:bg-neutral-900',
-          className
-        )}
-        style={{ height: panelHeight }}
-        role='toolbar'
-        aria-label='Application dock'
-      >
-        <DockProvider value={{ mouseX, spring, distance, magnification }}>
-          {children}
-        </DockProvider>
-      </motion.div>
+      <DockProvider value={{ mouseX, spring, distance, magnification }}>
+        {children}
+      </DockProvider>
     </motion.div>
   );
 }
@@ -138,7 +120,7 @@ function DockItem({ children, className }: DockItemProps) {
   const widthTransform = useTransform(
     mouseDistance,
     [-distance, 0, distance],
-    [40, magnification, 40]
+    [32, magnification, 32]
   );
 
   const width = useSpring(widthTransform, spring);
@@ -152,7 +134,7 @@ function DockItem({ children, className }: DockItemProps) {
       onFocus={() => isHovered.set(1)}
       onBlur={() => isHovered.set(0)}
       className={cn(
-        'relative inline-flex items-center justify-center',
+        'relative inline-flex items-center justify-center cursor-pointer',
         className
       )}
       tabIndex={0}
@@ -183,16 +165,15 @@ function DockLabel({ children, className, ...rest }: DockLabelProps) {
     <AnimatePresence>
       {isVisible && (
         <motion.div
-          initial={{ opacity: 0, y: 0 }}
-          animate={{ opacity: 1, y: -10 }}
-          exit={{ opacity: 0, y: 0 }}
-          transition={{ duration: 0.2 }}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 10 }}
+          transition={{ duration: 0.15, ease: "easeOut" }}
           className={cn(
-            'absolute -top-6 left-1/2 w-fit whitespace-pre rounded-md border border-gray-200 bg-gray-100 px-2 py-0.5 text-xs text-neutral-700 dark:border-neutral-900 dark:bg-neutral-800 dark:text-white',
+            'absolute -top-10 left-1/2 -translate-x-1/2 w-fit whitespace-pre rounded-md border border-border bg-background px-3 py-1 text-xs text-foreground shadow-lg',
             className
           )}
           role='tooltip'
-          style={{ x: '-50%' }}
         >
           {children}
         </motion.div>
