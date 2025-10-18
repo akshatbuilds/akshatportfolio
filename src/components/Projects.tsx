@@ -98,35 +98,38 @@ const Projects = () => {
     },
     {
       id: "crm-intelligence",
-      title: "HubSpot CRM Automation Suite",
-      shortName: "CRM Suite",
+      title: "AI-Powered CRM Integration & Automation",
+      shortName: "CRM Intelligence",
       period: "June 2024 – September 2024",
-      description: "Intelligent automation across HubSpot CRM with autonomous query responses and meeting booking",
+      description: "Intelligent automation across HubSpot CRM with AI-driven workflows, webhooks, and n8n orchestration",
       highlights: [
-        "85% faster response times",
+        "85% faster response times with AI",
         "42% increase in lead conversion",
         "70% reduction in manual tasks",
-        "Real-time CRM synchronization",
-        "Intelligent follow-up automation",
+        "Real-time webhook-based synchronization",
+        "n8n workflow orchestration & automation",
       ],
       codeSnippet: `const crmAgent = async (query) => {
   const agent = new IntelligentAgent({
     crm: hubspotAPI,
     llm: openai.gpt4,
+    automation: n8nWebhooks,
     tools: [
       queryHandler,
       meetingScheduler,
-      followUpAutomation
+      followUpAutomation,
+      webhookTriggers
     ]
   });
   
   const response = await agent
     .processQuery(query)
-    .scheduleFollowUp();
+    .scheduleFollowUp()
+    .triggerWorkflow();
   
   return response;
 };`,
-      technologies: ["HubSpot API", "OpenAI GPT-4", "n8n", "Webhooks", "REST API", "CRM automation"],
+      technologies: ["OpenAI GPT-4", "HubSpot API", "n8n", "Webhooks", "REST API", "AI Integration", "Workflow Automation"],
       metrics: [
         { label: "Response Speed", value: 85, suffix: "%", color: "emerald" },
         { label: "Lead Conversion", value: 42, suffix: "%", color: "violet" },
