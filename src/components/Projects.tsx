@@ -312,7 +312,7 @@ const Projects = () => {
           </motion.p>
         </div>
         <div className="h-[calc(100vh-300px)] min-h-[500px] max-h-[700px] [perspective:1000px] relative flex flex-col max-w-7xl mx-auto w-full items-start justify-start">
-          <AceternityTabs tabs={tabs} contentClassName="mt-8" />
+          <AceternityTabs tabs={tabs} containerClassName="justify-center" contentClassName="mt-8" />
         </div>
       </div>
     </section>
