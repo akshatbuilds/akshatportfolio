@@ -301,8 +301,8 @@ const Projects = () => {
   }));
 
   return (
-    <section id="projects" className="py-16 relative bg-background overflow-hidden">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="projects" className="min-h-screen py-16 relative bg-background overflow-hidden flex items-center">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="text-center mb-8">
           <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-3xl md:text-4xl font-bold mb-3">
             Featured Projects

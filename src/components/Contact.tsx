@@ -23,8 +23,8 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-32 relative">
-      <div className="container mx-auto px-6 max-w-6xl">
+    <section id="contact" className="min-h-screen py-32 relative flex items-center">
+      <div className="container mx-auto px-6 max-w-6xl w-full">
         <div className="text-center mb-20">
           <h2 className="text-4xl md:text-6xl font-bold mb-6">
             Let's Connect

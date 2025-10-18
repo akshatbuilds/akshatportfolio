@@ -86,8 +86,8 @@ const Skills = () => {
   ];
 
   return (
-    <section id="skills" className="py-32 relative">
-      <div className="container mx-auto px-6">
+    <section id="skills" className="min-h-screen py-32 relative flex items-center">
+      <div className="container mx-auto px-6 w-full">
         <div className="text-center mb-20">
           <h2 className="text-4xl md:text-6xl font-bold mb-6">
             Technical Expertise

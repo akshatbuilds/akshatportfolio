@@ -11,15 +11,15 @@ const Index = () => {
   const [terminalOpen, setTerminalOpen] = useState(false);
 
   return (
-    <div className="relative min-h-screen">
+    <div className="relative h-screen overflow-y-scroll snap-y snap-mandatory">
       <Navigation onLogoClick={() => setTerminalOpen(true)} />
       
       <main className="relative">
-        <Hero />
-        <Skills />
-        <Experience />
-        <Projects />
-        <Contact />
+        <div className="snap-start"><Hero /></div>
+        <div className="snap-start"><Skills /></div>
+        <div className="snap-start"><Experience /></div>
+        <div className="snap-start"><Projects /></div>
+        <div className="snap-start"><Contact /></div>
       </main>
 
       <Terminal open={terminalOpen} onClose={() => setTerminalOpen(false)} />
