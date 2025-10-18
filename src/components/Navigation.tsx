@@ -1,5 +1,7 @@
 import { useState } from "react";
 import acLogo from "@/assets/ac-logo.png";
+import { Dock, DockIcon, DockItem, DockLabel } from "@/components/ui/dock";
+import { Briefcase, Code2, User, Mail } from "lucide-react";
 
 interface NavigationProps {
   onLogoClick: () => void;
@@ -9,16 +11,23 @@ const Navigation = ({ onLogoClick }: NavigationProps) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { label: "Work", href: "#projects" },
-    { label: "Skills", href: "#skills" },
-    { label: "Experience", href: "#experience" },
-    { label: "Contact", href: "#contact" },
+    { label: "Experience", href: "#experience", icon: Briefcase },
+    { label: "Skills", href: "#skills", icon: Code2 },
+    { label: "Work", href: "#projects", icon: User },
+    { label: "Contact", href: "#contact", icon: Mail },
   ];
+
+  const handleNavClick = (href: string) => {
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border/50">
       <div className="container mx-auto px-6">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <button 
             onClick={onLogoClick}
@@ -28,17 +37,24 @@ const Navigation = ({ onLogoClick }: NavigationProps) => {
             <img src={acLogo} alt="AC Logo" className="h-10 w-auto" />
           </button>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
-            {navItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-              >
-                {item.label}
-              </a>
-            ))}
+          {/* Desktop Navigation with Dock */}
+          <div className="hidden md:flex items-center">
+            <Dock magnification={60} distance={100} panelHeight={48}>
+              {navItems.map((item) => (
+                <DockItem key={item.label}>
+                  <DockLabel>{item.label}</DockLabel>
+                  <DockIcon>
+                    <button
+                      onClick={() => handleNavClick(item.href)}
+                      className="w-full h-full flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
+                      aria-label={item.label}
+                    >
+                      <item.icon className="w-5 h-5" />
+                    </button>
+                  </DockIcon>
+                </DockItem>
+              ))}
+            </Dock>
           </div>
 
           {/* Mobile Menu Button */}
