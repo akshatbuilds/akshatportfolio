@@ -5,10 +5,9 @@ const Hero = () => {
   const animatedWords = [
     "AI Systems",
     "Agentic Workflows",
-    "LangChain Agents",
-    "LangGraph Flows",
-    "Automation Solutions",
     "Intelligent Agents",
+    "Cloud Solutions",
+    "Automation Pipelines",
   ];
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center pt-24 pb-20">
@@ -21,13 +20,12 @@ const Hero = () => {
 
           {/* Main Heading */}
           <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.2] mb-8 animate-fade-in" style={{ animationDelay: "0.1s", animationFillMode: "backwards" }}>
-            I build intelligent{" "}
+            Building production-ready{" "}
             <AnimatedTextCycle 
               words={animatedWords} 
               interval={3000}
               className="text-2xl md:text-4xl lg:text-5xl bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent"
             />
-            {" "}that automate complex processes and scale from prototype to production.
           </h1>
 
           {/* Description */}
