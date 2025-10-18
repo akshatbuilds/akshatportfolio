@@ -35,9 +35,9 @@ const Hero = () => {
 
           {/* Description */}
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed animate-fade-in" style={{ animationDelay: "0.2s", animationFillMode: "backwards" }}>
-            Operationalizing LangChain and LangGraph with guardrails, tracing, and evals.
+            Operationalizing AI/ML and GenAI on cloud‑native stacks with guardrails, observability, and continuous evals.
             <br />
-            Automating GTM and CRM ops across HubSpot, Salesforce, and n8n for measurable outcomes.
+            Orchestrating data, models, and services into integrated automation which are reliable, scalable, and integration‑ready.
           </p>
 
           {/* Social Links */}
