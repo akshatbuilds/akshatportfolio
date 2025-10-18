@@ -18,7 +18,7 @@ const Projects = () => {
   const projects = [
     {
       id: "voice-agent",
-      title: "AI Voice Agent Platform",
+      title: "Enterprise Voice Intelligence Platform",
       period: "January 2025 – March 2025",
       description: "Enterprise-grade conversational AI platform managing inbound/outbound calls with natural language understanding",
       highlights: [
@@ -56,7 +56,7 @@ const Projects = () => {
     },
     {
       id: "smartreports",
-      title: "SmartReports AI",
+      title: "Intelligent Business Analytics Engine",
       period: "August 2024 – November 2024",
       description: "RAG-powered multilingual reporting system with automated client report generation",
       highlights: [
@@ -96,7 +96,7 @@ const Projects = () => {
     },
     {
       id: "crm-intelligence",
-      title: "CRM Intelligence System",
+      title: "Sales Acceleration AI Platform",
       period: "June 2024 – September 2024",
       description: "Intelligent automation across HubSpot CRM with autonomous query responses and meeting booking",
       highlights: [
@@ -138,7 +138,7 @@ const Projects = () => {
     },
     {
       id: "rag-support",
-      title: "RAG Customer Support Agent",
+      title: "Knowledge-Augmented Support Intelligence",
       period: "January 2024 – March 2024",
       description: "Intelligent support system using retrieval-augmented generation with vector search",
       highlights: [
@@ -264,7 +264,7 @@ const Projects = () => {
             ))}
           </div>
 
-          {/* Project Content */}
+          {/* Project Content - Wrapped in styled container */}
           <div className="relative w-full min-h-[600px] overflow-hidden">
             <AnimatePresence mode="popLayout">
               <motion.div
@@ -275,86 +275,89 @@ const Projects = () => {
                 transition={{ duration: 0.3, ease: "easeOut" }}
                 className="p-6 md:p-12"
               >
-                {/* Project Header */}
-                <div className="mb-8">
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
-                    <h3 className="text-2xl md:text-3xl font-bold">
-                      {currentProject.title}
-                    </h3>
-                    <span className="text-sm text-muted-foreground px-3 py-1 rounded-full bg-background/50 w-fit">
-                      {currentProject.period}
-                    </span>
-                  </div>
-                  <p className="text-muted-foreground text-base">{currentProject.description}</p>
-                </div>
-
-                {/* Bento Grid Content */}
-                <div className="grid gap-6">
-                  {/* Row 1: Highlights + Code */}
-                  <div className="grid md:grid-cols-5 gap-6">
-                    {/* Highlights */}
-                    <div className="md:col-span-2 space-y-4">
-                      <h4 className="font-semibold flex items-center gap-2">
-                        <Sparkles className="w-4 h-4 text-primary" />
-                        Key Features
-                      </h4>
-                      <ul className="space-y-2">
-                        {currentProject.highlights.map((highlight, idx) => (
-                          <motion.li
-                            key={idx}
-                            initial={{ opacity: 0, x: -10 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: 0.1 * idx }}
-                            className="flex items-start gap-2"
-                          >
-                            <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" />
-                            <span className="text-sm text-muted-foreground">{highlight}</span>
-                          </motion.li>
-                        ))}
-                      </ul>
+                {/* Styled Container Wrapper */}
+                <div className="bg-background/80 backdrop-blur-sm rounded-3xl border border-border/50 p-6 md:p-10 shadow-lg">
+                  {/* Project Header */}
+                  <div className="mb-8">
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
+                      <h3 className="text-2xl md:text-3xl font-bold">
+                        {currentProject.title}
+                      </h3>
+                      <span className="text-sm text-muted-foreground px-3 py-1 rounded-full bg-muted/50 w-fit">
+                        {currentProject.period}
+                      </span>
                     </div>
-
-                    {/* Code Implementation */}
-                    <div className="md:col-span-3 space-y-4">
-                      <h4 className="font-semibold flex items-center gap-2">
-                        <Clock className="w-4 h-4 text-primary" />
-                        Implementation
-                      </h4>
-                      <TypingCodeFeature text={currentProject.codeSnippet} />
-                    </div>
+                    <p className="text-muted-foreground text-base">{currentProject.description}</p>
                   </div>
 
-                  {/* Row 2: Technologies + Metrics */}
-                  <div className="grid md:grid-cols-2 gap-6">
-                    {/* Technologies */}
-                    <div className="space-y-4">
-                      <h4 className="font-semibold flex items-center gap-2">
-                        <Zap className="w-4 h-4 text-primary" />
-                        Technologies
-                      </h4>
-                      <TechStackDisplay technologies={currentProject.technologies} />
+                  {/* Bento Grid Content */}
+                  <div className="grid gap-6">
+                    {/* Row 1: Highlights + Code */}
+                    <div className="grid md:grid-cols-5 gap-6">
+                      {/* Highlights */}
+                      <div className="md:col-span-2 space-y-4">
+                        <h4 className="font-semibold flex items-center gap-2">
+                          <Sparkles className="w-4 h-4 text-primary" />
+                          Key Features
+                        </h4>
+                        <ul className="space-y-2">
+                          {currentProject.highlights.map((highlight, idx) => (
+                            <motion.li
+                              key={idx}
+                              initial={{ opacity: 0, x: -10 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ delay: 0.1 * idx }}
+                              className="flex items-start gap-2"
+                            >
+                              <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" />
+                              <span className="text-sm text-muted-foreground">{highlight}</span>
+                            </motion.li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      {/* Code Implementation */}
+                      <div className="md:col-span-3 space-y-4">
+                        <h4 className="font-semibold flex items-center gap-2">
+                          <Clock className="w-4 h-4 text-primary" />
+                          Implementation
+                        </h4>
+                        <TypingCodeFeature text={currentProject.codeSnippet} />
+                      </div>
                     </div>
 
-                    {/* Metrics & Benefits */}
-                    <div className="space-y-4">
-                      <h4 className="font-semibold flex items-center gap-2">
-                        <TrendingUp className="w-4 h-4 text-primary" />
-                        Client Impact
-                      </h4>
-                      <MetricsDisplay metrics={currentProject.metrics} />
-                      <div className="pt-4 border-t border-border/50 space-y-2">
-                        {currentProject.clientBenefits.map((benefit, i) => (
-                          <motion.div
-                            key={i}
-                            initial={{ opacity: 0, x: -10 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: 0.1 * i }}
-                            className="flex items-start gap-2"
-                          >
-                            <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                            <span className="text-sm text-muted-foreground">{benefit}</span>
-                          </motion.div>
-                        ))}
+                    {/* Row 2: Technologies + Metrics */}
+                    <div className="grid md:grid-cols-2 gap-6">
+                      {/* Technologies */}
+                      <div className="space-y-4">
+                        <h4 className="font-semibold flex items-center gap-2">
+                          <Zap className="w-4 h-4 text-primary" />
+                          Technologies
+                        </h4>
+                        <TechStackDisplay technologies={currentProject.technologies} />
+                      </div>
+
+                      {/* Metrics & Benefits */}
+                      <div className="space-y-4">
+                        <h4 className="font-semibold flex items-center gap-2">
+                          <TrendingUp className="w-4 h-4 text-primary" />
+                          Client Impact
+                        </h4>
+                        <MetricsDisplay metrics={currentProject.metrics} />
+                        <div className="pt-4 border-t border-border/50 space-y-2">
+                          {currentProject.clientBenefits.map((benefit, i) => (
+                            <motion.div
+                              key={i}
+                              initial={{ opacity: 0, x: -10 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ delay: 0.1 * i }}
+                              className="flex items-start gap-2"
+                            >
+                              <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                              <span className="text-sm text-muted-foreground">{benefit}</span>
+                            </motion.div>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   </div>
