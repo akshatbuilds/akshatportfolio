@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
-import { motion, useMotionValue, useTransform } from "framer-motion";
-import { CheckCircle2, TrendingUp, Zap, Clock, ArrowUpRight, Plus } from "lucide-react";
+import { AnimatePresence, motion, useMotionValue, useTransform } from "framer-motion";
+import { CheckCircle2, TrendingUp, Zap, Clock, Sparkles } from "lucide-react";
 import OpenAI from "@/components/icons/openai";
 import OpenAIDark from "@/components/icons/openai-dark";
 import Anthropic from "@/components/icons/anthropic";
@@ -8,6 +8,9 @@ import AnthropicDark from "@/components/icons/anthropic-dark";
 import Gemini from "@/components/icons/gemini";
 import Mistral from "@/components/icons/mistral";
 import DeepSeek from "@/components/icons/deepseek";
+import useDetectBrowser from "@/hooks/use-detect-browser";
+import useScreenSize from "@/hooks/use-screen-size";
+import GooeySvgFilter from "@/components/fancy/filter/gooey-svg-filter";
 
 const Projects = () => {
   const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
@@ -183,165 +186,185 @@ const Projects = () => {
     return () => clearInterval(interval);
   }, [projects.length]);
 
+  const screenSize = useScreenSize();
+  const browserName = useDetectBrowser();
+  const isSafari = browserName === "Safari";
+
   return (
-    <section id="projects" className="py-32 relative bg-background">
+    <section id="projects" className="py-32 relative bg-background overflow-hidden">
+      <GooeySvgFilter id="projects-gooey-filter" strength={screenSize.lessThan("md") ? 8 : 15} />
+      
       <div className="container mx-auto px-6">
-        <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-6xl font-bold mb-6">
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-4xl md:text-6xl font-bold mb-6"
+          >
             Featured Projects
-          </h2>
-          <p className="text-muted-foreground text-lg md:text-xl max-w-3xl mx-auto">
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-muted-foreground text-lg md:text-xl max-w-3xl mx-auto"
+          >
             Real-world AI solutions with measurable impact
-          </p>
+          </motion.p>
         </div>
 
-        <div className="max-w-7xl mx-auto">
-          {/* Project Navigation */}
-          <div className="flex justify-center gap-2 mb-12 flex-wrap">
+        {/* Gooey Tabs Container */}
+        <div className="relative w-full max-w-6xl mx-auto">
+          <div
+            className="absolute inset-0"
+            style={{ filter: "url(#projects-gooey-filter)" }}
+          >
+            <div className="flex w-full">
+              {projects.map((_, index) => (
+                <div key={index} className="relative flex-1 h-12 md:h-14">
+                  {currentProjectIndex === index && (
+                    <motion.div
+                      layoutId="active-project-tab"
+                      className="absolute inset-0 bg-primary/10 dark:bg-primary/20"
+                      transition={{
+                        type: "spring",
+                        bounce: 0.0,
+                        duration: isSafari ? 0 : 0.4,
+                      }}
+                    />
+                  )}
+                </div>
+              ))}
+            </div>
+            {/* Content panel background */}
+            <div className="w-full min-h-[600px] bg-primary/10 dark:bg-primary/20" />
+          </div>
+
+          {/* Interactive text overlay */}
+          <div className="relative flex w-full">
             {projects.map((project, index) => (
               <button
                 key={project.id}
                 onClick={() => setCurrentProjectIndex(index)}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
-                  index === currentProjectIndex
-                    ? "bg-primary text-primary-foreground shadow-lg"
-                    : "bg-muted/50 text-muted-foreground hover:bg-muted"
-                }`}
+                className="flex-1 h-12 md:h-14 text-xs sm:text-sm md:text-base"
               >
-                {project.title.split(" ")[0]}
+                <span
+                  className={`w-full h-full flex items-center justify-center font-medium transition-colors ${
+                    currentProjectIndex === index
+                      ? "text-primary"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  {project.title.split(" ")[0]}
+                </span>
               </button>
             ))}
           </div>
 
-          {/* Bento Grid */}
-          <motion.div
-            key={currentProjectIndex}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="grid gap-6"
-          >
-            {/* Row 1: Overview + Code */}
-            <div className="grid md:grid-cols-5 gap-6">
-              {/* Project Overview */}
-              <BentoCard className="md:col-span-2">
-                <div className="space-y-4">
-                  <div className="flex items-start justify-between">
-                    <h3 className="text-2xl font-bold">{currentProject.title}</h3>
-                    <ArrowUpRight className="h-5 w-5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+          {/* Project Content */}
+          <div className="relative w-full min-h-[600px] overflow-hidden">
+            <AnimatePresence mode="popLayout">
+              <motion.div
+                key={currentProjectIndex}
+                initial={{ opacity: 0, y: 50, filter: "blur(10px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                exit={{ opacity: 0, y: -50, filter: "blur(10px)" }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+                className="p-6 md:p-12"
+              >
+                {/* Project Header */}
+                <div className="mb-8">
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
+                    <h3 className="text-2xl md:text-3xl font-bold">
+                      {currentProject.title}
+                    </h3>
+                    <span className="text-sm text-muted-foreground px-3 py-1 rounded-full bg-background/50 w-fit">
+                      {currentProject.period}
+                    </span>
                   </div>
-                  <p className="text-sm text-muted-foreground">{currentProject.period}</p>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {currentProject.description}
-                  </p>
-                  <ul className="space-y-2 pt-2">
-                    {currentProject.highlights.map((highlight, i) => (
-                      <li key={i} className="flex items-start gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-emerald-500 flex-shrink-0 mt-0.5" />
-                        <span className="text-sm text-muted-foreground">{highlight}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  <p className="text-muted-foreground text-base">{currentProject.description}</p>
                 </div>
-              </BentoCard>
 
-              {/* Code Snippet */}
-              <BentoCard className="md:col-span-3">
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <h3 className="text-xl font-bold">Implementation</h3>
-                    <span className="text-xs text-muted-foreground">TypeScript</span>
+                {/* Bento Grid Content */}
+                <div className="grid gap-6">
+                  {/* Row 1: Highlights + Code */}
+                  <div className="grid md:grid-cols-5 gap-6">
+                    {/* Highlights */}
+                    <div className="md:col-span-2 space-y-4">
+                      <h4 className="font-semibold flex items-center gap-2">
+                        <Sparkles className="w-4 h-4 text-primary" />
+                        Key Features
+                      </h4>
+                      <ul className="space-y-2">
+                        {currentProject.highlights.map((highlight, idx) => (
+                          <motion.li
+                            key={idx}
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.1 * idx }}
+                            className="flex items-start gap-2"
+                          >
+                            <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" />
+                            <span className="text-sm text-muted-foreground">{highlight}</span>
+                          </motion.li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Code Implementation */}
+                    <div className="md:col-span-3 space-y-4">
+                      <h4 className="font-semibold flex items-center gap-2">
+                        <Clock className="w-4 h-4 text-primary" />
+                        Implementation
+                      </h4>
+                      <TypingCodeFeature text={currentProject.codeSnippet} />
+                    </div>
                   </div>
-                  <p className="text-sm text-muted-foreground">
-                    Core architecture powering the solution
-                  </p>
-                  <TypingCodeFeature text={currentProject.codeSnippet} />
-                </div>
-              </BentoCard>
-            </div>
 
-            {/* Row 2: Technologies + Metrics */}
-            <div className="grid md:grid-cols-2 gap-6">
-              {/* Technologies */}
-              <BentoCard>
-                <div className="space-y-4">
-                  <h3 className="text-xl font-bold">Technologies & Tools</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Cutting-edge stack powering the solution
-                  </p>
-                  <TechStackDisplay technologies={currentProject.technologies} />
-                </div>
-              </BentoCard>
+                  {/* Row 2: Technologies + Metrics */}
+                  <div className="grid md:grid-cols-2 gap-6">
+                    {/* Technologies */}
+                    <div className="space-y-4">
+                      <h4 className="font-semibold flex items-center gap-2">
+                        <Zap className="w-4 h-4 text-primary" />
+                        Technologies
+                      </h4>
+                      <TechStackDisplay technologies={currentProject.technologies} />
+                    </div>
 
-              {/* Client Benefits */}
-              <BentoCard>
-                <div className="space-y-4">
-                  <div className="flex items-center gap-2">
-                    <TrendingUp className="h-5 w-5 text-emerald-500" />
-                    <h3 className="text-xl font-bold">Client Impact</h3>
-                  </div>
-                  <p className="text-sm text-muted-foreground">
-                    Measurable business outcomes and improvements
-                  </p>
-                  <MetricsDisplay metrics={currentProject.metrics} />
-                  <div className="pt-4 border-t border-border/50 space-y-2">
-                    {currentProject.clientBenefits.map((benefit, i) => (
-                      <div key={i} className="flex items-start gap-2">
-                        <span className="text-primary flex-shrink-0">→</span>
-                        <span className="text-sm text-muted-foreground">{benefit}</span>
+                    {/* Metrics & Benefits */}
+                    <div className="space-y-4">
+                      <h4 className="font-semibold flex items-center gap-2">
+                        <TrendingUp className="w-4 h-4 text-primary" />
+                        Client Impact
+                      </h4>
+                      <MetricsDisplay metrics={currentProject.metrics} />
+                      <div className="pt-4 border-t border-border/50 space-y-2">
+                        {currentProject.clientBenefits.map((benefit, i) => (
+                          <motion.div
+                            key={i}
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.1 * i }}
+                            className="flex items-start gap-2"
+                          >
+                            <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                            <span className="text-sm text-muted-foreground">{benefit}</span>
+                          </motion.div>
+                        ))}
                       </div>
-                    ))}
+                    </div>
                   </div>
                 </div>
-              </BentoCard>
-            </div>
-          </motion.div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
         </div>
       </div>
     </section>
-  );
-};
-
-// Bento Card Component
-const BentoCard = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const rotateX = useTransform(y, [-100, 100], [2, -2]);
-  const rotateY = useTransform(x, [-100, 100], [-2, 2]);
-
-  function handleMouseMove(event: React.MouseEvent<HTMLDivElement>) {
-    const rect = event.currentTarget.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
-    const mouseX = event.clientX - rect.left;
-    const mouseY = event.clientY - rect.top;
-    const xPct = mouseX / width - 0.5;
-    const yPct = mouseY / height - 0.5;
-    x.set(xPct * 100);
-    y.set(yPct * 100);
-  }
-
-  function handleMouseLeave() {
-    x.set(0);
-    y.set(0);
-  }
-
-  return (
-    <motion.div
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-      whileHover={{ y: -5 }}
-      transition={{ type: "spring", stiffness: 300, damping: 20 }}
-      className={`group relative flex flex-col gap-4 h-full rounded-2xl p-6 
-        bg-card/30 backdrop-blur-sm border border-border/50
-        hover:border-border transition-all duration-300 
-        hover:shadow-lg hover:shadow-primary/5 ${className}`}
-    >
-      <div className="relative z-10" style={{ transform: "translateZ(20px)" }}>
-        {children}
-      </div>
-    </motion.div>
   );
 };
 
@@ -372,9 +395,9 @@ const TypingCodeFeature = ({ text }: { text: string }) => {
   return (
     <div
       ref={terminalRef}
-      className="bg-muted/30 dark:bg-black/40 rounded-lg p-4 text-xs font-mono h-[200px] overflow-y-auto border border-border/50"
+      className="bg-neutral-900 dark:bg-black text-neutral-100 rounded-lg p-4 text-xs font-mono h-[180px] overflow-y-auto"
     >
-      <pre className="whitespace-pre-wrap text-foreground/90">
+      <pre className="whitespace-pre-wrap">
         {displayedText}
         <span className="animate-pulse">|</span>
       </pre>
@@ -404,10 +427,10 @@ const TechStackDisplay = ({ technologies }: { technologies: string[] }) => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: i * 0.05 }}
-            className="flex items-center gap-2 px-3 py-2 bg-muted/50 rounded-lg border border-border/50 hover:border-border transition-colors"
+            className="flex items-center gap-2 px-3 py-1.5 bg-background/50 rounded-lg border border-border/50"
           >
             {icon && providerIcons[icon]}
-            <span className="text-xs font-medium">{tech}</span>
+            <span className="text-xs">{tech}</span>
           </motion.div>
         );
       })}
