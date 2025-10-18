@@ -1,4 +1,5 @@
 import { Calendar } from "lucide-react";
+import { ContainerScroll } from "@/components/ui/container-scroll-animation";
 
 const Experience = () => {
   const experience = {
@@ -16,42 +17,46 @@ const Experience = () => {
   };
 
   return (
-    <section id="experience" className="py-32 relative">
-      <div className="container mx-auto px-6 max-w-6xl">
-        <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-6xl font-bold mb-6">
-            Professional Experience
-          </h2>
-          <p className="text-muted-foreground text-lg md:text-xl">
-            Building AI solutions that drive real business impact
-          </p>
-        </div>
-
-        <div className="max-w-4xl mx-auto">
-          <div className="space-y-6">
-            <div className="space-y-4">
-              <h3 className="text-2xl md:text-3xl font-bold">{experience.role}</h3>
-              <div className="flex flex-wrap gap-4 text-muted-foreground">
-                <div className="flex items-center gap-2">
-                  <Calendar className="h-4 w-4" />
-                  <span>{experience.period}</span>
+    <section id="experience" className="relative">
+      <ContainerScroll
+        titleComponent={
+          <>
+            <h2 className="text-4xl md:text-6xl font-bold mb-6">
+              Professional Experience
+            </h2>
+            <p className="text-muted-foreground text-lg md:text-xl">
+              Building AI solutions that drive real business impact
+            </p>
+          </>
+        }
+      >
+        <div className="bg-background p-8 h-full overflow-auto">
+          <div className="max-w-4xl mx-auto">
+            <div className="space-y-6">
+              <div className="space-y-4">
+                <h3 className="text-2xl md:text-3xl font-bold">{experience.role}</h3>
+                <div className="flex flex-wrap gap-4 text-muted-foreground">
+                  <div className="flex items-center gap-2">
+                    <Calendar className="h-4 w-4" />
+                    <span>{experience.period}</span>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div className="space-y-4 pt-6">
-              {experience.achievements.map((achievement, index) => (
-                <div key={index} className="flex gap-3 group">
-                  <span className="text-[hsl(var(--highlight))] flex-shrink-0">→</span>
-                  <p className="text-muted-foreground leading-relaxed text-lg">
-                    {achievement}
-                  </p>
-                </div>
-              ))}
+              <div className="space-y-4 pt-6">
+                {experience.achievements.map((achievement, index) => (
+                  <div key={index} className="flex gap-3 group">
+                    <span className="text-[hsl(var(--highlight))] flex-shrink-0">→</span>
+                    <p className="text-muted-foreground leading-relaxed text-lg">
+                      {achievement}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </ContainerScroll>
     </section>
   );
 };

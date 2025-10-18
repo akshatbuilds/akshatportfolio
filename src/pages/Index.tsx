@@ -6,7 +6,6 @@ import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
 import Terminal from "@/components/Terminal";
 import Navigation from "@/components/Navigation";
-import ProjectShowcase from "@/components/ProjectShowcase";
 
 const Index = () => {
   const [terminalOpen, setTerminalOpen] = useState(false);
@@ -17,7 +16,6 @@ const Index = () => {
       
       <main className="relative">
         <Hero />
-        <ProjectShowcase />
         <Skills />
         <Experience />
         <Projects />
