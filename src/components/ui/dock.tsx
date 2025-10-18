@@ -165,12 +165,12 @@ function DockLabel({ children, className, ...rest }: DockLabelProps) {
     <AnimatePresence>
       {isVisible && (
         <motion.div
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 10 }}
+          exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.15, ease: "easeOut" }}
           className={cn(
-            'absolute -top-10 left-1/2 -translate-x-1/2 w-fit whitespace-pre rounded-md border border-border bg-background px-3 py-1 text-xs text-foreground shadow-lg',
+            'absolute -bottom-10 left-1/2 -translate-x-1/2 w-fit whitespace-pre rounded-md border border-border bg-background px-3 py-1 text-xs text-foreground shadow-lg',
             className
           )}
           role='tooltip'
