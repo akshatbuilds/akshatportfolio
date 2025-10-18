@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { ContainerScroll } from "@/components/ui/container-scroll-animation";
 
 const Projects = () => {
   const [visibleProjects, setVisibleProjects] = useState<number[]>([]);
@@ -120,20 +119,18 @@ const Projects = () => {
   }, []);
 
   return (
-    <section id="projects" className="relative">
-      <ContainerScroll
-        titleComponent={
-          <>
-            <h2 className="text-4xl md:text-6xl font-bold mb-6">
-              Featured Projects
-            </h2>
-            <p className="text-muted-foreground text-lg md:text-xl max-w-3xl mx-auto">
-              Real-world AI solutions with measurable impact
-            </p>
-          </>
-        }
-      >
-        <div className="bg-background p-8 h-full overflow-auto">
+    <section id="projects" className="py-32 relative">
+      <div className="container mx-auto px-6">
+        <div className="text-center mb-20">
+          <h2 className="text-4xl md:text-6xl font-bold mb-6">
+            Featured Projects
+          </h2>
+          <p className="text-muted-foreground text-lg md:text-xl max-w-3xl mx-auto">
+            Real-world AI solutions with measurable impact
+          </p>
+        </div>
+        
+        <div className="max-w-5xl mx-auto">
           <div className="space-y-12">
             {projects.map((project, index) => (
               <div 
@@ -185,7 +182,7 @@ const Projects = () => {
             ))}
           </div>
         </div>
-      </ContainerScroll>
+      </div>
     </section>
   );
 };

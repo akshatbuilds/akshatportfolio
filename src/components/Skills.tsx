@@ -1,5 +1,4 @@
 import { Bot, Brain, Cloud, Code, Database, Workflow } from "lucide-react";
-import { ContainerScroll } from "@/components/ui/container-scroll-animation";
 
 const Skills = () => {
   const skillCategories = [
@@ -87,20 +86,18 @@ const Skills = () => {
   ];
 
   return (
-    <section id="skills" className="relative">
-      <ContainerScroll
-        titleComponent={
-          <>
-            <h2 className="text-4xl md:text-6xl font-bold mb-6">
-              Technical Expertise
-            </h2>
-            <p className="text-muted-foreground text-lg md:text-xl max-w-3xl mx-auto">
-              A comprehensive toolkit for building intelligent, scalable AI systems
-            </p>
-          </>
-        }
-      >
-        <div className="bg-background p-8 h-full overflow-auto">
+    <section id="skills" className="py-32 relative">
+      <div className="container mx-auto px-6">
+        <div className="text-center mb-20">
+          <h2 className="text-4xl md:text-6xl font-bold mb-6">
+            Technical Expertise
+          </h2>
+          <p className="text-muted-foreground text-lg md:text-xl max-w-3xl mx-auto">
+            A comprehensive toolkit for building intelligent, scalable AI systems
+          </p>
+        </div>
+        
+        <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {skillCategories.map((category, index) => {
               const Icon = category.icon;
@@ -131,7 +128,7 @@ const Skills = () => {
             })}
           </div>
         </div>
-      </ContainerScroll>
+      </div>
     </section>
   );
 };
