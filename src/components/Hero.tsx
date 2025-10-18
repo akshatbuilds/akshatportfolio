@@ -20,7 +20,8 @@ const Hero = () => {
 
           {/* Main Heading */}
           <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.2] mb-8 animate-fade-in" style={{ animationDelay: "0.1s", animationFillMode: "backwards" }}>
-            Building production-ready{" "}
+            Building production-ready
+            <br />
             <AnimatedTextCycle 
               words={animatedWords} 
               interval={3000}
