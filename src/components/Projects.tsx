@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { CheckCircle2, TrendingUp, Zap, Clock, Sparkles } from "lucide-react";
+import { CheckCircle2, TrendingUp } from "lucide-react";
 import OpenAI from "@/components/icons/openai";
 import OpenAIDark from "@/components/icons/openai-dark";
 import Anthropic from "@/components/icons/anthropic";
@@ -8,7 +7,7 @@ import AnthropicDark from "@/components/icons/anthropic-dark";
 import Gemini from "@/components/icons/gemini";
 import Mistral from "@/components/icons/mistral";
 import DeepSeek from "@/components/icons/deepseek";
-import { AceternityTabs } from "@/components/ui/aceternity-tabs";
+import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
 
 const Projects = () => {
   const projects = [
@@ -218,101 +217,119 @@ const Projects = () => {
     "DeepSeek": <DeepSeek className="w-4 h-4" />,
   };
 
-  const tabs = projects.map((project) => ({
-    title: project.shortName,
-    value: project.id,
-    content: (
-      <div className="w-full h-full rounded-2xl bg-background/80 backdrop-blur-sm border border-border/50 p-4 md:p-6 shadow-lg overflow-y-auto">
-        <div className="mb-4">
-          <h3 className="text-xl md:text-2xl font-bold mb-2">{project.title}</h3>
-          <p className="text-muted-foreground text-sm">{project.description}</p>
-        </div>
-        <div className="grid lg:grid-cols-2 gap-4">
-          <div className="space-y-4">
-            <div className="space-y-2">
-              <h4 className="text-sm font-semibold flex items-center gap-2">
-                <Sparkles className="w-3.5 h-3.5 text-primary" />Key Features
-              </h4>
-              <ul className="space-y-1.5">
-                {project.highlights.map((h, i) => (
-                  <li key={i} className="flex items-start gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0 mt-0.5" />
-                    <span className="text-xs text-muted-foreground">{h}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="space-y-2">
-              <h4 className="text-sm font-semibold flex items-center gap-2">
-                <Zap className="w-3.5 h-3.5 text-primary" />Technologies
-              </h4>
-              <div className="flex flex-wrap gap-1.5">
-                {project.technologies.map((tech, i) => {
-                  const icon = Object.keys(providerIcons).find(k => tech.includes(k));
-                  return (
-                    <div key={i} className="flex items-center gap-1.5 px-2 py-1 bg-background/50 rounded-md border border-border/50 text-xs">
-                      {icon && providerIcons[icon]}
-                      <span>{tech}</span>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-            <div className="space-y-2">
-              <h4 className="text-sm font-semibold flex items-center gap-2">
-                <TrendingUp className="w-3.5 h-3.5 text-primary" />Client Impact
-              </h4>
-              {project.metrics.map((m, i) => {
-                const colors = { emerald: "bg-emerald-500", blue: "bg-blue-500", violet: "bg-violet-500", amber: "bg-amber-500" };
-                return (
-                  <div key={i}>
-                    <div className="flex justify-between text-xs mb-1">
-                      <span className="text-muted-foreground">{m.label}</span>
-                      <span className="font-semibold">{m.display || `${m.value}${m.suffix || ""}`}</span>
-                    </div>
-                    <div className="h-1.5 bg-background/50 rounded-full overflow-hidden">
-                      <motion.div initial={{ width: 0 }} animate={{ width: `${Math.min(100, m.value)}%` }} transition={{ duration: 0.8 }} 
-                        className={`h-full rounded-full ${colors[m.color as keyof typeof colors]}`} />
-                    </div>
-                  </div>
-                );
-              })}
-              <div className="pt-2 border-t border-border/50 space-y-1.5">
-                {project.clientBenefits.map((b, i) => (
-                  <div key={i} className="flex items-start gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-xs text-muted-foreground">{b}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-          <div className="space-y-2">
-            <h4 className="text-sm font-semibold flex items-center gap-2">
-              <Clock className="w-3.5 h-3.5 text-primary" />Implementation
-            </h4>
-            <div className="bg-neutral-900 dark:bg-black text-neutral-100 rounded-lg p-3 text-[10px] font-mono max-h-[500px] overflow-y-auto">
-              <pre className="whitespace-pre-wrap">{project.codeSnippet}</pre>
-            </div>
-          </div>
-        </div>
-      </div>
-    ),
-  }));
-
   return (
-    <section id="projects" className="min-h-screen py-16 relative bg-background overflow-hidden flex items-center">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="text-center mb-8">
-          <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-3xl md:text-4xl font-bold mb-3">
+    <section id="projects" className="min-h-screen py-16 relative bg-background overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }} 
+            whileInView={{ opacity: 1, y: 0 }} 
+            viewport={{ once: true }} 
+            className="text-3xl md:text-4xl font-bold mb-3"
+          >
             Featured Projects
           </motion.h2>
-          <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="text-base text-muted-foreground max-w-2xl mx-auto">
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }} 
+            whileInView={{ opacity: 1, y: 0 }} 
+            viewport={{ once: true }} 
+            transition={{ delay: 0.1 }} 
+            className="text-base text-muted-foreground max-w-2xl mx-auto"
+          >
             Real-world AI solutions with measurable impact
           </motion.p>
         </div>
-        <div className="h-[calc(100vh-300px)] min-h-[500px] max-h-[700px] [perspective:1000px] relative flex flex-col max-w-7xl mx-auto w-full items-start justify-start">
-          <AceternityTabs tabs={tabs} containerClassName="justify-center" contentClassName="mt-8" />
+        
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
+          {projects.map((project, index) => (
+            <CardContainer key={project.id} containerClassName="py-8">
+              <CardBody className="bg-card relative group/card dark:hover:shadow-2xl dark:hover:shadow-primary/[0.1] border-border/50 w-full h-auto rounded-xl p-6 border">
+                <CardItem
+                  translateZ="50"
+                  className="text-xl font-bold text-foreground"
+                >
+                  {project.shortName}
+                </CardItem>
+                <CardItem
+                  as="p"
+                  translateZ="60"
+                  className="text-muted-foreground text-sm max-w-sm mt-2 line-clamp-2"
+                >
+                  {project.description}
+                </CardItem>
+                
+                <CardItem translateZ="80" className="w-full mt-4">
+                  <div className="space-y-3">
+                    {project.metrics.slice(0, 2).map((m, i) => {
+                      const colors = { 
+                        emerald: "bg-emerald-500", 
+                        blue: "bg-blue-500", 
+                        violet: "bg-violet-500", 
+                        amber: "bg-amber-500" 
+                      };
+                      return (
+                        <div key={i} className="space-y-1">
+                          <div className="flex justify-between text-xs">
+                            <span className="text-muted-foreground">{m.label}</span>
+                            <span className="font-semibold text-foreground">
+                              {m.display || `${m.value}${m.suffix || ""}`}
+                            </span>
+                          </div>
+                          <div className="h-2 bg-muted rounded-full overflow-hidden">
+                            <motion.div 
+                              initial={{ width: 0 }} 
+                              whileInView={{ width: `${Math.min(100, m.value)}%` }} 
+                              viewport={{ once: true }}
+                              transition={{ duration: 0.8, delay: index * 0.1 }} 
+                              className={`h-full rounded-full ${colors[m.color as keyof typeof colors]}`} 
+                            />
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </CardItem>
+
+                <CardItem translateZ="70" className="w-full mt-4">
+                  <div className="flex flex-wrap gap-1.5">
+                    {project.technologies.slice(0, 4).map((tech, i) => {
+                      const icon = Object.keys(providerIcons).find(k => tech.includes(k));
+                      return (
+                        <div 
+                          key={i} 
+                          className="flex items-center gap-1.5 px-2 py-1 bg-muted/50 rounded-md border border-border/50 text-xs"
+                        >
+                          {icon && providerIcons[icon]}
+                          <span>{tech}</span>
+                        </div>
+                      );
+                    })}
+                    {project.technologies.length > 4 && (
+                      <div className="flex items-center px-2 py-1 bg-muted/50 rounded-md border border-border/50 text-xs">
+                        +{project.technologies.length - 4} more
+                      </div>
+                    )}
+                  </div>
+                </CardItem>
+
+                <div className="flex justify-between items-center mt-6">
+                  <CardItem
+                    translateZ={20}
+                    className="text-xs text-muted-foreground"
+                  >
+                    {project.period}
+                  </CardItem>
+                  <CardItem
+                    translateZ={20}
+                    className="flex items-center gap-1 text-xs font-medium text-primary"
+                  >
+                    <CheckCircle2 className="w-3 h-3" />
+                    {project.clientBenefits.length} Benefits
+                  </CardItem>
+                </div>
+              </CardBody>
+            </CardContainer>
+          ))}
         </div>
       </div>
     </section>
