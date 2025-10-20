@@ -7,7 +7,8 @@ import AnthropicDark from "@/components/icons/anthropic-dark";
 import Gemini from "@/components/icons/gemini";
 import Mistral from "@/components/icons/mistral";
 import DeepSeek from "@/components/icons/deepseek";
-import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
+import { CometCard } from "@/components/ui/comet-card";
+import { StickyScroll } from "@/components/ui/sticky-scroll-reveal";
 
 const Projects = () => {
   const projects = [
@@ -217,6 +218,68 @@ const Projects = () => {
     "DeepSeek": <DeepSeek className="w-4 h-4" />,
   };
 
+  const stickyScrollContent = projects.map((project) => ({
+    title: project.shortName,
+    description: project.description,
+    content: (
+      <CometCard className="w-full h-full">
+        <div className="flex flex-col items-stretch rounded-[16px] border-0 bg-card p-4 h-full saturate-100">
+          <div className="flex-1 space-y-3">
+            {project.metrics.slice(0, 2).map((m, i) => {
+              const colors = { 
+                emerald: "bg-emerald-500", 
+                blue: "bg-blue-500", 
+                violet: "bg-violet-500", 
+                amber: "bg-amber-500" 
+              };
+              return (
+                <div key={i} className="space-y-1">
+                  <div className="flex justify-between text-xs">
+                    <span className="text-muted-foreground">{m.label}</span>
+                    <span className="font-semibold text-foreground">
+                      {m.display || `${m.value}${m.suffix || ""}`}
+                    </span>
+                  </div>
+                  <div className="h-2 bg-muted rounded-full overflow-hidden">
+                    <motion.div 
+                      initial={{ width: 0 }} 
+                      animate={{ width: `${Math.min(100, m.value)}%` }} 
+                      transition={{ duration: 0.8 }} 
+                      className={`h-full rounded-full ${colors[m.color as keyof typeof colors]}`} 
+                    />
+                  </div>
+                </div>
+              );
+            })}
+            
+            <div className="flex flex-wrap gap-1.5 pt-2">
+              {project.technologies.slice(0, 3).map((tech, i) => {
+                const icon = Object.keys(providerIcons).find(k => tech.includes(k));
+                return (
+                  <div 
+                    key={i} 
+                    className="flex items-center gap-1.5 px-2 py-1 bg-muted/50 rounded-md border border-border/50 text-xs"
+                  >
+                    {icon && providerIcons[icon]}
+                    <span>{tech}</span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+          
+          <div className="mt-4 flex flex-shrink-0 items-center justify-between font-mono text-xs">
+            <div className="text-muted-foreground">{project.period}</div>
+            <div className="flex items-center gap-1 text-primary">
+              <CheckCircle2 className="w-3 h-3" />
+              {project.clientBenefits.length}
+            </div>
+          </div>
+        </div>
+      </CometCard>
+    ),
+  }));
+
   return (
     <section id="projects" className="min-h-screen py-16 relative bg-background overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -240,97 +303,7 @@ const Projects = () => {
           </motion.p>
         </div>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
-          {projects.map((project, index) => (
-            <CardContainer key={project.id} containerClassName="py-8">
-              <CardBody className="bg-card relative group/card dark:hover:shadow-2xl dark:hover:shadow-primary/[0.1] border-border/50 w-full h-auto rounded-xl p-6 border">
-                <CardItem
-                  translateZ="50"
-                  className="text-xl font-bold text-foreground"
-                >
-                  {project.shortName}
-                </CardItem>
-                <CardItem
-                  as="p"
-                  translateZ="60"
-                  className="text-muted-foreground text-sm max-w-sm mt-2 line-clamp-2"
-                >
-                  {project.description}
-                </CardItem>
-                
-                <CardItem translateZ="80" className="w-full mt-4">
-                  <div className="space-y-3">
-                    {project.metrics.slice(0, 2).map((m, i) => {
-                      const colors = { 
-                        emerald: "bg-emerald-500", 
-                        blue: "bg-blue-500", 
-                        violet: "bg-violet-500", 
-                        amber: "bg-amber-500" 
-                      };
-                      return (
-                        <div key={i} className="space-y-1">
-                          <div className="flex justify-between text-xs">
-                            <span className="text-muted-foreground">{m.label}</span>
-                            <span className="font-semibold text-foreground">
-                              {m.display || `${m.value}${m.suffix || ""}`}
-                            </span>
-                          </div>
-                          <div className="h-2 bg-muted rounded-full overflow-hidden">
-                            <motion.div 
-                              initial={{ width: 0 }} 
-                              whileInView={{ width: `${Math.min(100, m.value)}%` }} 
-                              viewport={{ once: true }}
-                              transition={{ duration: 0.8, delay: index * 0.1 }} 
-                              className={`h-full rounded-full ${colors[m.color as keyof typeof colors]}`} 
-                            />
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </CardItem>
-
-                <CardItem translateZ="70" className="w-full mt-4">
-                  <div className="flex flex-wrap gap-1.5">
-                    {project.technologies.slice(0, 4).map((tech, i) => {
-                      const icon = Object.keys(providerIcons).find(k => tech.includes(k));
-                      return (
-                        <div 
-                          key={i} 
-                          className="flex items-center gap-1.5 px-2 py-1 bg-muted/50 rounded-md border border-border/50 text-xs"
-                        >
-                          {icon && providerIcons[icon]}
-                          <span>{tech}</span>
-                        </div>
-                      );
-                    })}
-                    {project.technologies.length > 4 && (
-                      <div className="flex items-center px-2 py-1 bg-muted/50 rounded-md border border-border/50 text-xs">
-                        +{project.technologies.length - 4} more
-                      </div>
-                    )}
-                  </div>
-                </CardItem>
-
-                <div className="flex justify-between items-center mt-6">
-                  <CardItem
-                    translateZ={20}
-                    className="text-xs text-muted-foreground"
-                  >
-                    {project.period}
-                  </CardItem>
-                  <CardItem
-                    translateZ={20}
-                    className="flex items-center gap-1 text-xs font-medium text-primary"
-                  >
-                    <CheckCircle2 className="w-3 h-3" />
-                    {project.clientBenefits.length} Benefits
-                  </CardItem>
-                </div>
-              </CardBody>
-            </CardContainer>
-          ))}
-        </div>
+        <StickyScroll content={stickyScrollContent} />
       </div>
     </section>
   );
