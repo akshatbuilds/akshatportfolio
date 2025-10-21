@@ -4,19 +4,11 @@ const Testimonials = () => {
   return (
     <section className="min-h-screen flex flex-col items-center justify-center py-20 px-4 bg-background">
       <div className="max-w-7xl mx-auto w-full mb-12">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
-          Client Testimonials
-        </h2>
-        <p className="text-center text-muted-foreground max-w-2xl mx-auto">
-          What our clients say about working with us
-        </p>
+        <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">Client Testimonials</h2>
+        <p className="text-center text-muted-foreground max-w-2xl mx-auto">What my clients say about working with me</p>
       </div>
-      
-      <InfiniteMovingCards
-        items={testimonials}
-        direction="right"
-        speed="slow"
-      />
+
+      <InfiniteMovingCards items={testimonials} direction="right" speed="slow" />
     </section>
   );
 };
