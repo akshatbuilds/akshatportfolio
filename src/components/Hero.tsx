@@ -1,5 +1,7 @@
 import { Mail, ArrowDown } from "lucide-react";
 import AnimatedTextCycle from "@/components/ui/animated-text-cycle";
+import { motion } from "framer-motion";
+import UnderlineToBackground from "@/components/fancy/text/underline-to-background";
 
 const Hero = () => {
   const heroWords = [
@@ -21,10 +23,26 @@ const Hero = () => {
             Akshat Chaudhary
           </h2>
           
-          {/* Simple White Line */}
-          <div className="w-full max-w-2xl mx-auto mb-12">
-            <div className="h-px bg-white"></div>
-          </div>
+          {/* Animated Underline */}
+          <motion.div 
+            className="w-full max-w-2xl mx-auto mb-12"
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: { opacity: 0 },
+              visible: {
+                opacity: 1,
+                transition: { duration: 0.5, delay: 0.2 },
+              },
+            }}
+          >
+            <UnderlineToBackground
+              targetTextColor="hsl(var(--foreground))"
+              className="inline-block w-full"
+            >
+              <div className="h-px bg-foreground w-full"></div>
+            </UnderlineToBackground>
+          </motion.div>
 
           {/* Main Heading */}
           <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.2] mb-8 animate-fade-in" style={{ animationDelay: "0.1s", animationFillMode: "backwards" }}>
