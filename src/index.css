@@ -8,70 +8,70 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Tech-focused AI Engineer Portfolio - Premium Color Scheme */
+    /* Black & Neon Steel Blue - Minimal Tech Portfolio */
     
-    /* Backgrounds - Deep Navy & Light modes */
-    --background: 228 37% 14%;              /* Deep navy #161A30 */
-    --background-light: 228 33% 97%;        /* Light mode #F5F6FA */
-    --foreground: 0 0% 100%;                /* Crisp white #ffffff */
-    --foreground-dark: 216 18% 16%;         /* Near-black #222831 for light mode */
+    /* Backgrounds - Pure Black & Light modes */
+    --background: 0 0% 3%;                  /* Pure black #080808 */
+    --background-light: 0 0% 98%;           /* Light mode #FAFAFA */
+    --foreground: 0 0% 96%;                 /* Pearl white #F5F5F5 */
+    --foreground-dark: 0 0% 10%;            /* Near-black for light mode */
 
     /* Cards & Popovers - Elevated surfaces */
-    --card: 228 35% 18%;                    /* Slightly lighter navy */
-    --card-foreground: 0 0% 100%;           /* White text on cards */
+    --card: 0 0% 8%;                        /* Slightly lighter black */
+    --card-foreground: 0 0% 96%;            /* Pearl white on cards */
     --card-light: 0 0% 100%;                /* White cards for light sections */
-    --card-light-foreground: 216 18% 16%;   /* Dark text on light cards */
+    --card-light-foreground: 0 0% 10%;      /* Dark text on light cards */
 
-    --popover: 228 35% 18%;                 /* Elevated popover */
-    --popover-foreground: 0 0% 100%;        /* White on popovers */
+    --popover: 0 0% 8%;                     /* Elevated popover */
+    --popover-foreground: 0 0% 96%;         /* Pearl white on popovers */
 
-    /* Primary Accent - Electric Blue */
-    --primary: 202 87% 60%;                 /* Electric blue #41B2F2 */
-    --primary-foreground: 0 0% 100%;        /* White on primary */
-    --primary-glow: 202 87% 70%;            /* Lighter blue for glow */
+    /* Primary Accent - Neon Steel Blue */
+    --primary: 200 100% 60%;                /* Neon steel blue #33CCFF */
+    --primary-foreground: 0 0% 3%;          /* Black on primary */
+    --primary-glow: 200 100% 70%;           /* Lighter neon blue for glow */
 
-    /* Secondary Accent - Vivid Violet */
-    --secondary: 263 98% 59%;               /* Vivid violet #7F2FFD */
-    --secondary-foreground: 0 0% 100%;      /* White on secondary */
-    --secondary-glow: 263 98% 69%;          /* Lighter violet for glow */
+    /* Secondary Accent - Steel Blue variant */
+    --secondary: 200 80% 50%;               /* Deeper steel blue */
+    --secondary-foreground: 0 0% 96%;       /* Pearl white on secondary */
+    --secondary-glow: 200 80% 60%;          /* Lighter steel for glow */
 
-    /* Accent - Teal Green for success/info */
-    --accent: 167 82% 43%;                  /* Teal green #14C9A2 */
-    --accent-foreground: 0 0% 100%;         /* White on accent */
-    --accent-glow: 167 82% 53%;             /* Lighter teal for glow */
+    /* Accent - Bright Steel Blue */
+    --accent: 200 100% 55%;                 /* Bright steel blue */
+    --accent-foreground: 0 0% 3%;           /* Black on accent */
+    --accent-glow: 200 100% 65%;            /* Lighter bright steel for glow */
 
     /* Muted - Subtle elements */
-    --muted: 228 25% 25%;                   /* Muted navy grey */
-    --muted-foreground: 228 10% 65%;        /* Subtle grey text */
+    --muted: 0 0% 15%;                      /* Subtle grey */
+    --muted-foreground: 0 0% 60%;           /* Muted grey text */
 
     /* Destructive - Errors */
     --destructive: 0 84% 60%;               /* Red for errors */
     --destructive-foreground: 0 0% 100%;
 
     /* Highlight & Focus */
-    --highlight: 202 87% 60%;               /* Electric blue highlights */
-    --highlight-foreground: 0 0% 100%;
-    --highlight-glow: 202 87% 60% / 0.3;
+    --highlight: 200 100% 60%;              /* Neon steel blue highlights */
+    --highlight-foreground: 0 0% 3%;
+    --highlight-glow: 200 100% 60% / 0.4;
 
     /* Borders & Inputs */
-    --border: 228 25% 25%;                  /* Subtle borders */
-    --input: 228 25% 25%;                   /* Input borders */
-    --ring: 202 87% 60%;                    /* Electric blue focus rings */
+    --border: 0 0% 15%;                     /* Subtle borders */
+    --input: 0 0% 15%;                      /* Input borders */
+    --ring: 200 100% 60%;                   /* Neon steel blue focus rings */
 
     /* Border Radius */
     --radius: 0.75rem;
     
-    /* Gradients - Blue to Violet for hero sections */
-    --gradient-hero: linear-gradient(135deg, hsl(202 87% 60%) 0%, hsl(263 98% 59%) 100%);
-    --gradient-mesh: linear-gradient(180deg, hsl(228 37% 14%) 0%, hsl(228 35% 18%) 100%);
-    --gradient-glow: radial-gradient(ellipse 60% 40% at 50% 100%, hsl(202 87% 60% / 0.15) 0%, transparent 70%);
-    --gradient-card: linear-gradient(135deg, hsl(202 87% 60% / 0.1) 0%, hsl(263 98% 59% / 0.1) 100%);
+    /* Gradients - Steel Blue glow */
+    --gradient-hero: linear-gradient(135deg, hsl(200 100% 60%) 0%, hsl(200 80% 50%) 100%);
+    --gradient-mesh: linear-gradient(180deg, hsl(0 0% 3%) 0%, hsl(0 0% 8%) 100%);
+    --gradient-glow: radial-gradient(ellipse 60% 40% at 50% 100%, hsl(200 100% 60% / 0.15) 0%, transparent 70%);
+    --gradient-card: linear-gradient(135deg, hsl(200 100% 60% / 0.08) 0%, hsl(200 80% 50% / 0.08) 100%);
     
-    /* Shadows - Premium glow effects */
-    --shadow-glow: 0 10px 40px hsl(202 87% 60% / 0.25);
-    --shadow-glow-violet: 0 10px 40px hsl(263 98% 59% / 0.25);
-    --shadow-glow-teal: 0 10px 40px hsl(167 82% 43% / 0.25);
-    --shadow-card: 0 4px 20px hsl(0 0% 0% / 0.3);
+    /* Shadows - Neon glow effects */
+    --shadow-glow: 0 10px 40px hsl(200 100% 60% / 0.3);
+    --shadow-glow-violet: 0 10px 40px hsl(200 80% 50% / 0.25);
+    --shadow-glow-teal: 0 10px 40px hsl(200 100% 55% / 0.25);
+    --shadow-card: 0 4px 20px hsl(0 0% 0% / 0.5);
     
     /* Transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
