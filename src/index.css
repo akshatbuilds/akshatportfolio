@@ -64,7 +64,7 @@ All colors MUST be HSL.
     /* Gradients - Steel Blue glow */
     --gradient-hero: linear-gradient(135deg, hsl(200 100% 60%) 0%, hsl(200 80% 50%) 100%);
     --gradient-mesh: linear-gradient(180deg, hsl(0 0% 3%) 0%, hsl(0 0% 8%) 100%);
-    --gradient-glow: radial-gradient(ellipse 60% 40% at 50% 100%, hsl(200 100% 60% / 0.15) 0%, transparent 70%);
+    --gradient-glow: radial-gradient(ellipse 80% 50% at 50% 100%, hsl(200 100% 60% / 0.15) 0%, transparent 70%);
     --gradient-card: linear-gradient(135deg, hsl(200 100% 60% / 0.08) 0%, hsl(200 80% 50% / 0.08) 100%);
     
     /* Shadows - Neon glow effects */
@@ -110,7 +110,7 @@ All colors MUST be HSL.
     bottom: 0;
     left: 0;
     right: 0;
-    height: 60vh;
+    height: 80vh;
     background: var(--gradient-glow);
     pointer-events: none;
     z-index: 0;
