@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { Bot, Brain, Cloud, Code, Database, Workflow, LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 
 const SkillCard = React.memo(
   ({
@@ -16,70 +17,98 @@ const SkillCard = React.memo(
       title: string;
       skills: string[];
       gradient: string;
+      description: string;
+      whereUsed: string;
+      depth: string;
+      similarTools: string[];
     };
     index: number;
     hovered: number | null;
     setHovered: React.Dispatch<React.SetStateAction<number | null>>;
   }) => {
     const Icon = category.icon;
+    const [open, setOpen] = useState(false);
+
     return (
-      <div
-        onMouseEnter={() => setHovered(index)}
-        onMouseLeave={() => setHovered(null)}
-        className={cn(
-          "rounded-2xl relative overflow-hidden h-[400px] md:h-[500px] w-full transition-all duration-300 ease-out border border-border/50",
-          hovered !== null && hovered !== index && "blur-sm scale-[0.98]"
-        )}
-      >
-        {/* Background gradient */}
-        <div className={cn("absolute inset-0", category.gradient)} />
-        
-        {/* Content overlay */}
-        <div className="absolute inset-0 bg-background/60 backdrop-blur-sm" />
-        
-        {/* Icon background */}
-        <div className="absolute top-8 left-8 p-4 rounded-xl bg-background/80 backdrop-blur-sm border border-border/50">
-          <Icon className="h-8 w-8 text-[hsl(var(--highlight))]" />
-        </div>
-        
-        {/* Title always visible */}
-        <div className="absolute top-8 right-8 left-28">
-          <h3 className="text-2xl font-bold text-foreground">{category.title}</h3>
-        </div>
-        
-        {/* Skills list - shows on hover */}
-        <div
-          className={cn(
-            "absolute inset-0 flex items-center justify-center p-8 transition-opacity duration-300",
-            hovered === index ? "opacity-100" : "opacity-0"
-          )}
-        >
-          <div className="w-full max-w-md space-y-3">
-            {category.skills.map((skill, skillIndex) => (
-              <div
-                key={skillIndex}
-                className="flex items-center gap-3 bg-background/80 backdrop-blur-sm border border-border/50 rounded-lg px-4 py-3 transform transition-all duration-200"
-                style={{
-                  transitionDelay: `${skillIndex * 30}ms`,
-                }}
-              >
-                <span className="text-[hsl(var(--highlight))] flex-shrink-0 font-bold">→</span>
-                <span className="text-foreground font-medium">{skill}</span>
+      <Popover open={open} onOpenChange={setOpen}>
+        <PopoverTrigger asChild>
+          <div
+            onMouseEnter={() => {
+              setHovered(index);
+              setOpen(true);
+            }}
+            onMouseLeave={() => {
+              setHovered(null);
+              setOpen(false);
+            }}
+            className={cn(
+              "rounded-xl relative overflow-hidden h-auto w-full transition-all duration-300 ease-out border border-border/50 cursor-pointer",
+              hovered !== null && hovered !== index && "opacity-50 scale-[0.98]"
+            )}
+          >
+            {/* Background gradient */}
+            <div className={cn("absolute inset-0", category.gradient)} />
+            
+            {/* Content overlay */}
+            <div className="absolute inset-0 bg-background/70 backdrop-blur-sm" />
+            
+            {/* Content */}
+            <div className="relative p-4">
+              {/* Icon and Title */}
+              <div className="flex items-center gap-3 mb-3">
+                <div className="p-2 rounded-lg bg-background/80 backdrop-blur-sm border border-border/50">
+                  <Icon className="h-5 w-5 text-[hsl(var(--highlight))]" />
+                </div>
+                <h3 className="text-sm font-bold text-foreground">{category.title}</h3>
               </div>
-            ))}
+              
+              {/* Skills list - always visible */}
+              <div className="space-y-1.5">
+                {category.skills.map((skill, skillIndex) => (
+                  <div
+                    key={skillIndex}
+                    className="flex items-center gap-2 text-xs text-foreground/80"
+                  >
+                    <span className="text-[hsl(var(--highlight))] flex-shrink-0 text-xs">•</span>
+                    <span className="truncate">{skill}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
-        </div>
-        
-        {/* Hover instruction */}
-        <div
-          className={cn(
-            "absolute bottom-8 left-8 right-8 text-center transition-opacity duration-300",
-            hovered === index ? "opacity-0" : "opacity-100"
-          )}
+        </PopoverTrigger>
+        <PopoverContent 
+          className="w-80 p-4 z-50" 
+          side="top"
+          align="center"
         >
-          <p className="text-sm text-muted-foreground">Hover to view skills</p>
-        </div>
-      </div>
+          <div className="space-y-3">
+            <div>
+              <h4 className="font-semibold text-sm mb-1 text-foreground">Description</h4>
+              <p className="text-xs text-muted-foreground">{category.description}</p>
+            </div>
+            <div>
+              <h4 className="font-semibold text-sm mb-1 text-foreground">Where Used</h4>
+              <p className="text-xs text-muted-foreground">{category.whereUsed}</p>
+            </div>
+            <div>
+              <h4 className="font-semibold text-sm mb-1 text-foreground">Depth</h4>
+              <p className="text-xs text-muted-foreground">{category.depth}</p>
+            </div>
+            <div>
+              <h4 className="font-semibold text-sm mb-1 text-foreground">Similar Tools</h4>
+              <ul className="space-y-1">
+                {category.similarTools.map((tool, i) => (
+                  <li key={i} className="text-xs text-muted-foreground flex items-start gap-1.5">
+                    <span className="text-[hsl(var(--highlight))] mt-0.5">•</span>
+                    <span>{tool}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </PopoverContent>
+      </Popover>
     );
   }
 );
@@ -102,6 +131,10 @@ const Skills = () => {
         "LLM fine-tuning",
         "RAG frameworks",
       ],
+      description: "Building intelligent agents that can reason, plan, and execute complex tasks autonomously.",
+      whereUsed: "Production AI applications, customer service automation, and multi-agent systems",
+      depth: "Advanced - 3+ years of hands-on experience building and deploying agentic systems",
+      similarTools: ["AutoGPT", "BabyAGI", "Semantic Kernel", "CrewAI"],
     },
     {
       icon: Brain,
@@ -111,12 +144,16 @@ const Skills = () => {
         "Text generation",
         "Prompt engineering",
         "Multilingual pipelines",
-        "Vector DBs (Pinecone, Weaviate)",
+        "Vector DBs",
         "Hallucination detection",
         "NLG templates",
         "Computer vision",
         "Predictive analytics",
       ],
+      description: "Creating AI-powered content generation and natural language understanding systems.",
+      whereUsed: "Content platforms, chatbots, document analysis, and translation services",
+      depth: "Advanced - Expert in prompt engineering and model optimization",
+      similarTools: ["Cohere", "AI21 Labs", "Anthropic Claude", "Gemini"],
     },
     {
       icon: Code,
@@ -132,6 +169,10 @@ const Skills = () => {
         "PyTorch",
         "Docker",
       ],
+      description: "Developing robust backend systems and integrations for scalable applications.",
+      whereUsed: "Microservices architecture, API development, and ML model deployment",
+      depth: "Advanced - 4+ years building production-grade backend systems",
+      similarTools: ["Flask", "Django", "Express.js", "Node.js", "Kubernetes"],
     },
     {
       icon: Cloud,
@@ -146,6 +187,10 @@ const Skills = () => {
         "CloudWatch",
         "IAM",
       ],
+      description: "Architecting and managing cloud infrastructure for high-availability applications.",
+      whereUsed: "Production deployments, serverless applications, and infrastructure automation",
+      depth: "Intermediate to Advanced - AWS and Azure certified professional",
+      similarTools: ["Google Cloud Platform", "DigitalOcean", "Heroku", "Vercel"],
     },
     {
       icon: Workflow,
@@ -161,6 +206,10 @@ const Skills = () => {
         "WhatsApp Business API",
         "Apollo.io",
       ],
+      description: "Orchestrating complex workflows and automating business processes at scale.",
+      whereUsed: "Business process automation, data pipelines, and integration platforms",
+      depth: "Advanced - Designed and deployed enterprise-scale automation systems",
+      similarTools: ["Zapier", "Make.com", "Prefect", "Dagster", "Temporal"],
     },
     {
       icon: Database,
@@ -176,6 +225,10 @@ const Skills = () => {
         "ETL pipelines",
         "Model optimization",
       ],
+      description: "Building data pipelines and engineering features for machine learning systems.",
+      whereUsed: "Data warehouses, analytics platforms, and ML training pipelines",
+      depth: "Advanced - Processing millions of records daily in production systems",
+      similarTools: ["Spark", "Snowflake", "BigQuery", "Redshift", "dbt"],
     },
   ];
 
@@ -192,7 +245,7 @@ const Skills = () => {
         </div>
         
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {skillCategories.map((category, index) => (
               <SkillCard
                 key={category.title}
