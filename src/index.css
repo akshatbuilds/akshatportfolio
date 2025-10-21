@@ -8,53 +8,53 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 5%;              /* #0D0D0D - Almost black background */
-    --foreground: 0 0% 100%;            /* #FFFFFF - Pure white text */
+    --background: 0 0% 4%;              /* Very dark, clean background */
+    --foreground: 0 0% 98%;             /* Soft white for text */
 
-    --card: 0 0% 8%;                    /* Slightly lighter than background for cards */
-    --card-foreground: 0 0% 100%;       /* White text on cards */
+    --card: 0 0% 6%;                    /* Subtle card elevation */
+    --card-foreground: 0 0% 98%;        /* Soft white on cards */
 
-    --popover: 0 0% 6%;                 /* Dark popover background */
-    --popover-foreground: 0 0% 100%;    /* White text on popovers */
+    --popover: 0 0% 5%;                 /* Clean popover */
+    --popover-foreground: 0 0% 98%;     /* Soft white on popovers */
 
-    --primary: 328 100% 50%;            /* #FF0099 - VIVID PINK (buttons, links, CTA) */
-    --primary-foreground: 0 0% 100%;    /* White text on pink */
+    --primary: 217 91% 60%;             /* Professional blue (#3B82F6) */
+    --primary-foreground: 0 0% 100%;    /* White on primary */
 
-    --secondary: 209 100% 56%;          /* #1E90FF - ELECTRIC BLUE (secondary actions) */
-    --secondary-foreground: 0 0% 100%;  /* White text on blue */
+    --secondary: 189 94% 43%;           /* Clean cyan (#06B6D4) */
+    --secondary-foreground: 0 0% 100%;  /* White on secondary */
 
-    --muted: 0 0% 12%;                  /* Muted/disabled backgrounds */
-    --muted-foreground: 0 0% 65%;       /* Gray text for less important content */
+    --muted: 0 0% 10%;                  /* Muted backgrounds */
+    --muted-foreground: 0 0% 60%;       /* Subtle gray text */
 
-    --accent: 158 100% 50%;             /* #00FF85 - NEON GREEN (hover, highlights) */
-    --accent-foreground: 0 0% 5%;       /* Dark text on green */
+    --accent: 221 83% 53%;              /* Bright blue accent (#2563EB) */
+    --accent-foreground: 0 0% 100%;     /* White on accent */
 
-    --destructive: 0 84% 60%;           /* Red for errors/delete actions */
+    --destructive: 0 84% 60%;           /* Red for errors */
     --destructive-foreground: 0 0% 100%;
 
-    --highlight: 328 100% 50%;          /* Pink for special highlights */
+    --highlight: 217 91% 60%;           /* Blue highlights */
     --highlight-foreground: 0 0% 100%;
-    --highlight-glow: 328 100% 50% / 0.6;
+    --highlight-glow: 217 91% 60% / 0.3;
 
-    --border: 0 0% 15%;                 /* Subtle borders */
-    --input: 0 0% 15%;                  /* Input field borders */
-    --ring: 328 100% 50%;               /* Pink focus rings */
+    --border: 0 0% 14%;                 /* Minimal borders */
+    --input: 0 0% 14%;                  /* Input borders */
+    --ring: 217 91% 60%;                /* Blue focus rings */
 
-    --radius: 0.75rem;
+    --radius: 0.5rem;
     
-    --gradient-mesh: linear-gradient(180deg, hsl(0 0% 5%) 0%, hsl(0 0% 8%) 100%);
-    --gradient-glow: radial-gradient(ellipse 80% 50% at 50% 100%, hsl(328 100% 50% / 0.15) 0%, hsl(209 100% 56% / 0.2) 25%, hsl(158 100% 50% / 0.15) 50%, transparent 100%);
-    --shadow-glow: 0 20px 60px hsl(328 100% 50% / 0.4);
+    --gradient-mesh: linear-gradient(180deg, hsl(0 0% 4%) 0%, hsl(0 0% 6%) 100%);
+    --gradient-glow: radial-gradient(ellipse 60% 40% at 50% 100%, hsl(217 91% 60% / 0.06) 0%, transparent 70%);
+    --shadow-glow: 0 8px 32px hsl(217 91% 60% / 0.15);
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
-    --sidebar-background: 0 0% 5%;
-    --sidebar-foreground: 0 0% 100%;
-    --sidebar-primary: 328 100% 50%;
+    --sidebar-background: 0 0% 4%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 217 91% 60%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 0 0% 12%;
-    --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 0 0% 15%;
-    --sidebar-ring: 328 100% 50%;
+    --sidebar-accent: 0 0% 10%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 0 0% 14%;
+    --sidebar-ring: 217 91% 60%;
   }
 }
 
