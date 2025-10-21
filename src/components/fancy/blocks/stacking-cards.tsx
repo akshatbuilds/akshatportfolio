@@ -1,68 +1,105 @@
+// author: Khoa Phan <https://www.pldkhoa.dev>
+
 "use client";
 
-import { ReactNode, useEffect, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import {
+  createContext,
+  useContext,
+  useRef,
+  type HTMLAttributes,
+  type PropsWithChildren,
+} from "react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  type MotionValue,
+  type UseScrollOptions,
+} from "framer-motion";
+
 import { cn } from "@/lib/utils";
 
-interface StackingCardsProps {
-  children: ReactNode;
+interface StackingCardsProps
+  extends PropsWithChildren,
+    HTMLAttributes<HTMLDivElement> {
+  scrollOptions?: UseScrollOptions;
+  scaleMultiplier?: number;
   totalCards: number;
-  scrollOptions?: {
-    container?: React.RefObject<HTMLDivElement>;
-  };
+}
+
+interface StackingCardItemProps
+  extends HTMLAttributes<HTMLDivElement>,
+    PropsWithChildren {
+  index: number;
+  topPosition?: string;
 }
 
 export default function StackingCards({
   children,
-  totalCards,
+  className,
   scrollOptions,
+  scaleMultiplier,
+  totalCards,
+  ...props
 }: StackingCardsProps) {
+  const targetRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    offset: ["start start", "end end"],
+    ...scrollOptions,
+    target: targetRef,
+  });
+
   return (
-    <div className="relative">
-      {children}
+    <StackingCardsContext.Provider
+      value={{ progress: scrollYProgress, scaleMultiplier, totalCards }}
+    >
+      <div className={cn(className)} ref={targetRef} {...props}>
+        {children}
+      </div>
+    </StackingCardsContext.Provider>
+  );
+}
+
+const StackingCardItem = ({
+  index,
+  topPosition,
+  className,
+  children,
+  ...props
+}: StackingCardItemProps) => {
+  const {
+    progress,
+    scaleMultiplier,
+    totalCards = 0,
+  } = useStackingCardsContext();
+  const scaleTo = 1 - (totalCards - index) * (scaleMultiplier ?? 0.03);
+  const rangeScale = [index * (1 / totalCards), 1];
+  const scale = useTransform(progress, rangeScale, [1, scaleTo]);
+  const top = topPosition ?? `${5 + index * 3}%`;
+
+  return (
+    <div className={cn("h-full sticky top-0", className)} {...props}>
+      <motion.div
+        className={"origin-top relative h-full"}
+        style={{ top, scale }}
+      >
+        {children}
+      </motion.div>
     </div>
   );
-}
+};
 
-interface StackingCardItemProps {
-  children: ReactNode;
-  index: number;
-  className?: string;
-}
+const StackingCardsContext = createContext<{
+  progress: MotionValue<number>;
+  scaleMultiplier?: number;
+  totalCards?: number;
+} | null>(null);
 
-export function StackingCardItem({
-  children,
-  index,
-  className,
-}: StackingCardItemProps) {
-  const [scrollY, setScrollY] = useState(0);
+export const useStackingCardsContext = () => {
+  const context = useContext(StackingCardsContext);
+  if (!context)
+    throw new Error("StackingCardItem must be used within StackingCards");
+  return context;
+};
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const cardStart = index * 300;
-  const cardEnd = cardStart + 300;
-  
-  const progress = Math.max(0, Math.min(1, (scrollY - cardStart) / 300));
-  
-  const scale = 1 - progress * 0.1;
-  const y = progress * -50;
-
-  return (
-    <motion.div
-      className={cn("sticky top-20", className)}
-      style={{
-        transform: `scale(${scale}) translateY(${y}px)`,
-        zIndex: 100 - index,
-      }}
-    >
-      {children}
-    </motion.div>
-  );
-}
+export { StackingCardItem };

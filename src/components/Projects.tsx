@@ -234,14 +234,14 @@ const Projects = () => {
   return (
     <section id="projects" className="relative bg-background">
       <div
-        className="h-screen overflow-auto"
+        className="h-[620px] overflow-auto"
         ref={container}
       >
         <StackingCards
           totalCards={projects.length}
           scrollOptions={{ container: container }}
         >
-          <div className="relative h-screen w-full z-10 text-4xl md:text-6xl font-bold flex justify-center items-center text-primary">
+          <div className="relative h-[620px] w-full z-10 text-2xl md:text-7xl font-bold flex justify-center items-center text-primary whitespace-pre">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -252,7 +252,7 @@ const Projects = () => {
               <p className="text-base text-muted-foreground font-normal max-w-2xl mx-auto px-6">
                 Real-world AI solutions with measurable impact
               </p>
-              <div className="mt-8 text-lg text-muted-foreground">
+              <div className="mt-8 text-lg">
                 Scroll down ↓
               </div>
             </motion.div>
@@ -261,53 +261,35 @@ const Projects = () => {
           {projects.map((project, index) => {
             const bgColor = bgColors[index % bgColors.length];
             return (
-              <StackingCardItem key={project.id} index={index} className="h-screen">
+              <StackingCardItem key={project.id} index={index} className="h-[620px]">
                 <div className={cn(
                   bgColor,
-                  "h-[85%] flex-col lg:flex-row px-6 md:px-8 py-8 md:py-10 flex w-11/12 rounded-3xl mx-auto relative gap-6"
+                  "h-[80%] sm:h-[70%] flex-col sm:flex-row aspect-video px-8 py-10 flex w-11/12 rounded-3xl mx-auto relative"
                 )}>
-                  <div className="flex-1 flex flex-col justify-center text-white overflow-y-auto">
-                    <h3 className="font-bold text-xl md:text-2xl mb-4">
+                  <div className="flex-1 flex flex-col justify-center text-white">
+                    <h3 className="font-bold text-2xl mb-5">
                       {project.shortName}
                     </h3>
-                    <p className="text-sm md:text-base mb-6 opacity-90">
+                    <p className="text-sm md:text-base mb-6">
                       {project.description}
                     </p>
 
-                    <div className="space-y-4">
-                      <h4 className="text-base md:text-lg font-semibold">Key Highlights</h4>
+                    <div className="space-y-3">
+                      <h4 className="text-lg font-semibold">Key Highlights</h4>
                       <div className="space-y-2">
                         {project.highlights.slice(0, 3).map((highlight, i) => (
                           <div key={i} className="flex items-start gap-2">
                             <CheckCircle2 className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                            <span className="text-xs md:text-sm opacity-90">{highlight}</span>
+                            <span className="text-sm">{highlight}</span>
                           </div>
                         ))}
                       </div>
                     </div>
-
-                    <div className="mt-6 space-y-2">
-                      <h4 className="text-base md:text-lg font-semibold">Technologies</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {project.technologies.slice(0, 5).map((tech, i) => {
-                          const icon = Object.keys(providerIcons).find(k => tech.includes(k));
-                          return (
-                            <div 
-                              key={i} 
-                              className="flex items-center gap-2 px-2 py-1 bg-white/20 rounded-md text-xs"
-                            >
-                              {icon && providerIcons[icon]}
-                              <span>{tech}</span>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    </div>
                   </div>
 
-                  <div className="w-full lg:w-1/2 rounded-xl bg-card/90 backdrop-blur-sm p-6 overflow-y-auto">
+                  <div className="w-full sm:w-1/2 rounded-xl bg-card/95 backdrop-blur-sm p-6 overflow-auto">
                     <div className="space-y-4">
-                      <h4 className="text-base md:text-lg font-semibold text-foreground">Performance Metrics</h4>
+                      <h4 className="text-lg font-semibold text-foreground">Performance Metrics</h4>
                       <div className="space-y-3">
                         {project.metrics.map((m, i) => {
                           const colors = { 
@@ -318,7 +300,7 @@ const Projects = () => {
                           };
                           return (
                             <div key={i} className="space-y-2">
-                              <div className="flex justify-between text-xs md:text-sm">
+                              <div className="flex justify-between text-sm">
                                 <span className="text-muted-foreground">{m.label}</span>
                                 <span className="font-semibold text-foreground">
                                   {m.display || `${m.value}${m.suffix || ""}`}
@@ -338,13 +320,31 @@ const Projects = () => {
                         })}
                       </div>
 
-                      <div className="pt-4">
-                        <h4 className="text-base md:text-lg font-semibold text-foreground mb-3">Client Benefits</h4>
+                      <div className="pt-3">
+                        <h4 className="text-lg font-semibold text-foreground mb-2">Technologies</h4>
+                        <div className="flex flex-wrap gap-2">
+                          {project.technologies.slice(0, 5).map((tech, i) => {
+                            const icon = Object.keys(providerIcons).find(k => tech.includes(k));
+                            return (
+                              <div 
+                                key={i} 
+                                className="flex items-center gap-1 px-2 py-1 bg-muted/80 rounded-md text-xs"
+                              >
+                                {icon && providerIcons[icon]}
+                                <span>{tech}</span>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+
+                      <div className="pt-2">
+                        <h4 className="text-lg font-semibold text-foreground mb-2">Client Benefits</h4>
                         <div className="space-y-2">
                           {project.clientBenefits.map((benefit, i) => (
                             <div key={i} className="flex items-start gap-2">
                               <TrendingUp className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                              <span className="text-xs md:text-sm text-muted-foreground">{benefit}</span>
+                              <span className="text-sm text-muted-foreground">{benefit}</span>
                             </div>
                           ))}
                         </div>
@@ -356,9 +356,9 @@ const Projects = () => {
             );
           })}
 
-          <div className="w-full h-80 relative overflow-hidden flex items-center justify-center">
-            <h2 className="text-6xl md:text-9xl text-primary font-bold opacity-20">
-              AI Projects
+          <div className="w-full h-80 relative overflow-hidden">
+            <h2 className="absolute bottom-0 left-0 translate-y-1/3 sm:text-[192px] text-[80px] text-primary font-bold">
+              Projects
             </h2>
           </div>
         </StackingCards>
