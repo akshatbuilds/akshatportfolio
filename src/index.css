@@ -17,44 +17,44 @@ All colors MUST be HSL.
     --popover: 0 0% 5%;                 /* Clean popover */
     --popover-foreground: 0 0% 98%;     /* Soft white on popovers */
 
-    --primary: 217 91% 60%;             /* Professional blue (#3B82F6) */
+    --primary: 0 55% 62%;               /* Subtle light red accent */
     --primary-foreground: 0 0% 100%;    /* White on primary */
 
-    --secondary: 189 94% 43%;           /* Clean cyan (#06B6D4) */
-    --secondary-foreground: 0 0% 100%;  /* White on secondary */
+    --secondary: 0 0% 15%;              /* Neutral gray secondary */
+    --secondary-foreground: 0 0% 98%;   /* Soft white on secondary */
 
     --muted: 0 0% 10%;                  /* Muted backgrounds */
     --muted-foreground: 0 0% 60%;       /* Subtle gray text */
 
-    --accent: 221 83% 53%;              /* Bright blue accent (#2563EB) */
+    --accent: 0 50% 58%;                /* Light density red accent */
     --accent-foreground: 0 0% 100%;     /* White on accent */
 
     --destructive: 0 84% 60%;           /* Red for errors */
     --destructive-foreground: 0 0% 100%;
 
-    --highlight: 217 91% 60%;           /* Blue highlights */
+    --highlight: 0 55% 62%;             /* Subtle red highlights */
     --highlight-foreground: 0 0% 100%;
-    --highlight-glow: 217 91% 60% / 0.3;
+    --highlight-glow: 0 55% 62% / 0.2;
 
     --border: 0 0% 14%;                 /* Minimal borders */
     --input: 0 0% 14%;                  /* Input borders */
-    --ring: 217 91% 60%;                /* Blue focus rings */
+    --ring: 0 55% 62%;                  /* Subtle red focus rings */
 
     --radius: 0.5rem;
     
     --gradient-mesh: linear-gradient(180deg, hsl(0 0% 4%) 0%, hsl(0 0% 6%) 100%);
-    --gradient-glow: radial-gradient(ellipse 60% 40% at 50% 100%, hsl(217 91% 60% / 0.06) 0%, transparent 70%);
-    --shadow-glow: 0 8px 32px hsl(217 91% 60% / 0.15);
+    --gradient-glow: radial-gradient(ellipse 60% 40% at 50% 100%, hsl(0 55% 62% / 0.04) 0%, transparent 70%);
+    --shadow-glow: 0 8px 32px hsl(0 55% 62% / 0.12);
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     --sidebar-background: 0 0% 4%;
     --sidebar-foreground: 0 0% 98%;
-    --sidebar-primary: 217 91% 60%;
+    --sidebar-primary: 0 55% 62%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 0 0% 10%;
     --sidebar-accent-foreground: 0 0% 98%;
     --sidebar-border: 0 0% 14%;
-    --sidebar-ring: 217 91% 60%;
+    --sidebar-ring: 0 55% 62%;
   }
 }
 
