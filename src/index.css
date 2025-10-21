@@ -8,53 +8,53 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 5%;
-    --foreground: 0 0% 100%;
+    --background: 0 0% 5%;              /* #0D0D0D - Almost black background */
+    --foreground: 0 0% 100%;            /* #FFFFFF - Pure white text */
 
-    --card: 0 0% 8%;
-    --card-foreground: 0 0% 100%;
+    --card: 0 0% 8%;                    /* Slightly lighter than background for cards */
+    --card-foreground: 0 0% 100%;       /* White text on cards */
 
-    --popover: 0 0% 6%;
-    --popover-foreground: 0 0% 100%;
+    --popover: 0 0% 6%;                 /* Dark popover background */
+    --popover-foreground: 0 0% 100%;    /* White text on popovers */
 
-    --primary: 158 100% 50%;
-    --primary-foreground: 0 0% 5%;
+    --primary: 328 100% 50%;            /* #FF0099 - VIVID PINK (buttons, links, CTA) */
+    --primary-foreground: 0 0% 100%;    /* White text on pink */
 
-    --secondary: 209 100% 56%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 209 100% 56%;          /* #1E90FF - ELECTRIC BLUE (secondary actions) */
+    --secondary-foreground: 0 0% 100%;  /* White text on blue */
 
-    --muted: 0 0% 12%;
-    --muted-foreground: 0 0% 65%;
+    --muted: 0 0% 12%;                  /* Muted/disabled backgrounds */
+    --muted-foreground: 0 0% 65%;       /* Gray text for less important content */
 
-    --accent: 328 100% 50%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 158 100% 50%;             /* #00FF85 - NEON GREEN (hover, highlights) */
+    --accent-foreground: 0 0% 5%;       /* Dark text on green */
 
-    --destructive: 0 84% 60%;
+    --destructive: 0 84% 60%;           /* Red for errors/delete actions */
     --destructive-foreground: 0 0% 100%;
 
-    --highlight: 158 100% 50%;
-    --highlight-foreground: 0 0% 5%;
-    --highlight-glow: 158 100% 50% / 0.6;
+    --highlight: 328 100% 50%;          /* Pink for special highlights */
+    --highlight-foreground: 0 0% 100%;
+    --highlight-glow: 328 100% 50% / 0.6;
 
-    --border: 0 0% 15%;
-    --input: 0 0% 15%;
-    --ring: 158 100% 50%;
+    --border: 0 0% 15%;                 /* Subtle borders */
+    --input: 0 0% 15%;                  /* Input field borders */
+    --ring: 328 100% 50%;               /* Pink focus rings */
 
     --radius: 0.75rem;
     
     --gradient-mesh: linear-gradient(180deg, hsl(0 0% 5%) 0%, hsl(0 0% 8%) 100%);
-    --gradient-glow: radial-gradient(ellipse 80% 50% at 50% 100%, hsl(158 100% 50% / 0.15) 0%, hsl(209 100% 56% / 0.2) 25%, hsl(328 100% 50% / 0.15) 50%, transparent 100%);
-    --shadow-glow: 0 20px 60px hsl(158 100% 50% / 0.4);
+    --gradient-glow: radial-gradient(ellipse 80% 50% at 50% 100%, hsl(328 100% 50% / 0.15) 0%, hsl(209 100% 56% / 0.2) 25%, hsl(158 100% 50% / 0.15) 50%, transparent 100%);
+    --shadow-glow: 0 20px 60px hsl(328 100% 50% / 0.4);
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     --sidebar-background: 0 0% 5%;
     --sidebar-foreground: 0 0% 100%;
-    --sidebar-primary: 158 100% 50%;
-    --sidebar-primary-foreground: 0 0% 5%;
+    --sidebar-primary: 328 100% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 0 0% 12%;
     --sidebar-accent-foreground: 0 0% 100%;
     --sidebar-border: 0 0% 15%;
-    --sidebar-ring: 158 100% 50%;
+    --sidebar-ring: 328 100% 50%;
   }
 }
 
