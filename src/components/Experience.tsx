@@ -1,12 +1,11 @@
 "use client";
 
 import React from "react";
-import { Calendar, Building2, MapPin } from "lucide-react";
+import { Calendar, MapPin } from "lucide-react";
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";
 
 const Experience = () => {
   const experience = {
-    company: "Freelance",
     role: "AI & Automation Engineer",
     location: "Chandigarh, India",
     period: "April 2024 - Present",
@@ -47,10 +46,6 @@ const Experience = () => {
                 <div className="flex items-center gap-2">
                   <Calendar className="h-5 w-5 text-[hsl(var(--highlight))]" />
                   <span className="font-medium">{experience.period}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Building2 className="h-5 w-5 text-[hsl(var(--highlight))]" />
-                  <span className="font-medium">{experience.company}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <MapPin className="h-5 w-5 text-[hsl(var(--highlight))]" />
