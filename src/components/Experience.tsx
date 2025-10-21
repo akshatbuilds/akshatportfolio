@@ -1,4 +1,8 @@
+"use client";
+
+import React from "react";
 import { Calendar } from "lucide-react";
+import { ContainerScroll } from "@/components/ui/container-scroll-animation";
 
 const Experience = () => {
   const experience = {
@@ -16,34 +20,43 @@ const Experience = () => {
   };
 
   return (
-    <section id="experience" className="min-h-screen py-32 relative flex items-center">
-      <div className="container mx-auto px-6 w-full">
-        <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-6xl font-bold mb-6">
-            Professional Experience
-          </h2>
-          <p className="text-muted-foreground text-lg md:text-xl">
-            Building AI solutions that drive real business impact
-          </p>
-        </div>
-        
-        <div className="max-w-4xl mx-auto">
+    <section id="experience" className="flex flex-col overflow-hidden">
+      <ContainerScroll
+        titleComponent={
+          <>
+            <h2 className="text-4xl font-semibold text-foreground">
+              Professional Experience
+            </h2>
+            <span className="text-4xl md:text-[6rem] font-bold mt-1 leading-none bg-clip-text text-transparent bg-gradient-to-b from-foreground to-muted-foreground">
+              Building AI Solutions
+            </span>
+          </>
+        }
+      >
+        <div className="h-full w-full bg-background p-6 md:p-8 overflow-y-auto">
           <div className="space-y-6">
             <div className="space-y-4">
-              <h3 className="text-2xl md:text-3xl font-bold">{experience.role}</h3>
+              <h3 className="text-2xl md:text-3xl font-bold text-foreground">
+                {experience.role}
+              </h3>
               <div className="flex flex-wrap gap-4 text-muted-foreground">
                 <div className="flex items-center gap-2">
                   <Calendar className="h-4 w-4" />
                   <span>{experience.period}</span>
                 </div>
+                <span className="text-muted-foreground">
+                  {experience.company} • {experience.location}
+                </span>
               </div>
             </div>
 
             <div className="space-y-4 pt-6">
               {experience.achievements.map((achievement, index) => (
                 <div key={index} className="flex gap-3 group">
-                  <span className="text-[hsl(var(--highlight))] flex-shrink-0">→</span>
-                  <p className="text-muted-foreground leading-relaxed text-lg">
+                  <span className="text-[hsl(var(--highlight))] flex-shrink-0 text-lg">
+                    →
+                  </span>
+                  <p className="text-muted-foreground leading-relaxed">
                     {achievement}
                   </p>
                 </div>
@@ -51,7 +64,7 @@ const Experience = () => {
             </div>
           </div>
         </div>
-      </div>
+      </ContainerScroll>
     </section>
   );
 };
