@@ -189,7 +189,7 @@ const Skills = () => {
       ],
       description: "Architecting and managing cloud infrastructure for high-availability applications.",
       whereUsed: "Production deployments, serverless applications, and infrastructure automation",
-      depth: "Intermediate to Advanced - AWS and Azure certified professional",
+      depth: "Intermediate to Advanced - Hands-on experience with AWS and Azure cloud platforms",
       similarTools: ["Google Cloud Platform", "DigitalOcean", "Heroku", "Vercel"],
     },
     {
