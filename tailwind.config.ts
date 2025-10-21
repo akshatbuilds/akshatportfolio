@@ -15,7 +15,7 @@ export default {
     extend: {
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
-        heading: ['Inter', 'sans-serif'],
+        heading: ['Space Grotesk', 'Inter', 'sans-serif'],
         body: ['Inter', 'sans-serif'],
       },
       colors: {
