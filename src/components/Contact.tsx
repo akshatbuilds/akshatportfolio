@@ -126,7 +126,7 @@ const Contact = () => {
                       {item.label}
                     </p>
                     <UnderlineToBackground
-                      targetTextColor="hsl(0, 0%, 0%)"
+                      targetTextColor="hsl(0, 0%, 100%)"
                       className="cursor-pointer"
                     >
                       <p className="text-base font-medium text-muted-foreground group-hover:text-foreground transition-colors whitespace-nowrap">
