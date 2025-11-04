@@ -1,73 +1,76 @@
-# Welcome to your Lovable project
+My Portfolio
 
-## Project info
+Welcome to my portfolio repository. This project is where creativity meets caffeine and code. It’s built to showcase my work, experiments, and a few lines of code that somehow survived the first run.
 
-**URL**: https://lovable.dev/projects/5a98c98d-9582-4d92-902d-8ffd98bcde20
+## Getting Started
 
-## How can I edit this code?
+Before you dive in, make sure you have **Node.js** and **npm** installed. I recommend using **nvm** because it saves you from version nightmares.
 
-There are several ways of editing your application.
+### Setup Instructions
 
-**Use Lovable**
+```bash
+# 1. Clone the repository
+git clone <YOUR_REPO_URL>
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/5a98c98d-9582-4d92-902d-8ffd98bcde20) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
+# 2. Move into the project folder
 cd <YOUR_PROJECT_NAME>
 
-# Step 3: Install the necessary dependencies.
-npm i
+# 3. Install dependencies (go grab a coffee, npm takes its time)
+npm install
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# 4. Start the development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+Now open the local URL shown in your terminal and enjoy watching your browser come alive with code that actually works.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Tech Stack
 
-**Use GitHub Codespaces**
+This project is powered by a few of my favorite tools in the dev universe:
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+* **React** for dynamic UI magic
+* **Vite** because waiting for builds is so 2019
+* **TypeScript** to catch errors before they catch me
+* **Tailwind CSS** for styling that doesn’t make me cry
+* **shadcn/ui** for components that look good even before I touch them
 
-## What technologies are used for this project?
+## Editing and Customization
 
-This project is built with:
+All your editable parts live in the `src/` directory. Tweak components, adjust styles, or break things responsibly. Use your favorite IDE (VS Code, WebStorm, or that one terminal editor you pretend to love) to make changes.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+If something breaks, it’s probably a missing semicolon.
 
-## How can I deploy this project?
+## Deployment
 
-Simply open [Lovable](https://lovable.dev/projects/5a98c98d-9582-4d92-902d-8ffd98bcde20) and click on Share -> Publish.
+Once everything looks good locally, you can deploy it easily:
 
-## Can I connect a custom domain to my Lovable project?
+* Use **Vercel**, **Netlify**, or **GitHub Pages** for a quick setup
+* Or build a production version like a pro
 
-Yes, you can!
+```bash
+npm run build
+```
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+The optimized files will appear in the `dist/` folder. Host them anywhere you like, preferably not on your cousin’s old laptop.
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+## Domain Setup
+
+Got a fancy custom domain?
+Just connect it through your hosting provider’s DNS settings and make your portfolio truly yours.
+
+## Behind the Scenes
+
+This portfolio started as a small side project to test out new frameworks, but like most side projects, it evolved into a full-blown late-night debugging saga.
+
+I wanted something clean, fast, and easy to update without needing a PhD in CSS grid alignment. The layout is simple on purpose it keeps the focus on the work, not the background gradients.
+
+I’ve spent more time picking the right font than writing actual content, but that’s just part of the dev aesthetic.
+
+If you’re reading this and find a bug, it’s not a bug it’s a feature in disguise.
+
+## Live Project
+
+Here’s where the magic happens:
+https://akshatchaudhary.qzz.io/
+
+---
