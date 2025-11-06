@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 
 interface AnimatedTextCycleProps {
   words: string[];
@@ -13,6 +13,7 @@ export default function AnimatedTextCycle({
   interval = 5000,
   className = "",
 }: AnimatedTextCycleProps) {
+  const prefersReducedMotion = useReducedMotion();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [width, setWidth] = useState("auto");
   const measureRef = useRef<HTMLDivElement>(null);
@@ -38,29 +39,35 @@ export default function AnimatedTextCycle({
   }, [interval, words.length]);
 
   // Container animation for the whole word
-  const containerVariants = {
-    hidden: { 
-      y: -20,
-      opacity: 0,
-      filter: "blur(8px)"
-    },
-    visible: {
-      y: 0,
-      opacity: 1,
-      filter: "blur(0px)",
-      transition: {
-        duration: 0.4
+  const containerVariants = prefersReducedMotion
+    ? {
+        hidden: { opacity: 0 },
+        visible: { opacity: 1 },
+        exit: { opacity: 0 },
       }
-    },
-    exit: { 
-      y: 20,
-      opacity: 0,
-      filter: "blur(8px)",
-      transition: { 
-        duration: 0.3
-      }
-    },
-  };
+    : {
+        hidden: { 
+          y: -20,
+          opacity: 0,
+          filter: "blur(8px)"
+        },
+        visible: {
+          y: 0,
+          opacity: 1,
+          filter: "blur(0px)",
+          transition: {
+            duration: 0.4
+          }
+        },
+        exit: { 
+          y: 20,
+          opacity: 0,
+          filter: "blur(8px)",
+          transition: { 
+            duration: 0.3
+          }
+        },
+      };
 
   return (
     <>
@@ -83,12 +90,9 @@ export default function AnimatedTextCycle({
         className="relative inline-block"
         animate={{ 
           width,
-          transition: { 
-            type: "spring",
-            stiffness: 150,
-            damping: 15,
-            mass: 1.2,
-          }
+          transition: prefersReducedMotion
+            ? { duration: 0 }
+            : { type: "spring", stiffness: 150, damping: 15, mass: 1.2 },
         }}
       >
         <AnimatePresence mode="wait" initial={false}>
