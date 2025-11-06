@@ -5,6 +5,7 @@ import {
   motion,
   MotionValue,
   useSpring,
+  useReducedMotion,
 } from "framer-motion";
 
 export const ContainerScroll = ({
@@ -26,6 +27,7 @@ export const ContainerScroll = ({
     mass: 0.2,
   });
   const [isMobile, setIsMobile] = React.useState(false);
+  const prefersReducedMotion = useReducedMotion();
 
   React.useEffect(() => {
     const checkMobile = () => {
@@ -42,9 +44,15 @@ export const ContainerScroll = ({
     return isMobile ? [0.7, 0.9] : [1.05, 1];
   };
 
-  const rotate = useTransform(smoothProgress, [0, 1], [16, 0]);
-  const scale = useTransform(smoothProgress, [0, 1], scaleDimensions());
-  const translate = useTransform(smoothProgress, [0, 1], [0, -100]);
+  const rotate = prefersReducedMotion
+    ? (useTransform(smoothProgress, [0, 1], [0, 0]))
+    : (useTransform(smoothProgress, [0, 1], [12, 0]));
+  const scale = prefersReducedMotion
+    ? (useTransform(smoothProgress, [0, 1], [1, 1]))
+    : (useTransform(smoothProgress, [0, 1], scaleDimensions()));
+  const translate = prefersReducedMotion
+    ? (useTransform(smoothProgress, [0, 1], [0, 0]))
+    : (useTransform(smoothProgress, [0, 1], [0, -100]));
 
   return (
     <div

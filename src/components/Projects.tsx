@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { CheckCircle2, TrendingUp } from "lucide-react";
 import OpenAI from "@/components/icons/openai";
 import OpenAIDark from "@/components/icons/openai-dark";
@@ -217,20 +217,22 @@ const Projects = () => {
     "DeepSeek": <DeepSeek className="w-4 h-4" />,
   };
 
+  const prefersReducedMotion = useReducedMotion();
+
   return (
     <section id="projects" className="relative bg-background">
       <div className="text-center py-16">
         <motion.h2 
-          initial={{ opacity: 0, y: 20 }} 
-          whileInView={{ opacity: 1, y: 0 }} 
+          initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }} 
+          whileInView={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }} 
           viewport={{ once: true }} 
           className="text-3xl md:text-4xl font-bold mb-3"
         >
           Featured Projects
         </motion.h2>
         <motion.p 
-          initial={{ opacity: 0, y: 20 }} 
-          whileInView={{ opacity: 1, y: 0 }} 
+          initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }} 
+          whileInView={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }} 
           viewport={{ once: true }} 
           transition={{ delay: 0.1 }} 
           className="text-base text-muted-foreground max-w-2xl mx-auto"

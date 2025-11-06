@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, lazy, Suspense } from "react";
 import Hero from "@/components/Hero";
-import Skills from "@/components/Skills";
-import Experience from "@/components/Experience";
-import Projects from "@/components/Projects";
-import Contact from "@/components/Contact";
+import LazySection from "@/components/ui/LazySection";
+const Experience = lazy(() => import("@/components/Experience"));
+const Skills = lazy(() => import("@/components/Skills"));
+const Projects = lazy(() => import("@/components/Projects"));
+const Contact = lazy(() => import("@/components/Contact"));
 import Terminal from "@/components/Terminal";
 import Navigation from "@/components/Navigation";
 
@@ -16,10 +17,30 @@ const Index = () => {
       
       <main className="relative">
         <div className="snap-start"><Hero /></div>
-        <div className="snap-start"><Experience /></div>
-        <div className="snap-start"><Skills /></div>
-        <div className="snap-start"><Projects /></div>
-        <div className="snap-start"><Contact /></div>
+
+        <Suspense fallback={<div className="snap-start h-screen" />}> 
+          <LazySection className="snap-start">
+            <Experience />
+          </LazySection>
+        </Suspense>
+
+        <Suspense fallback={<div className="snap-start h-screen" />}> 
+          <LazySection className="snap-start">
+            <Skills />
+          </LazySection>
+        </Suspense>
+
+        <Suspense fallback={<div className="snap-start h-screen" />}> 
+          <LazySection className="snap-start">
+            <Projects />
+          </LazySection>
+        </Suspense>
+
+        <Suspense fallback={<div className="snap-start h-screen" />}> 
+          <LazySection className="snap-start">
+            <Contact />
+          </LazySection>
+        </Suspense>
       </main>
 
       <Terminal open={terminalOpen} onClose={() => setTerminalOpen(false)} />
