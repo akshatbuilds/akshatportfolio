@@ -206,4 +206,18 @@ All colors MUST be HSL.
   .animate-scroll {
     animation: scroll var(--animation-duration, 40s) linear infinite var(--animation-direction, forwards);
   }
+
+  /* Respect reduced motion preferences to avoid motion sickness */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    .animate-scroll {
+      animation: none;
+    }
+    .hover-glow:hover {
+      transform: none;
+      box-shadow: var(--shadow-card);
+    }
+  }
 }

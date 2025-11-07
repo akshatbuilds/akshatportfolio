@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useReducedMotion } from "framer-motion";
 import acLogo from "@/assets/ac-logo.png";
 import { Dock, DockIcon, DockItem, DockLabel } from "@/components/ui/dock";
 import { Briefcase, Code2, User, Mail } from "lucide-react";
@@ -17,10 +18,12 @@ const Navigation = ({ onLogoClick }: NavigationProps) => {
     { label: "Contact", href: "#contact", icon: Mail },
   ];
 
+  const prefersReducedMotion = useReducedMotion();
+
   const handleNavClick = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' });
     }
   };
 

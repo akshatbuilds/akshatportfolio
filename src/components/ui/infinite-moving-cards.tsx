@@ -2,6 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import React, { useEffect, useState } from "react";
+import { useReducedMotion } from "framer-motion";
 
 export const InfiniteMovingCards = ({
   items,
@@ -23,9 +24,17 @@ export const InfiniteMovingCards = ({
   const containerRef = React.useRef<HTMLDivElement>(null);
   const scrollerRef = React.useRef<HTMLUListElement>(null);
 
+  const prefersReducedMotion = useReducedMotion();
+
   useEffect(() => {
+    if (prefersReducedMotion) {
+      // Honor reduced motion: show a single pass without marquee animation
+      setStart(false);
+      return;
+    }
     addAnimation();
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [prefersReducedMotion]);
   const [start, setStart] = useState(false);
   function addAnimation() {
     if (containerRef.current && scrollerRef.current) {
@@ -81,7 +90,7 @@ export const InfiniteMovingCards = ({
         ref={scrollerRef}
         className={cn(
           "flex w-max min-w-full shrink-0 flex-nowrap gap-4 py-4",
-          start && "animate-scroll",
+          start && !prefersReducedMotion && "animate-scroll",
           pauseOnHover && "hover:[animation-play-state:paused]",
         )}
       >
