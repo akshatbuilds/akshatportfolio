@@ -8,6 +8,7 @@ import {
   useTransform,
   type SpringOptions,
   AnimatePresence,
+  useReducedMotion,
 } from 'framer-motion';
 import {
   Children,
@@ -81,10 +82,12 @@ function Dock({
   panelHeight = DEFAULT_PANEL_HEIGHT,
 }: DockProps) {
   const mouseX = useMotionValue(Infinity);
+  const prefersReducedMotion = useReducedMotion();
 
   return (
     <motion.div
       onMouseMove={({ pageX }) => {
+        if (prefersReducedMotion) return;
         mouseX.set(pageX);
       }}
       onMouseLeave={() => {
@@ -109,6 +112,7 @@ function DockItem({ children, className }: DockItemProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   const { distance, magnification, mouseX, spring } = useDock();
+  const prefersReducedMotion = useReducedMotion();
 
   const isHovered = useMotionValue(0);
 
@@ -123,7 +127,7 @@ function DockItem({ children, className }: DockItemProps) {
     [32, magnification, 32]
   );
 
-  const width = useSpring(widthTransform, spring);
+  const width = prefersReducedMotion ? useMotionValue(32) : useSpring(widthTransform, spring);
 
   return (
     <motion.div
@@ -152,14 +156,15 @@ function DockLabel({ children, className, ...rest }: DockLabelProps) {
   const restProps = rest as Record<string, unknown>;
   const isHovered = restProps['isHovered'] as MotionValue<number>;
   const [isVisible, setIsVisible] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
     const unsubscribe = isHovered.on('change', (latest) => {
-      setIsVisible(latest === 1);
+      setIsVisible(prefersReducedMotion ? false : latest === 1);
     });
 
     return () => unsubscribe();
-  }, [isHovered]);
+  }, [isHovered, prefersReducedMotion]);
 
   return (
     <AnimatePresence>
