@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import { useMotionValueEvent, useScroll } from "framer-motion";
+import { useMotionValueEvent, useScroll, useReducedMotion } from "framer-motion";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -22,20 +22,20 @@ export const StickyScroll = ({
     offset: ["start start", "end start"],
   });
   const cardLength = content.length;
+  const prefersReducedMotion = useReducedMotion();
+  const prevIndexRef = useRef(0);
 
+  // Update active card only when index actually changes to reduce re-renders
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    const cardsBreakpoints = content.map((_, index) => index / cardLength);
-    const closestBreakpointIndex = cardsBreakpoints.reduce(
-      (acc, breakpoint, index) => {
-        const distance = Math.abs(latest - breakpoint);
-        if (distance < Math.abs(latest - cardsBreakpoints[acc])) {
-          return index;
-        }
-        return acc;
-      },
-      0,
+    if (prefersReducedMotion) return;
+    const nextIndex = Math.min(
+      cardLength - 1,
+      Math.max(0, Math.floor(latest * cardLength))
     );
-    setActiveCard(closestBreakpointIndex);
+    if (nextIndex !== prevIndexRef.current) {
+      prevIndexRef.current = nextIndex;
+      setActiveCard(nextIndex);
+    }
   });
 
   const backgroundColors = [
@@ -63,22 +63,18 @@ export const StickyScroll = ({
           {content.map((item, index) => (
             <div key={item.title + index} className="my-20">
               <motion.h2
-                initial={{
-                  opacity: 0,
-                }}
+                initial={prefersReducedMotion ? false : { opacity: 0 }}
                 animate={{
-                  opacity: activeCard === index ? 1 : 0.3,
+                  opacity: prefersReducedMotion ? 1 : activeCard === index ? 1 : 0.3,
                 }}
                 className="text-2xl font-bold text-foreground"
               >
                 {item.title}
               </motion.h2>
               <motion.p
-                initial={{
-                  opacity: 0,
-                }}
+                initial={prefersReducedMotion ? false : { opacity: 0 }}
                 animate={{
-                  opacity: activeCard === index ? 1 : 0.3,
+                  opacity: prefersReducedMotion ? 1 : activeCard === index ? 1 : 0.3,
                 }}
                 className="text-kg mt-10 max-w-sm text-muted-foreground"
               >
