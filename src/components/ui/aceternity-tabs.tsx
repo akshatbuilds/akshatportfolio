@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 type Tab = {
@@ -25,6 +25,7 @@ export const AceternityTabs = ({
 }) => {
   const [active, setActive] = useState<Tab>(propTabs[0]);
   const [tabs, setTabs] = useState<Tab[]>(propTabs);
+  const prefersReducedMotion = useReducedMotion();
 
   const moveSelectedTabToTop = (idx: number) => {
     const newTabs = [...propTabs];
@@ -36,8 +37,9 @@ export const AceternityTabs = ({
 
   const [hovering, setHovering] = useState(false);
 
-  // Auto-cycle through tabs every 10 seconds
+  // Auto-cycle through tabs every 10 seconds (disabled under reduced motion)
   useEffect(() => {
+    if (prefersReducedMotion) return;
     const interval = setInterval(() => {
       const currentIndex = propTabs.findIndex(tab => tab.value === active.value);
       const nextIndex = (currentIndex + 1) % propTabs.length;
@@ -45,7 +47,7 @@ export const AceternityTabs = ({
     }, 10000);
 
     return () => clearInterval(interval);
-  }, [active, propTabs]);
+  }, [active, propTabs, prefersReducedMotion]);
 
   return (
     <>
