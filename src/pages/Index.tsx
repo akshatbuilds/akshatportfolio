@@ -32,23 +32,23 @@ const Index = () => {
       <Navigation onLogoClick={() => setTerminalOpen(true)} />
       
       <main className="relative">
-        <div className="snap-start"><Hero /></div>
+        <div className="snap-start content-vis contain-layer"><Hero /></div>
 
         {/* Single Suspense boundary and a global overlay while any chunk loads */}
         <Suspense fallback={<LoadingOverlay />}> 
-          <LazySection className="snap-start">
+          <LazySection className="snap-start content-vis contain-layer">
             <Experience />
           </LazySection>
 
-          <LazySection className="snap-start">
+          <LazySection className="snap-start content-vis contain-layer">
             <Skills />
           </LazySection>
 
-          <LazySection className="snap-start">
+          <LazySection className="snap-start content-vis contain-layer">
             <Projects />
           </LazySection>
 
-          <LazySection className="snap-start">
+          <LazySection className="snap-start content-vis contain-layer">
             <Contact />
           </LazySection>
         </Suspense>
