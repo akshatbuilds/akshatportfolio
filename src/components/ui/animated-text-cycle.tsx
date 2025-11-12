@@ -31,12 +31,15 @@ export default function AnimatedTextCycle({
   }, [currentIndex]);
 
   useEffect(() => {
+    if (prefersReducedMotion) {
+      setCurrentIndex(0);
+      return;
+    }
     const timer = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % words.length);
     }, interval);
-
     return () => clearInterval(timer);
-  }, [interval, words.length]);
+  }, [interval, words.length, prefersReducedMotion]);
 
   // Container animation for the whole word
   const containerVariants = prefersReducedMotion
