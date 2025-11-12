@@ -1,8 +1,10 @@
 import { Mail, ArrowDown } from "lucide-react";
+import { useReducedMotion } from "framer-motion";
 import AnimatedTextCycle from "@/components/ui/animated-text-cycle";
 import ElasticLine from "@/components/fancy/text/elastic-line";
 
 const Hero = () => {
+  const prefersReducedMotion = useReducedMotion();
   const heroWords = [
     "revenue‑grade",
     "battle‑tested",
@@ -58,7 +60,7 @@ const Hero = () => {
           {/* Scroll Indicator */}
           <a
             href="#projects"
-            className="inline-block text-muted-foreground hover:text-foreground transition-colors animate-bounce"
+            className={`inline-block text-muted-foreground hover:text-foreground transition-colors ${prefersReducedMotion ? "" : "animate-bounce"}`}
           >
             <ArrowDown className="h-6 w-6" />
           </a>
