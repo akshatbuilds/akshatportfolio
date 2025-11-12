@@ -215,9 +215,25 @@ All colors MUST be HSL.
     .animate-scroll {
       animation: none;
     }
+    .animate-fade-in {
+      animation: none !important;
+    }
+    .animate-spin {
+      animation: none !important;
+    }
     .hover-glow:hover {
       transform: none;
       box-shadow: var(--shadow-card);
     }
   }
+}
+
+/* Performance utilities */
+.content-vis {
+  content-visibility: auto;
+  contain-intrinsic-size: 800px;
+}
+
+.contain-layer {
+  contain: layout paint style;
 }
