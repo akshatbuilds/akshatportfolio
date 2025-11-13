@@ -37,7 +37,7 @@ const Navigation = ({ onLogoClick }: NavigationProps) => {
             className="flex items-center hover:opacity-70 transition-opacity"
             aria-label="Open terminal"
           >
-            <img src={acLogo} alt="AC Logo" className="h-10 w-auto" />
+            <img src={acLogo} alt="AC Logo" className="h-10 w-auto" decoding="async" fetchpriority="high" />
           </button>
 
           {/* Desktop Navigation with Dock */}
