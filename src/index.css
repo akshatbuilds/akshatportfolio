@@ -96,6 +96,7 @@ All colors MUST be HSL.
 
   html {
     scroll-behavior: smooth;
+    scrollbar-gutter: stable both-edges;
   }
 
   body {
