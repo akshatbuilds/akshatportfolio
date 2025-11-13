@@ -6,7 +6,7 @@ const Experience = lazy(() => import("@/components/Experience"));
 const Skills = lazy(() => import("@/components/Skills"));
 const Projects = lazy(() => import("@/components/Projects"));
 const Contact = lazy(() => import("@/components/Contact"));
-import Terminal from "@/components/Terminal";
+const Terminal = lazy(() => import("@/components/Terminal"));
 import Navigation from "@/components/Navigation";
 
 const Index = () => {
@@ -54,7 +54,9 @@ const Index = () => {
         </Suspense>
       </main>
 
-      <Terminal open={terminalOpen} onClose={() => setTerminalOpen(false)} />
+      <Suspense fallback={null}>
+        <Terminal open={terminalOpen} onClose={() => setTerminalOpen(false)} />
+      </Suspense>
     </div>
   );
 };
